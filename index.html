@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#160d22">
-    <title>Jun Xi Ted | Portfolio</title>
+    <title>Lim Jun Xi Ted | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,11 +13,11 @@
 
     <style>
         :root {
-            --purple: #b58bff;
-            --purple-light: #d5bdff;
-            --text: #f7f2ff;
+            --purple: #c19aff;
+            --purple-light: #ddc9ff;
+            --text: #faf7ff;
             --muted: #d0c3df;
-            --border: rgba(220, 190, 255, 0.2);
+            --border: rgba(225, 200, 255, 0.20);
         }
 
         * {
@@ -39,8 +39,6 @@
             overflow-x: hidden;
         }
 
-        /* Background */
-
         body::before {
             content: "";
             position: fixed;
@@ -58,9 +56,9 @@
             pointer-events: none;
             background: linear-gradient(
                 120deg,
-                rgba(18, 8, 31, 0.27),
-                rgba(37, 15, 59, 0.15),
-                rgba(13, 7, 24, 0.32)
+                rgba(18, 8, 31, 0.25),
+                rgba(37, 15, 59, 0.13),
+                rgba(13, 7, 24, 0.30)
             );
         }
 
@@ -82,10 +80,11 @@
             width: 100%;
             z-index: 100;
             padding: 19px 7%;
-            background: rgba(35, 17, 54, 0.20);
+            background: rgba(35, 17, 54, 0.18);
             border-bottom: 1px solid rgba(255,255,255,0.10);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            animation: headerIn .7s ease both;
         }
 
         nav {
@@ -116,11 +115,12 @@
             color: #e3d9ed;
             font-size: 12px;
             font-weight: 600;
-            transition: color .2s ease;
+            transition: color .2s ease, transform .2s ease;
         }
 
         .nav-links a:hover {
             color: var(--purple-light);
+            transform: translateY(-2px);
         }
 
         main {
@@ -170,10 +170,11 @@
             padding: 55px 52px;
             border: 1px solid var(--border);
             border-radius: 16px;
-            background: rgba(68, 35, 101, 0.13);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
+            background: rgba(68, 35, 101, 0.12);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             box-shadow: 0 18px 70px rgba(0,0,0,0.10);
+            animation: heroIn 1s cubic-bezier(.2,.8,.2,1) both;
         }
 
         .hero-small {
@@ -186,7 +187,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(45px, 8vw, 86px);
+            font-size: clamp(43px, 8vw, 86px);
             line-height: 1.08;
             letter-spacing: -5px;
             font-weight: 800;
@@ -219,7 +220,7 @@
             border-radius: 7px;
             font-size: 11px;
             font-weight: 700;
-            transition: .2s ease;
+            transition: .22s ease;
         }
 
         .button-primary {
@@ -230,18 +231,19 @@
 
         .button-primary:hover {
             background: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(193,154,255,.22);
         }
 
         .button-secondary {
             color: white;
-            background: rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.24);
         }
 
         .button-secondary:hover {
-            background: rgba(255,255,255,0.14);
-            transform: translateY(-2px);
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
         }
 
         /* Interests */
@@ -262,14 +264,15 @@
             overflow: hidden;
             border-radius: 10px;
             border: 1px solid var(--border);
-            background: rgba(70, 36, 105, 0.17);
+            background: rgba(70, 36, 105, 0.14);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            transition: transform .25s ease, background .25s ease;
+            transition: transform .3s ease, background .3s ease;
+            animation: cardIn .7s ease both;
         }
 
         .interest-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             background: rgba(91, 48, 133, 0.27);
         }
 
@@ -279,6 +282,11 @@
             object-fit: cover;
             display: block;
             filter: saturate(.85);
+            transition: transform .5s ease;
+        }
+
+        .interest-card:hover img {
+            transform: scale(1.04);
         }
 
         .interest-content {
@@ -325,7 +333,7 @@
             padding: 25px;
             border: 1px solid var(--border);
             border-radius: 11px;
-            background: rgba(68, 35, 101, 0.17);
+            background: rgba(68, 35, 101, 0.15);
             backdrop-filter: blur(7px);
             -webkit-backdrop-filter: blur(7px);
         }
@@ -375,6 +383,12 @@
             color: #e9dcff;
             font-size: 10px;
             font-weight: 600;
+            transition: .2s ease;
+        }
+
+        .skill:hover {
+            background: rgba(193,154,255,.25);
+            transform: translateY(-2px);
         }
 
         /* Contact */
@@ -387,7 +401,7 @@
             padding: 40px;
             border-radius: 13px;
             border: 1px solid var(--border);
-            background: rgba(68, 35, 101, 0.17);
+            background: rgba(68, 35, 101, 0.15);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
@@ -404,12 +418,13 @@
             border: 1px solid rgba(255,255,255,0.12);
             border-radius: 8px;
             background: rgba(255,255,255,0.045);
-            transition: background .2s ease;
+            transition: background .2s ease, transform .2s ease;
             min-width: 0;
         }
 
         .contact-item:hover {
             background: rgba(180,139,255,0.13);
+            transform: translateY(-3px);
         }
 
         .contact-item h3 {
@@ -432,13 +447,13 @@
             border-top: 1px solid rgba(255,255,255,0.12);
             padding: 23px 7%;
             text-align: center;
-            background: rgba(25, 12, 38, 0.22);
+            background: rgba(25, 12, 38, 0.18);
             color: #c6b7d4;
             font-size: 10px;
             letter-spacing: .5px;
         }
 
-        /* Music prompt */
+        /* Music popup */
 
         .music-overlay {
             position: fixed;
@@ -448,10 +463,10 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background: rgba(12, 5, 20, 0.43);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            transition: opacity .3s ease, visibility .3s ease;
+            background: rgba(12, 5, 20, 0.25);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: opacity .45s ease, visibility .45s ease;
         }
 
         .music-overlay.hidden {
@@ -465,10 +480,13 @@
             max-width: 390px;
             padding: 35px;
             text-align: center;
-            border: 1px solid rgba(220,190,255,0.28);
-            border-radius: 14px;
-            background: rgba(57, 28, 85, 0.76);
-            box-shadow: 0 20px 70px rgba(0,0,0,0.28);
+            border: 1px solid rgba(220,190,255,0.30);
+            border-radius: 15px;
+            background: rgba(75, 42, 112, 0.48);
+            box-shadow: 0 20px 70px rgba(0,0,0,0.20);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            animation: popupIn .55s cubic-bezier(.2,.8,.2,1) both;
         }
 
         .music-dialog h2 {
@@ -478,7 +496,7 @@
         }
 
         .music-dialog p {
-            color: #d0c0df;
+            color: #e1d5ed;
             font-size: 12px;
             line-height: 1.8;
         }
@@ -507,6 +525,7 @@
 
         #playMusicButton:hover {
             background: white;
+            transform: translateY(-3px);
         }
 
         #skipMusicButton {
@@ -516,12 +535,13 @@
         }
 
         #skipMusicButton:hover {
-            background: rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.19);
+            transform: translateY(-3px);
         }
 
         .music-status {
             margin-top: 14px;
-            color: #d0c0df;
+            color: #f0e7fa;
             font-size: 10px;
             line-height: 1.6;
         }
@@ -540,7 +560,7 @@
             align-items: center;
             border: 1px solid rgba(220,190,255,0.28);
             border-radius: 11px;
-            background: rgba(76, 42, 111, 0.48);
+            background: rgba(76, 42, 111, 0.40);
             color: white;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -550,12 +570,77 @@
 
         .music-toggle:hover {
             background: rgba(125, 79, 174, 0.65);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+        }
+
+        .music-toggle:active {
+            transform: scale(.91);
         }
 
         .music-toggle svg {
             width: 19px;
             height: 19px;
+        }
+
+        /* Version */
+
+        .version {
+            position: fixed;
+            right: 17px;
+            bottom: 13px;
+            z-index: 500;
+            color: rgba(255,255,255,.85);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 5px rgba(0,0,0,.7);
+            pointer-events: none;
+        }
+
+        /* Animations */
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popupIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes headerIn {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
@@ -581,11 +666,11 @@
             }
 
             .logo {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .nav-links {
-                gap: 13px;
+                gap: 12px;
             }
 
             .nav-links a {
@@ -639,10 +724,9 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
                 transition-duration: .01ms !important;
             }
         }
@@ -653,7 +737,7 @@
 
     <header>
         <nav>
-            <a href="#home" class="logo">Jun Xi Ted<span>.</span></a>
+            <a href="#home" class="logo">Lim Jun Xi Ted<span>.</span></a>
 
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -666,13 +750,11 @@
 
     <main>
 
-        <!-- Home -->
-
         <section id="home">
             <div class="hero">
                 <div class="hero-small">Personal Portfolio</div>
 
-                <h1>Jun Xi Ted<span>.</span></h1>
+                <h1>Lim Jun Xi Ted<span>.</span></h1>
 
                 <p class="hero-description">
                     A student with an interest in technology, programming and
@@ -687,8 +769,6 @@
             </div>
         </section>
 
-        <!-- Interests -->
-
         <section id="interests">
             <div class="section-label">What I enjoy</div>
             <h2 class="section-heading">My Interests</h2>
@@ -700,69 +780,43 @@
             <div class="interest-grid">
 
                 <article class="interest-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=85"
-                        alt="Programming code on a computer screen"
-                        loading="lazy"
-                    >
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=85"
+                         alt="Programming code on a computer screen" loading="lazy">
                     <div class="interest-content">
                         <h3>Programming</h3>
-                        <p>
-                            Learning to write code, solve problems and create
-                            projects using different programming languages.
-                        </p>
+                        <p>Learning to write code, solve problems and create projects using different programming languages.</p>
                     </div>
                 </article>
 
                 <article class="interest-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=85"
-                        alt="Custom desktop computer setup"
-                        loading="lazy"
-                    >
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=85"
+                         alt="Custom desktop computer setup" loading="lazy">
                     <div class="interest-content">
                         <h3>PC Building</h3>
-                        <p>
-                            Exploring computer hardware, component compatibility
-                            and building custom PC setups.
-                        </p>
+                        <p>Exploring computer hardware, component compatibility and building custom PC setups.</p>
                     </div>
                 </article>
 
                 <article class="interest-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=85"
-                        alt="Camera used for photography"
-                        loading="lazy"
-                    >
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=85"
+                         alt="Camera used for photography" loading="lazy">
                     <div class="interest-content">
                         <h3>Photography</h3>
-                        <p>
-                            Capturing moments, experimenting with composition
-                            and learning more about photography.
-                        </p>
+                        <p>Capturing moments, experimenting with composition and learning more about photography.</p>
                     </div>
                 </article>
 
                 <article class="interest-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=700&q=85"
-                        alt="Website displayed on a computer"
-                        loading="lazy"
-                    >
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=700&q=85"
+                         alt="Website displayed on a computer" loading="lazy">
                     <div class="interest-content">
                         <h3>Web Development</h3>
-                        <p>
-                            Building websites and experimenting with HTML,
-                            CSS and interactive features.
-                        </p>
+                        <p>Building websites and experimenting with HTML, CSS and interactive features.</p>
                     </div>
                 </article>
 
             </div>
         </section>
-
-        <!-- About -->
 
         <section id="about">
             <div class="section-label">A little about me</div>
@@ -803,40 +857,29 @@
                 </div>
 
                 <div class="about-details">
-
                     <div class="detail-row">
                         <div class="detail-label">Education</div>
-                        <div class="detail-value">
-                            Anglo-Chinese School (Barker Road)
-                        </div>
+                        <div class="detail-value">Anglo-Chinese School (Barker Road)</div>
                     </div>
 
                     <div class="detail-row">
                         <div class="detail-label">CCA</div>
-                        <div class="detail-value">
-                            Infocomm Media
-                        </div>
+                        <div class="detail-value">Infocomm Media</div>
                     </div>
 
                     <div class="detail-row">
                         <div class="detail-label">CCA Position</div>
-                        <div class="detail-value">
-                            Admin Secretary · 2025–2026
-                        </div>
+                        <div class="detail-value">Admin Secretary · 2025–2026</div>
                     </div>
 
                     <div class="detail-row">
                         <div class="detail-label">Main Interests</div>
-                        <div class="detail-value">
-                            Computer Science, Programming, Photography
-                        </div>
+                        <div class="detail-value">Computer Science, Programming, Photography</div>
                     </div>
-
                 </div>
+
             </div>
         </section>
-
-        <!-- Contact -->
 
         <section id="contact">
             <div class="contact-panel">
@@ -874,32 +917,24 @@
     </main>
 
     <footer>
-        © 2026 Jun Xi Ted. All Rights Reserved.
+        © 2026 Lim Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <!-- Local audio file: keep loose.mp3 beside index.html -->
-
-    <audio id="backgroundMusic" src="./loose.mp3" loop preload="auto"></audio>
+    <!-- Music file: uppercase L -->
+    <audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
 
     <!-- Music prompt -->
-
     <div class="music-overlay" id="musicOverlay">
         <div class="music-dialog">
             <h2>Play music?</h2>
-
             <p>
                 There's music playing in the background.
                 Would you like to listen while browsing?
             </p>
 
             <div class="music-buttons">
-                <button id="playMusicButton" type="button">
-                    Yes, play music
-                </button>
-
-                <button id="skipMusicButton" type="button">
-                    No thanks
-                </button>
+                <button id="playMusicButton" type="button">Yes, play music</button>
+                <button id="skipMusicButton" type="button">No thanks</button>
             </div>
 
             <div class="music-status" id="musicStatus" aria-live="polite"></div>
@@ -907,41 +942,98 @@
     </div>
 
     <!-- Music toggle -->
-
     <button class="music-toggle" id="musicToggle"
             type="button" aria-label="Play music" title="Play or pause music">
-
         <svg id="musicIcon" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.8"
              stroke-linecap="round" stroke-linejoin="round">
-
             <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
             <line x1="23" y1="9" x2="17" y2="15"></line>
             <line x1="17" y1="9" x2="23" y2="15"></line>
-
         </svg>
     </button>
 
+    <!-- Version number -->
+    <div class="version">VERSION 18</div>
+
     <script>
-        // Always open the website at the top.
+        // Always start at the top.
 
         if ("scrollRestoration" in history) {
             history.scrollRestoration = "manual";
         }
 
         function returnToTop() {
-            const previousBehavior = document.documentElement.style.scrollBehavior;
-
             document.documentElement.style.scrollBehavior = "auto";
             window.scrollTo(0, 0);
 
             requestAnimationFrame(() => {
-                document.documentElement.style.scrollBehavior = previousBehavior;
+                document.documentElement.style.scrollBehavior = "";
             });
         }
 
         window.addEventListener("load", returnToTop);
         window.addEventListener("pageshow", returnToTop);
+
+        // Subtle button click sound using Web Audio.
+        // No extra sound file is required.
+
+        let clickAudioContext;
+
+        function playClickSound() {
+            try {
+                const AudioContextClass =
+                    window.AudioContext || window.webkitAudioContext;
+
+                if (!AudioContextClass) return;
+
+                if (!clickAudioContext) {
+                    clickAudioContext = new AudioContextClass();
+                }
+
+                if (clickAudioContext.state === "suspended") {
+                    clickAudioContext.resume();
+                }
+
+                const oscillator = clickAudioContext.createOscillator();
+                const gain = clickAudioContext.createGain();
+
+                oscillator.type = "sine";
+                oscillator.frequency.setValueAtTime(
+                    620, clickAudioContext.currentTime
+                );
+                oscillator.frequency.exponentialRampToValueAtTime(
+                    390, clickAudioContext.currentTime + 0.045
+                );
+
+                gain.gain.setValueAtTime(
+                    0.0001, clickAudioContext.currentTime
+                );
+                gain.gain.exponentialRampToValueAtTime(
+                    0.055, clickAudioContext.currentTime + 0.005
+                );
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001, clickAudioContext.currentTime + 0.06
+                );
+
+                oscillator.connect(gain);
+                gain.connect(clickAudioContext.destination);
+
+                oscillator.start();
+                oscillator.stop(clickAudioContext.currentTime + 0.065);
+
+            } catch (error) {
+                console.warn("Click sound unavailable:", error);
+            }
+        }
+
+        // Add click sounds to clickable website controls.
+
+        document.querySelectorAll(
+            "button, .button, .nav-links a, .logo, .contact-item"
+        ).forEach(element => {
+            element.addEventListener("click", playClickSound);
+        });
 
         // Music controls.
 
@@ -984,7 +1076,6 @@
 
                 musicPlaying = true;
                 updateMusicIcon();
-
                 overlay.classList.add("hidden");
                 musicStatus.textContent = "";
 
@@ -994,10 +1085,10 @@
 
                 if (audio.error) {
                     musicStatus.textContent =
-                        "Unable to load loose.mp3. Check the filename and file location.";
+                        "Unable to load Loose.mp3. Check the filename and upload.";
                 } else {
                     musicStatus.textContent =
-                        "Playback was blocked. Try clicking the button again.";
+                        "Playback was blocked. Please try again.";
                 }
 
                 console.error("Audio playback error:", error);
@@ -1037,7 +1128,7 @@
 
         audio.addEventListener("error", () => {
             musicStatus.textContent =
-                "Could not find or load loose.mp3. Check that it exists in the repository root.";
+                "Could not load Loose.mp3. Check that it exists in the repository root.";
 
             console.error("Audio file failed to load:", audio.error);
         });
@@ -1047,3 +1138,4 @@
 
 </body>
 </html>
+
