@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#160d22">
-    <title>Jun Xi Ted — Portfolio</title>
+    <title>Jun Xi Ted | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,17 +16,19 @@
             --purple: #b58bff;
             --purple-light: #d5bdff;
             --text: #f7f2ff;
-            --muted: #c5b9d3;
-            --glass: rgba(94, 51, 139, 0.19);
-            --glass-strong: rgba(78, 39, 119, 0.31);
-            --border: rgba(220, 190, 255, 0.19);
+            --muted: #d0c3df;
+            --border: rgba(220, 190, 255, 0.2);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+            scroll-padding-top: 95px;
         }
 
         body {
@@ -44,8 +46,7 @@
             position: fixed;
             inset: 0;
             z-index: -2;
-            background:
-                url("background.jpg") center center / cover no-repeat;
+            background: url("./background.jpg") center center / cover no-repeat;
             transform: scale(1.02);
         }
 
@@ -55,13 +56,12 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background:
-                linear-gradient(
-                    120deg,
-                    rgba(18, 8, 31, 0.36),
-                    rgba(37, 15, 59, 0.24),
-                    rgba(13, 7, 24, 0.43)
-                );
+            background: linear-gradient(
+                120deg,
+                rgba(18, 8, 31, 0.27),
+                rgba(37, 15, 59, 0.15),
+                rgba(13, 7, 24, 0.32)
+            );
         }
 
         a {
@@ -82,10 +82,10 @@
             width: 100%;
             z-index: 100;
             padding: 19px 7%;
-            background: rgba(35, 17, 54, 0.24);
+            background: rgba(35, 17, 54, 0.20);
             border-bottom: 1px solid rgba(255,255,255,0.10);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         nav {
@@ -122,8 +122,6 @@
         .nav-links a:hover {
             color: var(--purple-light);
         }
-
-        /* General layout */
 
         main {
             max-width: 1250px;
@@ -171,11 +169,11 @@
             width: 100%;
             padding: 55px 52px;
             border: 1px solid var(--border);
-            border-radius: 18px;
-            background: rgba(68, 35, 101, 0.18);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 18px 70px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            background: rgba(68, 35, 101, 0.13);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+            box-shadow: 0 18px 70px rgba(0,0,0,0.10);
         }
 
         .hero-small {
@@ -262,17 +260,17 @@
 
         .interest-card {
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid var(--border);
-            background: rgba(70, 36, 105, 0.22);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
+            background: rgba(70, 36, 105, 0.17);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             transition: transform .25s ease, background .25s ease;
         }
 
         .interest-card:hover {
             transform: translateY(-5px);
-            background: rgba(91, 48, 133, 0.32);
+            background: rgba(91, 48, 133, 0.27);
         }
 
         .interest-card img {
@@ -280,7 +278,7 @@
             height: 155px;
             object-fit: cover;
             display: block;
-            filter: saturate(.8);
+            filter: saturate(.85);
         }
 
         .interest-content {
@@ -326,10 +324,10 @@
         .about-details {
             padding: 25px;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            background: rgba(68, 35, 101, 0.22);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            border-radius: 11px;
+            background: rgba(68, 35, 101, 0.17);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
         }
 
         .detail-row {
@@ -373,7 +371,7 @@
             padding: 9px 12px;
             border: 1px solid rgba(213,189,255,0.22);
             border-radius: 5px;
-            background: rgba(117,75,164,0.17);
+            background: rgba(117,75,164,0.14);
             color: #e9dcff;
             font-size: 10px;
             font-weight: 600;
@@ -387,11 +385,11 @@
 
         .contact-panel {
             padding: 40px;
-            border-radius: 14px;
+            border-radius: 13px;
             border: 1px solid var(--border);
-            background: rgba(68, 35, 101, 0.22);
-            backdrop-filter: blur(9px);
-            -webkit-backdrop-filter: blur(9px);
+            background: rgba(68, 35, 101, 0.17);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .contact-list {
@@ -450,9 +448,9 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background: rgba(12, 5, 20, 0.48);
-            backdrop-filter: blur(9px);
-            -webkit-backdrop-filter: blur(9px);
+            background: rgba(12, 5, 20, 0.43);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             transition: opacity .3s ease, visibility .3s ease;
         }
 
@@ -468,8 +466,8 @@
             padding: 35px;
             text-align: center;
             border: 1px solid rgba(220,190,255,0.28);
-            border-radius: 15px;
-            background: rgba(57, 28, 85, 0.72);
+            border-radius: 14px;
+            background: rgba(57, 28, 85, 0.76);
             box-shadow: 0 20px 70px rgba(0,0,0,0.28);
         }
 
@@ -519,6 +517,13 @@
 
         #skipMusicButton:hover {
             background: rgba(255,255,255,0.18);
+        }
+
+        .music-status {
+            margin-top: 14px;
+            color: #d0c0df;
+            font-size: 10px;
+            line-height: 1.6;
         }
 
         /* Music toggle */
@@ -687,6 +692,7 @@
         <section id="interests">
             <div class="section-label">What I enjoy</div>
             <h2 class="section-heading">My Interests</h2>
+
             <p class="section-description">
                 A few of the things I spend my time learning and working on.
             </p>
@@ -696,7 +702,7 @@
                 <article class="interest-card">
                     <img
                         src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=85"
-                        alt="Programming code displayed on a computer screen"
+                        alt="Programming code on a computer screen"
                         loading="lazy"
                     >
                     <div class="interest-content">
@@ -871,24 +877,32 @@
         © 2026 Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <!-- Local audio file -->
+    <!-- Local audio file: keep loose.mp3 beside index.html -->
 
-    <audio id="backgroundMusic" src="loose.mp3" loop preload="auto"></audio>
+    <audio id="backgroundMusic" src="./loose.mp3" loop preload="auto"></audio>
 
     <!-- Music prompt -->
 
     <div class="music-overlay" id="musicOverlay">
         <div class="music-dialog">
             <h2>Play music?</h2>
+
             <p>
                 There's music playing in the background.
                 Would you like to listen while browsing?
             </p>
 
             <div class="music-buttons">
-                <button id="playMusicButton" type="button">Yes, play music</button>
-                <button id="skipMusicButton" type="button">No thanks</button>
+                <button id="playMusicButton" type="button">
+                    Yes, play music
+                </button>
+
+                <button id="skipMusicButton" type="button">
+                    No thanks
+                </button>
             </div>
+
+            <div class="music-status" id="musicStatus" aria-live="polite"></div>
         </div>
     </div>
 
@@ -900,20 +914,44 @@
         <svg id="musicIcon" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.8"
              stroke-linecap="round" stroke-linejoin="round">
+
             <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
             <line x1="23" y1="9" x2="17" y2="15"></line>
             <line x1="17" y1="9" x2="23" y2="15"></line>
-        </svg>
 
+        </svg>
     </button>
 
     <script>
+        // Always open the website at the top.
+
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        function returnToTop() {
+            const previousBehavior = document.documentElement.style.scrollBehavior;
+
+            document.documentElement.style.scrollBehavior = "auto";
+            window.scrollTo(0, 0);
+
+            requestAnimationFrame(() => {
+                document.documentElement.style.scrollBehavior = previousBehavior;
+            });
+        }
+
+        window.addEventListener("load", returnToTop);
+        window.addEventListener("pageshow", returnToTop);
+
+        // Music controls.
+
         const audio = document.getElementById("backgroundMusic");
         const overlay = document.getElementById("musicOverlay");
         const playButton = document.getElementById("playMusicButton");
         const skipButton = document.getElementById("skipMusicButton");
         const toggleButton = document.getElementById("musicToggle");
         const musicIcon = document.getElementById("musicIcon");
+        const musicStatus = document.getElementById("musicStatus");
 
         let musicPlaying = false;
 
@@ -931,22 +969,38 @@
 
         function updateMusicIcon() {
             musicIcon.innerHTML = musicPlaying ? playIcon : muteIcon;
+
             toggleButton.setAttribute(
                 "aria-label",
-                musicPlaying ? "Mute music" : "Play music"
+                musicPlaying ? "Pause music" : "Play music"
             );
         }
 
         async function startMusic() {
+            musicStatus.textContent = "Starting music...";
+
             try {
                 await audio.play();
+
                 musicPlaying = true;
                 updateMusicIcon();
+
                 overlay.classList.add("hidden");
+                musicStatus.textContent = "";
+
             } catch (error) {
                 musicPlaying = false;
                 updateMusicIcon();
-                alert("Music could not be played. Make sure loose.mp3 is in the same folder as index.html.");
+
+                if (audio.error) {
+                    musicStatus.textContent =
+                        "Unable to load loose.mp3. Check the filename and file location.";
+                } else {
+                    musicStatus.textContent =
+                        "Playback was blocked. Try clicking the button again.";
+                }
+
+                console.error("Audio playback error:", error);
             }
         }
 
@@ -963,9 +1017,9 @@
             overlay.classList.add("hidden");
         });
 
-        toggleButton.addEventListener("click", async () => {
+        toggleButton.addEventListener("click", () => {
             if (audio.paused) {
-                await startMusic();
+                startMusic();
             } else {
                 stopMusic();
             }
@@ -982,7 +1036,10 @@
         });
 
         audio.addEventListener("error", () => {
-            console.error("Could not load loose.mp3. Check the file name and folder.");
+            musicStatus.textContent =
+                "Could not find or load loose.mp3. Check that it exists in the repository root.";
+
+            console.error("Audio file failed to load:", audio.error);
         });
 
         updateMusicIcon();
