@@ -993,16 +993,15 @@ function resetScroll() {
 }
 
 window.addEventListener("load", resetScroll);
+
 window.addEventListener("pageshow", function(event) {
     if (event.persisted) resetScroll();
 });
 
+
 /* MUSIC PLAYLIST */
 
 const music = document.getElementById("backgroundMusic");
-const musicModal = document.getElementById("musicModal");
-const musicYes = document.getElementById("musicYes");
-const musicNo = document.getElementById("musicNo");
 const volumeSlider = document.getElementById("volumeSlider");
 
 const playlist = [
@@ -1011,7 +1010,7 @@ const playlist = [
 ];
 
 let currentTrack = 0;
-let musicEnabled = false;
+let musicEnabled = true;
 
 music.volume = 0.35;
 
@@ -1033,18 +1032,11 @@ music.addEventListener("ended", function() {
     playCurrentTrack();
 });
 
-musicYes.addEventListener("click", function() {
-    musicEnabled = true;
-    currentTrack = 0;
-    musicModal.classList.add("hidden");
-    playCurrentTrack();
-});
 
-musicNo.addEventListener("click", function() {
-    musicEnabled = false;
-    music.pause();
-    musicModal.classList.add("hidden");
-});
+/* START MUSIC */
+
+playCurrentTrack();
+
 
 /* VOLUME SLIDER */
 
@@ -1054,6 +1046,7 @@ volumeSlider.addEventListener("input", function() {
     music.volume = volume;
     music.muted = volume === 0;
 });
+
 
 /* SCROLL INDICATOR */
 
@@ -1068,6 +1061,7 @@ window.addEventListener("scroll", function() {
         scrollIndicator.style.pointerEvents = "auto";
     }
 });
+
 
 /* REVEAL ANIMATIONS */
 
@@ -1094,6 +1088,3 @@ if ("IntersectionObserver" in window) {
     });
 }
 </script>
-
-</body>
-</html>
