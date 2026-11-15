@@ -47,7 +47,6 @@ body {
 
 /* ==========================================
    FIXED BACKGROUND
-   STAYS IN PLACE WHILE THE PAGE SCROLLS
 ========================================== */
 
 body::before {
@@ -55,18 +54,14 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -2;
-
     background-image: url("./sussy1.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-
     pointer-events: none;
     transform: translateZ(0);
     will-change: transform;
 }
-
-/* White overlay for readability */
 
 body::after {
     content: "";
@@ -105,16 +100,13 @@ body::after {
     position: fixed;
     inset: 0;
     z-index: 99999;
-
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     background: rgba(255, 255, 255, 0.48);
     backdrop-filter: blur(28px) saturate(180%);
     -webkit-backdrop-filter: blur(28px) saturate(180%);
-
     cursor: pointer;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
@@ -175,14 +167,11 @@ nav {
     transform: translateX(-50%);
     width: min(1100px, calc(100% - 36px));
     z-index: 1000;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 15px 25px;
     border-radius: 24px;
-
     background: rgba(255, 255, 255, 0.67);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
@@ -267,7 +256,6 @@ section {
     padding: 10px 17px;
     border-radius: 30px;
     margin-bottom: 25px;
-
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -312,6 +300,7 @@ section {
     font-size: 11px;
     font-weight: 800;
     transition: transform 0.25s ease, background 0.25s ease;
+    text-align: center;
 }
 
 .button:hover {
@@ -393,14 +382,13 @@ section {
     border: 1px solid rgba(255,255,255,0.9);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
-
     font-size: 11px;
     font-weight: 700;
     color: #333;
 }
 
 /* ==========================================
-   ACHIEVEMENTS AND WORK
+   PREVIOUS WORK EXPERIENCES
 ========================================== */
 
 .work-list {
@@ -536,8 +524,7 @@ footer {
 }
 
 /* ==========================================
-   MINIMAL MUSIC PLAYER
-   HIDDEN VOLUME SLIDER ON HOVER
+   MUSIC PLAYER
 ========================================== */
 
 .music-control {
@@ -545,40 +532,30 @@ footer {
     right: 25px;
     bottom: 25px;
     z-index: 2000;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-
     padding: 8px;
     background: transparent;
     border: none;
     box-shadow: none;
 }
 
-/* Invisible hover area */
-
 .volume-container {
     position: absolute;
     bottom: 48px;
-
     width: 48px;
     height: 125px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: transparent;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transition: opacity 0.25s ease, visibility 0.25s ease;
 }
-
-/* Reveal slider when hovering over player */
 
 .music-control:hover .volume-container,
 .music-control:focus-within .volume-container {
@@ -590,13 +567,10 @@ footer {
 #volumeSlider {
     appearance: none;
     -webkit-appearance: none;
-
     width: 90px;
     height: 4px;
-
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.2);
-
     transform: rotate(-90deg);
     cursor: pointer;
 }
@@ -604,10 +578,8 @@ footer {
 #volumeSlider::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
-
     width: 13px;
     height: 13px;
-
     border-radius: 50%;
     background: #171717;
     border: 2px solid white;
@@ -617,7 +589,6 @@ footer {
 #volumeSlider::-moz-range-thumb {
     width: 10px;
     height: 10px;
-
     border-radius: 50%;
     background: #171717;
     border: 2px solid white;
@@ -627,22 +598,17 @@ footer {
 .speaker-display {
     width: 42px;
     height: 42px;
-
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.8);
-
     background: rgba(255,255,255,0.55);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
     color: #171717;
     font: inherit;
-
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
@@ -805,7 +771,7 @@ footer {
 
     <div class="nav-links">
         <a href="#home">HOME</a>
-        <a href="#work">WORK</a>
+        <a href="#work">PREVIOUS WORK EXPERIENCES</a>
         <a href="#about">ABOUT</a>
         <a href="#contact">CONTACT</a>
     </div>
@@ -836,16 +802,17 @@ footer {
         </p>
 
         <div class="hero-buttons">
-            <a href="#interests" class="button button-dark">
-                EXPLORE MY PORTFOLIO
+            <a href="#work" class="button button-dark">
+                PREVIOUS WORK EXPERIENCES
             </a>
 
             <a href="#contact" class="button button-light">
-                GET IN TOUCH
+                CONTACT ME
             </a>
         </div>
     </div>
 </section>
+
 <!-- ==========================================
      SKILLS
 ========================================== -->
@@ -866,22 +833,25 @@ footer {
 </section>
 
 <!-- ==========================================
-     WORK AND ACHIEVEMENTS
+     PREVIOUS WORK EXPERIENCES
 ========================================== -->
 
 <section id="work">
     <div class="reveal">
-        <p class="section-label">MY EXPERIENCES</p>
-        <h2 class="section-title">Work & Experience.</h2>
+        <p class="section-label">MY PROFESSIONAL BACKGROUND</p>
+        <h2 class="section-title">Previous Work Experiences.</h2>
     </div>
 
     <div class="work-list">
 
         <div class="work-item glass reveal">
             <div>
-                <h3>Independant Software Developer</h3>
+                <h3>Independent Software Developer</h3>
                 <p>
-                   Designed, built, and delivered custom software solutions for external clients on a contract basis, managing project timelines and technical requirements independently.
+                    Designed, built, and delivered custom software
+                    solutions for external clients on a contract basis,
+                    managing project timelines and technical
+                    requirements independently.
                 </p>
             </div>
             <span class="work-date">2023 – 2026</span>
@@ -898,6 +868,8 @@ footer {
             </div>
             <span class="work-date">2025 – 2026</span>
         </div>
+
+    </div>
 </section>
 
 <!-- ==========================================
