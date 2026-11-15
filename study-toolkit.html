@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160d22">
+<meta name="theme-color" content="#eeeaf4">
 <title>Study Toolkit | Lim Jun Xi Ted</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,11 +13,14 @@
 
 <style>
 :root {
-    --purple: #a970e8;
-    --purple-light: #c49af5;
-    --muted: rgba(255,255,255,.72);
-    --glass: rgba(22,12,35,.82);
-    --border: rgba(255,255,255,.13);
+    --purple: #8755b5;
+    --purple-light: #a879d5;
+    --dark: #292033;
+    --muted: #716a7a;
+    --glass: rgba(255,255,255,.57);
+    --glass-strong: rgba(255,255,255,.78);
+    --border: rgba(255,255,255,.72);
+    --shadow: 0 12px 40px rgba(55,36,75,.12);
 }
 
 * {
@@ -29,37 +32,25 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    color: white;
-    background: #160d22;
+    color: var(--dark);
     min-height: 100vh;
     overflow-x: hidden;
+
+    /* The background scrolls naturally with the page */
+    background-color: #eeeaf4;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.43),
+            rgba(255,255,255,.53)
+        ),
+        url("./background.jpg");
+    background-position: center top, center top;
+    background-size: 100% 100%, 100% auto;
+    background-repeat: repeat-y, repeat-y;
+    background-attachment: scroll, scroll;
 }
 
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    background-image: url("./background.jpg");
-    background-position: center top;
-    background-size: 100% auto;
-    background-repeat: repeat-y;
-    pointer-events: none;
-}
-
-.background-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(
-        180deg,
-        rgba(15,8,24,.48),
-        rgba(17,8,28,.75) 55%,
-        rgba(15,8,24,.92)
-    );
-    pointer-events: none;
-}
-
-button, input, textarea {
+button, input, textarea, select {
     font: inherit;
 }
 
@@ -75,23 +66,23 @@ a {
 /* HEADER */
 
 header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
     z-index: 100;
-    padding: 18px 7%;
-    background: rgba(18,10,29,.82);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255,255,255,.09);
+    padding: 17px 7%;
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 5px 25px rgba(55,36,75,.06);
 }
 
 .navbar {
     max-width: 1250px;
     margin: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
@@ -99,10 +90,11 @@ header {
     font-weight: 800;
     letter-spacing: 1px;
     white-space: nowrap;
+    color: var(--dark);
 }
 
 .logo span {
-    color: var(--purple-light);
+    color: var(--purple);
 }
 
 .nav-links {
@@ -113,21 +105,21 @@ header {
 }
 
 .nav-links a {
-    color: rgba(255,255,255,.78);
+    color: #51485d;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     transition: .25s;
 }
 
 .nav-links a:hover {
-    color: var(--purple-light);
+    color: var(--purple);
 }
 
 .menu-toggle {
     display: none;
     border: none;
     background: none;
-    color: white;
+    color: var(--dark);
     font-size: 25px;
 }
 
@@ -140,16 +132,16 @@ header {
 }
 
 main {
-    padding-top: 110px;
+    padding-top: 10px;
 }
 
 section {
     padding: 65px 0;
-    scroll-margin-top: 85px;
+    scroll-margin-top: 75px;
 }
 
 .section-label {
-    color: var(--purple-light);
+    color: var(--purple);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
@@ -159,32 +151,36 @@ section {
 .section-title {
     font-size: clamp(29px,4vw,42px);
     font-weight: 800;
+    color: #292033;
     margin-bottom: 14px;
-    text-shadow: 0 3px 15px rgba(0,0,0,.5);
 }
 
 .section-description {
     color: var(--muted);
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.9;
     max-width: 650px;
 }
+
+/* GLASS PANELS */
 
 .glass-card {
     background: var(--glass);
     border: 1px solid var(--border);
-    border-radius: 18px;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 12px 35px rgba(0,0,0,.18);
+    border-radius: 19px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: var(--shadow);
 }
 
 .panel {
-    padding: 27px;
+    padding: 28px;
     margin-top: 25px;
 }
 
 .panel h3 {
     font-size: 17px;
+    color: var(--dark);
     margin-bottom: 9px;
 }
 
@@ -202,33 +198,35 @@ section {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border: 1px solid rgba(255,255,255,.14);
-    border-radius: 9px;
+    border: 1px solid rgba(110,75,145,.15);
+    border-radius: 10px;
     padding: 12px 18px;
     font-size: 11px;
     font-weight: 700;
     transition: .25s;
-    color: white;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg,#9860d0,#7040a7);
+    background: linear-gradient(135deg,#9869c1,#8151ad);
+    color: white;
     border: none;
+    box-shadow: 0 5px 15px rgba(129,81,173,.18);
 }
 
 .btn-secondary {
-    background: rgba(255,255,255,.07);
+    background: rgba(255,255,255,.62);
+    color: #57466a;
 }
 
 .btn-danger {
-    background: rgba(220,75,95,.13);
-    border-color: rgba(220,75,95,.25);
-    color: #ffb4c0;
+    background: rgba(255,230,235,.8);
+    color: #b64d68;
+    border-color: rgba(190,75,100,.15);
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    filter: brightness(1.15);
+    filter: brightness(1.04);
 }
 
 .btn-small {
@@ -241,22 +239,23 @@ section {
 .input {
     width: 100%;
     padding: 13px 15px;
-    border-radius: 9px;
+    border-radius: 10px;
     outline: none;
-    color: white;
+    color: var(--dark);
     font-size: 12px;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.13);
+    background: rgba(255,255,255,.76);
+    border: 1px solid rgba(112,82,145,.16);
     transition: .2s;
 }
 
 .input::placeholder {
-    color: rgba(255,255,255,.42);
+    color: #9991a2;
 }
 
 .input:focus {
     border-color: var(--purple-light);
-    background: rgba(255,255,255,.1);
+    background: rgba(255,255,255,.95);
+    box-shadow: 0 0 0 3px rgba(155,112,196,.1);
 }
 
 textarea.input {
@@ -274,12 +273,13 @@ textarea.input {
 .hero-tag {
     display: inline-block;
     padding: 9px 17px;
-    border: 1px solid rgba(255,255,255,.2);
-    background: rgba(30,16,45,.75);
+    border: 1px solid rgba(255,255,255,.8);
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(15px);
     border-radius: 30px;
-    color: var(--purple-light);
+    color: var(--purple);
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: 22px;
 }
@@ -289,22 +289,20 @@ textarea.input {
     font-weight: 800;
     letter-spacing: -2px;
     line-height: 1.15;
-    text-shadow: 0 5px 25px rgba(0,0,0,.6);
+    color: #292033;
 }
 
 .hero h1 span {
-    color: var(--purple-light);
+    color: var(--purple);
 }
 
 .hero p {
     max-width: 650px;
-    color: rgba(255,255,255,.82);
+    color: #62596d;
     font-size: 13px;
     line-height: 1.9;
     margin-top: 19px;
 }
-
-/* TOOL NAVIGATION */
 
 .tool-nav {
     display: flex;
@@ -315,19 +313,20 @@ textarea.input {
 
 .tool-nav a {
     padding: 11px 15px;
-    background: rgba(24,13,38,.8);
-    border: 1px solid var(--border);
-    border-radius: 9px;
+    background: rgba(255,255,255,.62);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 10px;
     font-size: 10px;
-    font-weight: 700;
-    color: rgba(255,255,255,.8);
+    font-weight: 800;
+    color: #58476b;
     transition: .25s;
 }
 
 .tool-nav a:hover {
-    background: rgba(150,96,208,.25);
-    border-color: var(--purple);
-    color: white;
+    background: white;
+    color: var(--purple);
+    transform: translateY(-2px);
 }
 
 /* GRADE CALCULATOR */
@@ -346,9 +345,9 @@ textarea.input {
 
 .remove-subject {
     border: none;
-    color: #ffabb9;
-    background: rgba(220,75,95,.12);
-    border-radius: 8px;
+    color: #b64d68;
+    background: rgba(255,225,231,.8);
+    border-radius: 9px;
     width: 39px;
     height: 39px;
     font-size: 17px;
@@ -370,23 +369,23 @@ textarea.input {
 
 .result-box {
     padding: 19px;
-    border-radius: 12px;
-    background: rgba(150,96,208,.12);
-    border: 1px solid rgba(177,132,226,.2);
+    border-radius: 13px;
+    background: rgba(255,255,255,.57);
+    border: 1px solid rgba(255,255,255,.8);
 }
 
 .result-box small {
     display: block;
     color: var(--muted);
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1px;
     margin-bottom: 9px;
 }
 
 .result-box strong {
     font-size: 25px;
-    color: var(--purple-light);
+    color: var(--purple);
 }
 
 /* STUDY PLANNER */
@@ -409,10 +408,10 @@ textarea.input {
 }
 
 .stat-box {
-    background: rgba(255,255,255,.055);
-    border: 1px solid rgba(255,255,255,.09);
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.8);
     padding: 16px;
-    border-radius: 12px;
+    border-radius: 13px;
 }
 
 .stat-box small {
@@ -420,17 +419,18 @@ textarea.input {
     color: var(--muted);
     font-size: 9px;
     letter-spacing: 1px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 8px;
 }
 
 .stat-box strong {
     font-size: 22px;
+    color: var(--dark);
 }
 
 .progress-track {
     height: 7px;
-    background: rgba(255,255,255,.12);
+    background: rgba(110,80,140,.12);
     border-radius: 20px;
     overflow: hidden;
     margin: 12px 0 23px;
@@ -439,7 +439,7 @@ textarea.input {
 .progress-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg,#8050b5,#c49af5);
+    background: linear-gradient(90deg,#9160bd,#c19be3);
     border-radius: 20px;
     transition: width .3s;
 }
@@ -455,13 +455,14 @@ textarea.input {
     align-items: center;
     gap: 12px;
     padding: 15px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 11px;
-    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 12px;
+    background: rgba(255,255,255,.53);
+    backdrop-filter: blur(12px);
 }
 
 .task-item input[type="checkbox"] {
-    accent-color: #b58be9;
+    accent-color: #9564c1;
     width: 17px;
     height: 17px;
     cursor: pointer;
@@ -474,24 +475,25 @@ textarea.input {
     font-size: 12px;
     line-height: 1.6;
     overflow-wrap: anywhere;
+    color: #42394c;
 }
 
 .task-item.completed .task-text {
     text-decoration: line-through;
-    color: rgba(255,255,255,.42);
+    color: #99919f;
 }
 
 .delete-task {
     border: none;
     background: transparent;
-    color: #ffabb9;
+    color: #b64d68;
     font-size: 17px;
     padding: 4px 7px;
 }
 
 .empty-state {
     text-align: center;
-    color: rgba(255,255,255,.48);
+    color: #92899a;
     padding: 30px 10px;
     font-size: 12px;
 }
@@ -509,24 +511,12 @@ textarea.input {
 .deck-select {
     width: 100%;
     padding: 13px 14px;
-    color: white;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.14);
-    border-radius: 9px;
+    color: var(--dark);
+    background: rgba(255,255,255,.8);
+    border: 1px solid rgba(112,82,145,.16);
+    border-radius: 10px;
     outline: none;
     font-size: 12px;
-}
-
-.deck-select option {
-    color: white;
-    background: #21142f;
-}
-
-.deck-management {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-bottom: 22px;
 }
 
 .deck-create-row {
@@ -545,6 +535,10 @@ textarea.input {
     margin-bottom: 17px;
 }
 
+.deck-info h3 {
+    font-size: 17px;
+}
+
 .deck-info span {
     color: var(--muted);
     font-size: 11px;
@@ -557,18 +551,19 @@ textarea.input {
     justify-content: center;
     text-align: center;
     padding: 30px;
-    border-radius: 16px;
-    border: 1px solid rgba(184,139,235,.3);
-    background:
-        radial-gradient(circle at top right,rgba(153,100,210,.22),transparent 55%),
-        rgba(255,255,255,.055);
+    border-radius: 17px;
+    border: 1px solid rgba(255,255,255,.9);
+    background: rgba(255,255,255,.56);
+    backdrop-filter: blur(22px);
+    box-shadow: inset 0 0 30px rgba(255,255,255,.25);
     cursor: pointer;
     transition: .3s;
     user-select: none;
 }
 
 .flashcard:hover {
-    border-color: rgba(196,154,245,.65);
+    border-color: rgba(154,111,196,.5);
+    background: rgba(255,255,255,.75);
     transform: translateY(-3px);
 }
 
@@ -578,7 +573,7 @@ textarea.input {
 
 .flashcard-label {
     display: block;
-    color: var(--purple-light);
+    color: var(--purple);
     font-size: 10px;
     letter-spacing: 2px;
     font-weight: 800;
@@ -590,10 +585,11 @@ textarea.input {
     font-weight: 700;
     line-height: 1.65;
     overflow-wrap: anywhere;
+    color: #332a3e;
 }
 
 .flashcard-hint {
-    color: rgba(255,255,255,.48);
+    color: #93899d;
     font-size: 10px;
     margin-top: 23px;
 }
@@ -610,7 +606,7 @@ textarea.input {
 .card-counter {
     color: var(--muted);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     min-width: 65px;
     text-align: center;
 }
@@ -620,7 +616,7 @@ textarea.input {
     gap: 12px;
     margin-top: 27px;
     padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,.1);
+    border-top: 1px solid rgba(110,80,140,.13);
 }
 
 .add-card-form h4 {
@@ -640,29 +636,29 @@ textarea.input {
     align-items: center;
     gap: 10px;
     padding: 12px;
-    border: 1px solid rgba(255,255,255,.09);
-    background: rgba(255,255,255,.04);
-    border-radius: 9px;
+    border: 1px solid rgba(255,255,255,.9);
+    background: rgba(255,255,255,.55);
+    border-radius: 10px;
 }
 
 .saved-card-item span {
     flex: 1;
     min-width: 0;
     font-size: 11px;
-    color: rgba(255,255,255,.82);
+    color: #51465e;
     overflow-wrap: anywhere;
 }
 
 .saved-card-item button {
     border: none;
     background: transparent;
-    color: #ffabb9;
+    color: #b64d68;
     font-size: 16px;
     padding: 4px;
 }
 
 .deck-warning {
-    color: rgba(255,255,255,.52);
+    color: #8c8294;
     font-size: 10px;
     line-height: 1.7;
     margin-top: 14px;
@@ -679,13 +675,13 @@ textarea.input {
     visibility: hidden;
     z-index: 300;
     padding: 13px 19px;
-    background: rgba(37,23,54,.97);
-    border: 1px solid rgba(196,154,245,.3);
-    border-radius: 10px;
-    color: white;
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 11px;
+    color: #453451;
     font-size: 11px;
-    font-weight: 600;
-    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(55,36,75,.15);
     transition: .25s;
     max-width: 90%;
     text-align: center;
@@ -702,57 +698,41 @@ textarea.input {
 footer {
     padding: 30px 7%;
     text-align: center;
-    border-top: 1px solid rgba(255,255,255,.1);
-    background: rgba(15,8,24,.8);
+    border-top: 1px solid rgba(255,255,255,.75);
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(20px);
     margin-top: 50px;
 }
 
 footer p {
-    color: rgba(255,255,255,.58);
+    color: #71677b;
     font-size: 11px;
 }
 
-/* MUSIC */
+/* VERTICAL MUSIC SLIDER */
 
 .music-control {
     position: fixed;
-    right: 28px;
-    bottom: 28px;
+    right: 25px;
+    bottom: 25px;
     z-index: 200;
-    width: 175px;
-    height: 48px;
+    width: 55px;
+    height: 165px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 10px;
+    padding: 7px;
 }
 
-.music-icon {
-    width: 39px;
-    height: 39px;
+/* Transparent hover area; no visible panel */
+.volume-wrap {
+    width: 38px;
+    height: 105px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-}
-
-.music-icon svg {
-    width: 23px;
-    height: 23px;
-    stroke: white;
-    fill: none;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
-    filter: drop-shadow(0 2px 7px rgba(0,0,0,.6));
-}
-
-.volume-wrap {
-    width: 105px;
-    height: 39px;
-    display: flex;
-    align-items: center;
     opacity: 0;
     visibility: hidden;
     transition: opacity .25s;
@@ -765,32 +745,61 @@ footer p {
 }
 
 #volumeSlider {
-    width: 100%;
-    height: 4px;
     appearance: none;
     -webkit-appearance: none;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 4px;
+    height: 90px;
     border-radius: 10px;
     outline: none;
     cursor: pointer;
-    background: linear-gradient(to right,#bd91ed 35%,rgba(255,255,255,.35) 35%);
+    background: linear-gradient(to top,#9564c1 35%,rgba(100,75,120,.22) 35%);
 }
 
 #volumeSlider::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     background: white;
-    border: 2px solid #bd91ed;
+    border: 2px solid #9564c1;
+    box-shadow: 0 2px 6px rgba(50,30,70,.2);
 }
 
 #volumeSlider::-moz-range-thumb {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: white;
-    border: 2px solid #bd91ed;
+    border: 2px solid #9564c1;
+    box-shadow: 0 2px 6px rgba(50,30,70,.2);
+}
+
+.music-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.65);
+    border: 1px solid rgba(255,255,255,.85);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 16px rgba(55,36,75,.12);
+}
+
+.music-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #59466b;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
 }
 
 /* VERSION */
@@ -800,9 +809,9 @@ footer p {
     bottom: 9px;
     right: 10px;
     z-index: 150;
-    color: rgba(255,255,255,.55);
+    color: #746b7c;
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     pointer-events: none;
 }
@@ -849,8 +858,9 @@ footer p {
         width: 100%;
         flex-direction: column;
         gap: 0;
-        background: rgba(18,10,29,.98);
-        border-bottom: 1px solid var(--border);
+        background: rgba(255,255,255,.94);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(110,80,140,.15);
     }
 
     .nav-links.active {
@@ -868,7 +878,7 @@ footer p {
     }
 
     main {
-        padding-top: 95px;
+        padding-top: 0;
     }
 
     section {
@@ -896,10 +906,7 @@ footer p {
         font-size: 19px;
     }
 
-    .deck-toolbar {
-        grid-template-columns: 1fr;
-    }
-
+    .deck-toolbar,
     .deck-create-row {
         grid-template-columns: 1fr;
     }
@@ -909,8 +916,8 @@ footer p {
     }
 
     .music-control {
-        right: 14px;
-        bottom: 22px;
+        right: 10px;
+        bottom: 18px;
     }
 
     .version-label {
@@ -932,9 +939,6 @@ footer p {
 
 <body>
 
-<div class="background"></div>
-<div class="background-overlay"></div>
-
 <header>
     <nav class="navbar">
         <a href="./index.html" class="logo">LIM JUN XI <span>TED.</span></a>
@@ -953,10 +957,8 @@ footer p {
 <main>
 <div class="container">
 
-    <!-- HERO -->
-
     <section class="hero">
-        <div class="hero-tag">STUDY SMARTER · STAY ORGANised</div>
+        <div class="hero-tag">STUDY SMARTER · STAY ORGANISED</div>
         <h1>Study <span>Toolkit.</span></h1>
         <p>
             A collection of simple tools to help organise your studies,
@@ -1024,10 +1026,7 @@ footer p {
             </p>
 
             <div class="task-input-row">
-                <input
-                    type="text"
-                    class="input"
-                    id="taskInput"
+                <input type="text" class="input" id="taskInput"
                     placeholder="e.g. Revise Additional Mathematics..."
                     maxlength="120">
                 <button class="btn btn-primary" id="addTask">Add Task</button>
@@ -1048,7 +1047,7 @@ footer p {
                 </div>
             </div>
 
-            <p style="font-size:10px;color:var(--muted);font-weight:700;">
+            <p style="font-size:10px;color:var(--muted);font-weight:800;">
                 COMPLETION PROGRESS
             </p>
 
@@ -1079,17 +1078,14 @@ footer p {
             </p>
 
             <div class="deck-toolbar">
-                <select class="deck-select" id="deckSelect" aria-label="Choose flashcard set"></select>
-                <button class="btn btn-secondary" id="deleteDeck">Delete Set</button>
+                <select class="deck-select" id="deckSelect"
+                    aria-label="Choose flashcard set"></select>
+                <button class="btn btn-danger" id="deleteDeck">Delete Set</button>
             </div>
 
             <div class="deck-create-row">
-                <input
-                    type="text"
-                    class="input"
-                    id="newDeckName"
-                    placeholder="Enter a new set name..."
-                    maxlength="40">
+                <input type="text" class="input" id="newDeckName"
+                    placeholder="Enter a new set name..." maxlength="40">
                 <button class="btn btn-primary" id="createDeck">+ Create Set</button>
             </div>
 
@@ -1120,25 +1116,18 @@ footer p {
             <div class="add-card-form">
                 <h4>Add a Flashcard</h4>
 
-                <input
-                    type="text"
-                    class="input"
-                    id="questionInput"
-                    placeholder="Question / Front of card..."
-                    maxlength="300">
+                <input type="text" class="input" id="questionInput"
+                    placeholder="Question / Front of card..." maxlength="300">
 
-                <textarea
-                    class="input"
-                    id="answerInput"
-                    placeholder="Answer / Back of card..."
-                    maxlength="500"></textarea>
+                <textarea class="input" id="answerInput"
+                    placeholder="Answer / Back of card..." maxlength="500"></textarea>
 
                 <button class="btn btn-primary" id="addFlashcard">
                     + Save Flashcard
                 </button>
             </div>
 
-            <div style="margin-top:27px;padding-top:23px;border-top:1px solid rgba(255,255,255,.1);">
+            <div style="margin-top:27px;padding-top:23px;border-top:1px solid rgba(110,80,140,.13);">
                 <h3>Cards in This Set</h3>
                 <p class="panel-description">
                     View the cards saved in your currently selected set.
@@ -1167,13 +1156,8 @@ footer p {
 
 <div class="music-control" aria-label="Background music volume">
     <div class="volume-wrap">
-        <input
-            type="range"
-            id="volumeSlider"
-            min="0"
-            max="100"
-            value="35"
-            aria-label="Music volume">
+        <input type="range" id="volumeSlider" min="0" max="100"
+            value="35" aria-label="Music volume">
     </div>
 
     <div class="music-icon">
@@ -1189,13 +1173,13 @@ footer p {
 <div class="toast" id="toast"></div>
 
 <script>
-/* =========================================
-   GENERAL
-========================================= */
-
 const $ = id => document.getElementById(id);
 
 const STORAGE_KEY = "junXiStudyToolkit";
+
+/* =========================================
+   GENERAL
+========================================= */
 
 function showToast(message) {
     const toast = $("toast");
@@ -1203,6 +1187,7 @@ function showToast(message) {
     toast.classList.add("show");
 
     clearTimeout(showToast.timeout);
+
     showToast.timeout = setTimeout(() => {
         toast.classList.remove("show");
     }, 2400);
@@ -1252,7 +1237,7 @@ function loadData() {
         if (saved && Array.isArray(saved.tasks)) {
             let decks = Array.isArray(saved.decks) ? saved.decks : [];
 
-            // Migrate cards from the older version into a default deck.
+            // Migrate flashcards from the previous version.
             if (decks.length === 0) {
                 decks = [{
                     id: createId(),
@@ -1317,27 +1302,11 @@ function getActiveDeck() {
         || data.decks[0];
 }
 
-function setActiveDeck(id) {
-    if (!data.decks.some(deck => deck.id === id)) return;
-
-    data.activeDeckId = id;
-    currentCardIndex = 0;
-    showingAnswer = false;
-
-    saveData();
-    renderDecks();
-    renderFlashcards();
-}
-
 /* =========================================
    GRADE CALCULATOR
 ========================================= */
 
-let subjectCounter = 0;
-
 function addSubjectRow(name = "", mark = "") {
-    subjectCounter++;
-
     const row = document.createElement("div");
     row.className = "grade-input-row";
 
@@ -1370,12 +1339,6 @@ function addSubjectRow(name = "", mark = "") {
     row.append(nameInput, markInput, removeButton);
     $("gradeRows").appendChild(row);
 }
-
-$("addSubject").addEventListener("click", () => {
-    addSubjectRow();
-});
-
-$("calculateGrades").addEventListener("click", calculateGrades);
 
 function calculateGrades() {
     const rows = [...$("gradeRows").children];
@@ -1411,11 +1374,13 @@ function calculateGrades() {
     $("subjectCount").textContent = marks.length;
 }
 
+$("addSubject").addEventListener("click", () => addSubjectRow());
+$("calculateGrades").addEventListener("click", calculateGrades);
+
 $("clearGrades").addEventListener("click", () => {
     $("gradeRows").innerHTML = "";
     $("averageResult").textContent = "--";
     $("subjectCount").textContent = "0";
-    subjectCounter = 0;
     addSubjectRow();
     showToast("Grade calculator cleared.");
 });
@@ -1532,7 +1497,20 @@ function renderDecks() {
 
     $("activeDeckName").textContent = activeDeck.name;
     $("deckCardCount").textContent =
-        activeDeck.cards.length + (activeDeck.cards.length === 1 ? " card" : " cards");
+        activeDeck.cards.length +
+        (activeDeck.cards.length === 1 ? " card" : " cards");
+}
+
+function setActiveDeck(id) {
+    if (!data.decks.some(deck => deck.id === id)) return;
+
+    data.activeDeckId = id;
+    currentCardIndex = 0;
+    showingAnswer = false;
+
+    saveData();
+    renderDecks();
+    renderFlashcards();
 }
 
 $("deckSelect").addEventListener("change", () => {
@@ -1588,11 +1566,9 @@ $("deleteDeck").addEventListener("click", () => {
 
     const activeDeck = getActiveDeck();
 
-    const confirmed = confirm(
-        `Delete the set "${activeDeck.name}" and all its cards?`
-    );
-
-    if (!confirmed) return;
+    if (!confirm(`Delete the set "${activeDeck.name}" and all its cards?`)) {
+        return;
+    }
 
     data.decks = data.decks.filter(deck => deck.id !== activeDeck.id);
     data.activeDeckId = data.decks[0].id;
@@ -1627,30 +1603,22 @@ function renderFlashcards() {
         $("flashcardText").textContent = "No flashcards in this set yet.";
         $("flashcardHint").textContent = "Add your first card below.";
         $("cardCounter").textContent = "0 / 0";
+
         $("savedCardList").innerHTML =
             '<div class="empty-state">This set does not contain any cards yet.</div>';
 
         $("previousCard").disabled = true;
         $("nextCard").disabled = true;
         $("flipCard").disabled = true;
-        $("previousCard").style.opacity = ".4";
-        $("nextCard").style.opacity = ".4";
-        $("flipCard").style.opacity = ".4";
+
         return;
     }
 
-    currentCardIndex = Math.max(
-        0,
-        Math.min(currentCardIndex, cards.length - 1)
-    );
+    currentCardIndex = Math.max(0, Math.min(currentCardIndex, cards.length - 1));
 
     $("previousCard").disabled = false;
     $("nextCard").disabled = false;
     $("flipCard").disabled = false;
-
-    $("previousCard").style.opacity = "1";
-    $("nextCard").style.opacity = "1";
-    $("flipCard").style.opacity = "1";
 
     const card = cards[currentCardIndex];
 
@@ -1667,8 +1635,6 @@ function renderSavedCards() {
     const deck = getActiveDeck();
 
     list.innerHTML = "";
-
-    if (deck.cards.length === 0) return;
 
     deck.cards.forEach((card, index) => {
         const item = document.createElement("div");
@@ -1703,9 +1669,7 @@ function renderSavedCards() {
 }
 
 function flipCard() {
-    const deck = getActiveDeck();
-
-    if (deck.cards.length === 0) return;
+    if (getActiveDeck().cards.length === 0) return;
 
     showingAnswer = !showingAnswer;
     renderFlashcards();
@@ -1739,7 +1703,7 @@ $("nextCard").addEventListener("click", nextCard);
 $("previousCard").addEventListener("click", previousCard);
 
 /* =========================================
-   ADD FLASHCARDS TO ACTIVE SET
+   ADD FLASHCARDS
 ========================================= */
 
 function addFlashcard() {
@@ -1781,7 +1745,7 @@ renderDecks();
 renderFlashcards();
 
 /* =========================================
-   BACKGROUND MUSIC
+   MUSIC AUTOPLAY
 ========================================= */
 
 const music = $("backgroundMusic");
@@ -1791,63 +1755,79 @@ music.volume = 0.35;
 music.muted = false;
 
 let musicStarted = false;
+let retryTimer = null;
 
 function updateVolumeSlider() {
     const value = Number(volumeSlider.value);
 
     volumeSlider.style.background =
-        `linear-gradient(to right, #bd91ed ${value}%, rgba(255,255,255,.35) ${value}%)`;
+        `linear-gradient(to top, #9564c1 ${value}%, rgba(100,75,120,.22) ${value}%)`;
 }
 
-function attemptMusic() {
+/*
+   Browsers may block audible autoplay.
+   First attempt audible playback. If blocked, attempt muted autoplay.
+   On the first real interaction, unmute and retry.
+*/
+
+async function attemptMusic() {
     if (musicStarted && !music.paused) return;
 
     music.volume = Number(volumeSlider.value) / 100;
     music.muted = false;
 
-    const playAttempt = music.play();
+    try {
+        await music.play();
+        musicStarted = true;
+        return;
+    } catch (error) {
+        console.info("Audible autoplay was blocked by the browser.");
+    }
 
-    if (playAttempt && typeof playAttempt.then === "function") {
-        playAttempt.then(() => {
-            musicStarted = true;
-        }).catch(() => {
-            // Audible autoplay may be blocked by the browser.
-            // Retry muted, then unmute on the first user interaction.
-            music.muted = true;
-
-            music.play().then(() => {
-                musicStarted = true;
-            }).catch(() => {
-                // A later user interaction will retry playback.
-            });
-        });
+    try {
+        music.muted = true;
+        await music.play();
+        musicStarted = true;
+    } catch (error) {
+        console.info("Muted autoplay was also blocked.");
     }
 }
 
-/* Attempt autoplay as soon as possible. */
+/* Try as soon as the browser loads the page. */
 attemptMusic();
 
-/* Retry when the page is ready. */
+/* Retry when the page has fully loaded. */
 window.addEventListener("load", attemptMusic);
 
-/* Retry when the user interacts with the page. */
-function enableMusicAfterInteraction() {
-    if (!musicStarted || music.paused || music.muted) {
-        music.muted = false;
-        music.volume = Number(volumeSlider.value) / 100;
+/* Retry when the tab becomes visible again. */
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && music.paused) {
+        attemptMusic();
+    }
+});
 
+/* First user interaction enables audible playback. */
+function unlockMusic() {
+    if (Number(volumeSlider.value) === 0) return;
+
+    music.muted = false;
+    music.volume = Number(volumeSlider.value) / 100;
+
+    if (music.paused) {
         music.play().then(() => {
             musicStarted = true;
         }).catch(() => {
-            // Keep retrying on future interactions.
+            // A later interaction can retry.
         });
+    } else {
+        musicStarted = true;
     }
 }
 
-document.addEventListener("pointerdown", enableMusicAfterInteraction);
-document.addEventListener("keydown", enableMusicAfterInteraction);
+document.addEventListener("pointerdown", unlockMusic);
+document.addEventListener("keydown", unlockMusic);
 
-/* Volume slider. */
+/* Volume slider */
 volumeSlider.addEventListener("input", () => {
     const value = Number(volumeSlider.value);
 
@@ -1894,7 +1874,7 @@ function playClickSound() {
             audioContext.currentTime + 0.06
         );
 
-        gain.gain.setValueAtTime(0.045, audioContext.currentTime);
+        gain.gain.setValueAtTime(0.035, audioContext.currentTime);
         gain.gain.exponentialRampToValueAtTime(
             0.001,
             audioContext.currentTime + 0.07
