@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d22">
+<title>Study Toolkit | Jun Xi Ted</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #160d22;
+    --panel: rgba(35, 20, 48, 0.82);
+    --panel-light: rgba(255,255,255,0.045);
+    --purple: #b58aff;
+    --purple-dark: #8053bd;
+    --text: #f5efff;
+    --muted: #aa9bb8;
+    --border: rgba(210,180,255,0.15);
+    --green: #8be0b0;
+    --red: #ff8585;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at top left, rgba(117,65,160,.22), transparent 45%),
+        radial-gradient(ellipse at bottom right, rgba(89,48,120,.2), transparent 45%),
+        var(--bg);
+}
+
+button, input, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(22,13,34,.75);
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.logo span {
+    color: var(--purple);
+}
+
+.back-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.back-link:hover {
+    color: var(--purple);
+}
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 65px 25px 90px;
+}
+
+.hero {
+    margin-bottom: 40px;
+    animation: appear .6s ease;
+}
+
+.eyebrow {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+h1 {
+    font-size: clamp(34px, 6vw, 55px);
+    letter-spacing: -2px;
+    margin-bottom: 14px;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--purple);
+}
+
+.tabs {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.tab {
+    background: var(--panel);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 17px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.tab:hover, .tab.active {
+    background: rgba(181,138,255,.15);
+    color: var(--purple);
+    border-color: rgba(181,138,255,.45);
+}
+
+.panel {
+    display: none;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px;
+    animation: appear .3s ease;
+}
+
+.panel.active {
+    display: block;
+}
+
+.panel h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.panel-description {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.field {
+    margin-bottom: 17px;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+input, textarea {
+    width: 100%;
+    background: rgba(10,5,17,.55);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 13px 14px;
+    color: var(--text);
+    outline: none;
+    font-size: 13px;
+    transition: .2s;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--purple);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #776985;
+}
+
+.btn {
+    background: var(--purple);
+    color: #1b1028;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #c9adff;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: rgba(181,138,255,.12);
+}
+
+.btn-danger {
+    background: rgba(255,133,133,.12);
+    color: var(--red);
+    border: 1px solid rgba(255,133,133,.2);
+}
+
+.btn-danger:hover {
+    background: rgba(255,133,133,.2);
+}
+
+.result {
+    margin-top: 22px;
+    padding: 22px;
+    border: 1px solid rgba(181,138,255,.25);
+    background: rgba(181,138,255,.08);
+    border-radius: 12px;
+    display: none;
+}
+
+.result.show {
+    display: block;
+}
+
+.result-label {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.result-number {
+    color: var(--purple);
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.result-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 25px 0;
+}
+
+.task-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.task-input input {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.task input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--purple);
+    flex-shrink: 0;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.task.completed .task-text {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+.delete-task {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+.delete-task:hover {
+    color: var(--red);
+}
+
+.empty {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    padding: 35px 10px;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 7px;
+    background: rgba(255,255,255,.08);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 25px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--purple);
+    border-radius: 20px;
+    transition: width .3s;
+}
+
+.flashcard {
+    min-height: 240px;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(181,138,255,.3);
+    background: linear-gradient(145deg, rgba(181,138,255,.13), rgba(255,255,255,.025));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    margin-bottom: 18px;
+}
+
+.flashcard:hover {
+    border-color: var(--purple);
+}
+
+.flashcard-label {
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.flashcard-content {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.flashcard-hint {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 22px;
+}
+
+.flashcard-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.card-count {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.flashcard-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.flashcard-form .field {
+    margin: 0;
+}
+
+.flashcard-form button {
+    grid-column: 1 / -1;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: #30203f;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 11px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    z-index: 10;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 700px) {
+    main {
+        padding: 45px 17px 65px;
+    }
+
+    header {
+        padding: 19px 5%;
+    }
+
+    .stats {
+        gap: 9px;
+    }
+
+    .stat {
+        padding: 14px;
+    }
+
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flashcard-form {
+        grid-template-columns: 1fr;
+    }
+
+    .flashcard-form button {
+        grid-column: auto;
+    }
+
+    .task-input {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">JUN XI <span>TED.</span></div>
+    <a class="back-link" href="index.html">← Back to Portfolio</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="eyebrow">PERSONAL PROJECT / 001</div>
+        <h1>Study Toolkit<span style="color:var(--purple)">.</span></h1>
+        <p>
+            A simple workspace to organise revision, calculate grades
+            and create flashcards. Everything is saved automatically
+            in your browser.
+        </p>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-label">TOTAL TASKS</div>
+            <div class="stat-number" id="totalTasks">0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">COMPLETED</div>
+            <div class="stat-number" id="completedTasks">0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">FLASHCARDS</div>
+            <div class="stat-number" id="totalCards">0</div>
+        </div>
+    </section>
+
+    <nav class="tabs">
+        <button class="tab active" data-tab="grades">Grade Calculator</button>
+        <button class="tab" data-tab="planner">Study Planner</button>
+        <button class="tab" data-tab="flashcards">Flashcards</button>
+    </nav>
+
+    <!-- GRADE CALCULATOR -->
+    <section class="panel active" id="grades">
+        <h2>Grade Calculator</h2>
+        <p class="panel-description">
+            Calculate your average marks or work out your percentage.
+        </p>
+
+        <div class="calculator-grid">
+
+            <div>
+                <h3 style="font-size:14px;margin-bottom:17px;">Average Calculator</h3>
+
+                <div class="field">
+                    <label>ENTER YOUR MARKS</label>
+                    <input id="marksInput" type="text" placeholder="e.g. 75, 82, 90, 68">
+                </div>
+
+                <button class="btn" onclick="calculateAverage()">Calculate Average</button>
+
+                <div class="result" id="averageResult">
+                    <div class="result-label">YOUR AVERAGE</div>
+                    <div class="result-number" id="averageNumber">0</div>
+                    <div class="result-note" id="averageNote"></div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size:14px;margin-bottom:17px;">Percentage Calculator</h3>
+
+                <div class="field">
+                    <label>MARKS OBTAINED</label>
+                    <input id="obtainedInput" type="number" min="0" placeholder="e.g. 78">
+                </div>
+
+                <div class="field">
+                    <label>TOTAL MARKS</label>
+                    <input id="totalInput" type="number" min="1" placeholder="e.g. 100">
+                </div>
+
+                <button class="btn" onclick="calculatePercentage()">Calculate Percentage</button>
+
+                <div class="result" id="percentageResult">
+                    <div class="result-label">YOUR PERCENTAGE</div>
+                    <div class="result-number" id="percentageNumber">0%</div>
+                    <div class="result-note">Based on the marks entered.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STUDY PLANNER -->
+    <section class="panel" id="planner">
+        <h2>Study Planner</h2>
+        <p class="panel-description">
+            Keep track of revision tasks and organise what you need to study.
+        </p>
+
+        <div class="task-input">
+            <input id="taskInput" type="text" placeholder="Enter a study task...">
+            <button class="btn" onclick="addTask()">Add Task</button>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:11px;color:var(--muted);font-weight:700;">YOUR TASKS</span>
+            <span id="progressText" style="font-size:11px;color:var(--purple);font-weight:700;">0% completed</span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="task-list" id="taskList"></div>
+    </section>
+
+    <!-- FLASHCARDS -->
+    <section class="panel" id="flashcards">
+        <h2>Flashcards</h2>
+        <p class="panel-description">
+            Create your own revision cards. Click a card to reveal its answer.
+        </p>
+
+        <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="flashcard-label" id="cardLabel">QUESTION</div>
+            <div class="flashcard-content" id="cardContent">
+                Your flashcards will appear here.
+            </div>
+            <div class="flashcard-hint" id="cardHint">Click to reveal answer</div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="btn btn-secondary" onclick="previousCard()">Previous</button>
+            <span class="card-count" id="cardCount">0 / 0</span>
+            <button class="btn btn-secondary" onclick="nextCard()">Next</button>
+            <button class="btn btn-danger" onclick="deleteCard()">Delete Card</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="font-size:14px;margin-bottom:17px;">Create a Flashcard</h3>
+
+        <div class="flashcard-form">
+            <div class="field">
+                <label>QUESTION</label>
+                <textarea id="questionInput" placeholder="Enter your question..."></textarea>
+            </div>
+
+            <div class="field">
+                <label>ANSWER</label>
+                <textarea id="answerInput" placeholder="Enter your answer..."></textarea>
+            </div>
+
+            <button class="btn" onclick="addCard()">Create Flashcard</button>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 Lim Jun Xi Ted. All Rights Reserved.
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* STORAGE */
+
+const STORAGE_KEY = "junXiStudyToolkit";
+
+let savedData = {};
+
+try {
+    savedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+} catch (error) {
+    savedData = {};
+}
+
+let tasks = Array.isArray(savedData.tasks) ? savedData.tasks : [];
+let cards = Array.isArray(savedData.cards) ? savedData.cards : [];
+let currentCard = 0;
+let showingAnswer = false;
+
+function saveData() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            tasks,
+            cards
+        }));
+    } catch (error) {
+        showToast("Unable to save. Browser storage may be full.");
+    }
+}
+
+/* TOAST MESSAGE */
+
+let toastTimeout;
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2200);
+}
+
+/* TAB NAVIGATION */
+
+document.querySelectorAll(".tab").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+        document.querySelectorAll(".panel").forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        document.getElementById(button.dataset.tab).classList.add("active");
+    });
+});
+
+/* GRADE CALCULATOR */
+
+function calculateAverage() {
+    const raw = document.getElementById("marksInput").value.trim();
+
+    if (!raw) {
+        showToast("Enter some marks first.");
+        return;
+    }
+
+    const parts = raw.split(",").map(value => value.trim());
+
+    if (parts.some(value => value === "" || !Number.isFinite(Number(value)))) {
+        showToast("Enter valid marks separated by commas.");
+        return;
+    }
+
+    const marks = parts.map(Number);
+
+    if (marks.some(mark => mark < 0)) {
+        showToast("Marks cannot be negative.");
+        return;
+    }
+
+    const average = marks.reduce((sum, mark) => sum + mark, 0) / marks.length;
+
+    document.getElementById("averageNumber").textContent = average.toFixed(2);
+    document.getElementById("averageNote").textContent =
+        "Calculated from " + marks.length + " subject(s).";
+
+    document.getElementById("averageResult").classList.add("show");
+}
+
+function calculatePercentage() {
+    const obtained = document.getElementById("obtainedInput").value;
+    const total = document.getElementById("totalInput").value;
+
+    if (obtained === "" || total === "" ||
+        !Number.isFinite(Number(obtained)) ||
+        !Number.isFinite(Number(total)) ||
+        Number(total) <= 0 ||
+        Number(obtained) < 0 ||
+        Number(obtained) > Number(total)) {
+        showToast("Enter valid marks. Obtained marks cannot exceed the total.");
+        return;
+    }
+
+    const percentage = (Number(obtained) / Number(total)) * 100;
+
+    document.getElementById("percentageNumber").textContent =
+        percentage.toFixed(2) + "%";
+
+    document.getElementById("percentageResult").classList.add("show");
+}
+
+/* STUDY PLANNER */
+
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const text = input.value.trim();
+
+    if (!text) {
+        showToast("Enter a task first.");
+        return;
+    }
+
+    tasks.push({
+        id: Date.now() + Math.random(),
+        text,
+        completed: false
+    });
+
+    input.value = "";
+    saveData();
+    renderTasks();
+    showToast("Task added.");
+}
+
+function toggleTask(id) {
+    const task = tasks.find(item => item.id === id);
+
+    if (!task) return;
+
+    task.completed = !task.completed;
+    saveData();
+    renderTasks();
+}
+
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveData();
+    renderTasks();
+    showToast("Task deleted.");
+}
+
+function renderTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    if (tasks.length === 0) {
+        list.innerHTML = '<div class="empty">No tasks yet. Add your first study task above.</div>';
+    } else {
+        tasks.forEach(task => {
+            const item = document.createElement("div");
+            item.className = "task" + (task.completed ? " completed" : "");
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+            checkbox.addEventListener("change", () => toggleTask(task.id));
+
+            const text = document.createElement("span");
+            text.className = "task-text";
+            text.textContent = task.text;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-task";
+            deleteButton.type = "button";
+            deleteButton.textContent = "×";
+            deleteButton.setAttribute("aria-label", "Delete task");
+            deleteButton.addEventListener("click", () => deleteTask(task.id));
+
+            item.append(checkbox, text, deleteButton);
+            list.appendChild(item);
+        });
+    }
+
+    const completed = tasks.filter(task => task.completed).length;
+    const total = tasks.length;
+    const percentage = total ? (completed / total) * 100 : 0;
+
+    document.getElementById("totalTasks").textContent = total;
+    document.getElementById("completedTasks").textContent = completed;
+    document.getElementById("progressText").textContent =
+        Math.round(percentage) + "% completed";
+
+    document.getElementById("progressBar").style.width = percentage + "%";
+}
+
+/* FLASHCARDS */
+
+function addCard() {
+    const question = document.getElementById("questionInput").value.trim();
+    const answer = document.getElementById("answerInput").value.trim();
+
+    if (!question || !answer) {
+        showToast("Enter both a question and an answer.");
+        return;
+    }
+
+    cards.push({ question, answer });
+
+    document.getElementById("questionInput").value = "";
+    document.getElementById("answerInput").value = "";
+
+    currentCard = cards.length - 1;
+    showingAnswer = false;
+
+    saveData();
+    renderCards();
+    showToast("Flashcard created.");
+}
+
+function flipCard() {
+    if (cards.length === 0) return;
+
+    showingAnswer = !showingAnswer;
+    renderCards();
+}
+
+function previousCard() {
+    if (cards.length === 0) return;
+
+    currentCard = (currentCard - 1 + cards.length) % cards.length;
+    showingAnswer = false;
+    renderCards();
+}
+
+function nextCard() {
+    if (cards.length === 0) return;
+
+    currentCard = (currentCard + 1) % cards.length;
+    showingAnswer = false;
+    renderCards();
+}
+
+function deleteCard() {
+    if (cards.length === 0) {
+        showToast("There are no cards to delete.");
+        return;
+    }
+
+    cards.splice(currentCard, 1);
+
+    if (currentCard >= cards.length) {
+        currentCard = Math.max(0, cards.length - 1);
+    }
+
+    showingAnswer = false;
+    saveData();
+    renderCards();
+    showToast("Flashcard deleted.");
+}
+
+function renderCards() {
+    const content = document.getElementById("cardContent");
+    const label = document.getElementById("cardLabel");
+    const hint = document.getElementById("cardHint");
+    const count = document.getElementById("cardCount");
+
+    document.getElementById("totalCards").textContent = cards.length;
+
+    if (cards.length === 0) {
+        label.textContent = "NO FLASHCARDS";
+        content.textContent = "Create your first flashcard below.";
+        hint.textContent = "Your revision cards will appear here.";
+        count.textContent = "0 / 0";
+        return;
+    }
+
+    const card = cards[currentCard];
+
+    label.textContent = showingAnswer ? "ANSWER" : "QUESTION";
+    content.textContent = showingAnswer ? card.answer : card.question;
+    hint.textContent = showingAnswer ? "Click to see question" : "Click to reveal answer";
+    count.textContent = (currentCard + 1) + " / " + cards.length;
+}
+
+/* KEYBOARD SUPPORT */
+
+document.getElementById("taskInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") addTask();
+});
+
+/* INITIALISE */
+
+renderTasks();
+renderCards();
+</script>
+
+</body>
+</html>
