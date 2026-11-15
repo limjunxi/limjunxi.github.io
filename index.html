@@ -34,25 +34,22 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text);
-            background: #120b1b;
+            background-color: #120b1b;
+            background-image: url("./background.jpg");
+            background-position: center top;
+            background-size: 100% auto;
+            background-repeat: repeat-y;
+            background-attachment: scroll;
             min-height: 100vh;
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background: url("./background.jpg") center center / cover no-repeat;
-            transform: scale(1.02);
+            position: relative;
         }
 
         body::after {
             content: "";
-            position: fixed;
+            position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
             background: linear-gradient(
                 120deg,
@@ -60,6 +57,12 @@
                 rgba(37, 15, 59, 0.13),
                 rgba(13, 7, 24, 0.30)
             );
+        }
+
+        header, main, footer, .music-overlay, .music-control,
+        .version {
+            position: relative;
+            z-index: 1;
         }
 
         a {
@@ -546,40 +549,94 @@
             line-height: 1.6;
         }
 
-        /* Music toggle */
+        /* Minimal music icon and animated volume slider */
+
+        .music-control {
+            position: fixed;
+            left: 24px;
+            bottom: 22px;
+            z-index: 500;
+            width: 38px;
+            height: 38px;
+        }
 
         .music-toggle {
-            position: fixed;
-            bottom: 22px;
-            left: 22px;
-            z-index: 500;
-            width: 46px;
-            height: 46px;
+            position: absolute;
+            inset: 0;
+            width: 38px;
+            height: 38px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgba(220,190,255,0.28);
-            border-radius: 11px;
-            background: rgba(76, 42, 111, 0.40);
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
             color: white;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             cursor: pointer;
-            transition: .2s ease;
+            transition: color .2s ease, transform .2s ease;
         }
 
         .music-toggle:hover {
-            background: rgba(125, 79, 174, 0.65);
-            transform: translateY(-3px);
+            color: var(--purple-light);
+            transform: scale(1.12);
         }
 
         .music-toggle:active {
-            transform: scale(.91);
+            transform: scale(.9);
         }
 
         .music-toggle svg {
-            width: 19px;
-            height: 19px;
+            width: 23px;
+            height: 23px;
+        }
+
+        .volume-popup {
+            position: absolute;
+            left: 50%;
+            bottom: 42px;
+            width: 42px;
+            height: 125px;
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(220,190,255,0.22);
+            border-radius: 20px;
+            background: rgba(48, 25, 70, 0.62);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, 12px) scale(.92);
+            transform-origin: bottom center;
+            transition:
+                opacity .25s ease,
+                transform .3s cubic-bezier(.2,.8,.2,1),
+                visibility .25s ease;
+        }
+
+        .music-control:hover .volume-popup,
+        .music-control:focus-within .volume-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0) scale(1);
+        }
+
+        .volume-slider {
+            width: 92px;
+            height: 4px;
+            margin: 0;
+            accent-color: var(--purple-light);
+            cursor: pointer;
+            transform: rotate(-90deg);
+        }
+
+        .volume-slider:focus-visible {
+            outline: 2px solid var(--purple-light);
+            outline-offset: 5px;
         }
 
         /* Version */
@@ -661,6 +718,11 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                background-size: auto 100vh;
+                background-size: 100% auto;
+            }
+
             header {
                 padding: 17px 5%;
             }
@@ -892,9 +954,9 @@
 
                 <div class="contact-list">
 
-                    <a class="contact-item" href="mailto:magicalcanopener@gmail.com">
+                    <a class="contact-item" href="mailto:lim.junxi.ted@gmail.com">
                         <h3>Email</h3>
-                        <p>magicalcanopener@gmail.com</p>
+                        <p>lim.junxi.ted@gmail.com</p>
                     </a>
 
                     <a class="contact-item" href="tel:+6585505598">
@@ -920,7 +982,6 @@
         © 2026 Lim Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <!-- Music file: uppercase L -->
     <audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
 
     <!-- Music prompt -->
@@ -941,19 +1002,37 @@
         </div>
     </div>
 
-    <!-- Music toggle -->
-    <button class="music-toggle" id="musicToggle"
-            type="button" aria-label="Play music" title="Play or pause music">
-        <svg id="musicIcon" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="1.8"
-             stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-        </svg>
-    </button>
+    <!-- Minimal music control -->
+    <div class="music-control" id="musicControl">
 
-    <!-- Version number -->
+        <div class="volume-popup">
+            <input
+                type="range"
+                class="volume-slider"
+                id="volumeSlider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.5"
+                aria-label="Music volume"
+                title="Adjust volume">
+        </div>
+
+        <button class="music-toggle" id="musicToggle"
+                type="button" aria-label="Mute music"
+                title="Mute or unmute music">
+
+            <svg id="musicIcon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
+                <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+            </svg>
+
+        </button>
+    </div>
+
     <div class="version">VERSION 18</div>
 
     <script>
@@ -975,8 +1054,7 @@
         window.addEventListener("load", returnToTop);
         window.addEventListener("pageshow", returnToTop);
 
-        // Subtle button click sound using Web Audio.
-        // No extra sound file is required.
+        // Subtle button click sound.
 
         let clickAudioContext;
 
@@ -1027,8 +1105,6 @@
             }
         }
 
-        // Add click sounds to clickable website controls.
-
         document.querySelectorAll(
             "button, .button, .nav-links a, .logo, .contact-item"
         ).forEach(element => {
@@ -1044,6 +1120,9 @@
         const toggleButton = document.getElementById("musicToggle");
         const musicIcon = document.getElementById("musicIcon");
         const musicStatus = document.getElementById("musicStatus");
+        const volumeSlider = document.getElementById("volumeSlider");
+
+        audio.volume = 0.5;
 
         let musicPlaying = false;
 
@@ -1060,18 +1139,23 @@
         `;
 
         function updateMusicIcon() {
-            musicIcon.innerHTML = musicPlaying ? playIcon : muteIcon;
+            const isMuted = audio.muted || audio.volume === 0;
+
+            musicIcon.innerHTML = isMuted ? muteIcon : playIcon;
 
             toggleButton.setAttribute(
                 "aria-label",
-                musicPlaying ? "Pause music" : "Play music"
+                isMuted ? "Unmute music" : "Mute music"
             );
+
+            toggleButton.title = isMuted ? "Unmute music" : "Mute music";
         }
 
         async function startMusic() {
             musicStatus.textContent = "Starting music...";
 
             try {
+                audio.muted = false;
                 await audio.play();
 
                 musicPlaying = true;
@@ -1108,12 +1192,32 @@
             overlay.classList.add("hidden");
         });
 
-        toggleButton.addEventListener("click", () => {
+        // Icon click toggles mute without pausing the music.
+
+        toggleButton.addEventListener("click", async () => {
             if (audio.paused) {
-                startMusic();
-            } else {
-                stopMusic();
+                await startMusic();
+                return;
             }
+
+            audio.muted = !audio.muted;
+            updateMusicIcon();
+        });
+
+        // Volume slider.
+
+        volumeSlider.addEventListener("input", () => {
+            const newVolume = Number(volumeSlider.value);
+
+            audio.volume = newVolume;
+
+            if (newVolume > 0) {
+                audio.muted = false;
+            } else {
+                audio.muted = true;
+            }
+
+            updateMusicIcon();
         });
 
         audio.addEventListener("play", () => {
@@ -1125,6 +1229,8 @@
             musicPlaying = false;
             updateMusicIcon();
         });
+
+        audio.addEventListener("volumechange", updateMusicIcon);
 
         audio.addEventListener("error", () => {
             musicStatus.textContent =
@@ -1138,4 +1244,3 @@
 
 </body>
 </html>
-
