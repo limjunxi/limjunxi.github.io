@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lim Jun Xi Ted — Portfolio</title>
+<title>Lim Jun Xi Ted</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,17 +43,12 @@ a {
     text-decoration: none;
 }
 
-/* BACKGROUND */
 .backdrop {
     position: fixed;
     inset: 0;
     z-index: 0;
     background:
-        linear-gradient(
-            130deg,
-            rgba(30,14,58,.72),
-            rgba(91,48,140,.42)
-        ),
+        linear-gradient(130deg, rgba(30,14,58,.72), rgba(91,48,140,.42)),
         url('background.jpg') center/cover no-repeat;
     pointer-events: none;
 }
@@ -63,7 +58,6 @@ main, footer {
     z-index: 1;
 }
 
-/* NAVIGATION */
 header {
     position: sticky;
     top: 0;
@@ -87,10 +81,6 @@ nav {
     letter-spacing: -.04em;
 }
 
-.brand span {
-    color: #d4b8ff;
-}
-
 .links {
     display: flex;
     gap: 25px;
@@ -98,15 +88,10 @@ nav {
     font-size: 13px;
 }
 
-.links a {
-    transition: .2s;
-}
-
 .links a:hover {
-    color: #fff;
+    color: white;
 }
 
-/* HERO */
 .hero, .section {
     width: min(1000px,90%);
     margin: auto;
@@ -140,7 +125,6 @@ h1 {
     color: var(--muted);
 }
 
-/* BUTTONS */
 .actions {
     display: flex;
     gap: 12px;
@@ -169,7 +153,6 @@ h1 {
     background: rgba(181,136,255,.62);
 }
 
-/* SECTIONS */
 .section {
     padding: 78px 0;
     border-top: 1px solid var(--line);
@@ -185,7 +168,6 @@ h1 {
     margin-bottom: 28px;
 }
 
-/* PROJECT GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
@@ -231,7 +213,6 @@ h1 {
     word-spacing: 10px;
 }
 
-/* ABOUT */
 .about-grid {
     display: grid;
     grid-template-columns: 1.2fr .8fr;
@@ -256,7 +237,6 @@ h1 {
     font-size: 12px;
 }
 
-/* CONTACT */
 .contact {
     padding: 36px;
 }
@@ -266,7 +246,6 @@ h1 {
     line-height: 1.7;
 }
 
-/* FOOTER */
 footer {
     padding: 28px 5%;
     text-align: center;
@@ -274,7 +253,6 @@ footer {
     font-size: 12px;
 }
 
-/* MUSIC BUTTON */
 .sound {
     position: fixed;
     left: 20px;
@@ -300,10 +278,8 @@ footer {
 
 .sound:hover {
     background: rgba(165,119,235,.7);
-    transform: scale(1.05);
 }
 
-/* HIDDEN YOUTUBE PLAYER */
 #music {
     position: fixed;
     width: 2px;
@@ -314,7 +290,6 @@ footer {
     pointer-events: none;
 }
 
-/* MOBILE */
 @media(max-width:700px) {
     .links {
         gap: 12px;
@@ -338,17 +313,12 @@ footer {
 
 <body>
 
-<!-- BACKGROUND -->
 <div class="backdrop"></div>
 
-<!-- YOUTUBE MUSIC PLAYER -->
-<iframe
-    id="music"
-    title="Background music"
+<iframe id="music" title="Background music"
     allow="autoplay; encrypted-media">
 </iframe>
 
-<!-- NAVIGATION -->
 <header>
 <nav>
     <a class="brand" href="#home">Lim Jun Xi Ted</a>
@@ -364,46 +334,31 @@ footer {
 
 <main>
 
-<!-- HOME -->
 <section class="hero" id="home">
     <div>
-        <div class="eyebrow">
-            Developer · Programmer · Photographer
-        </div>
+        <div class="eyebrow">Programming · Technology · Photography</div>
 
         <h1>
-            Hi, I'm Lim Jun Xi Ted.<br>
-            Welcome to my portfolio.
+            Hi, I'm Lim Jun Xi Ted.
         </h1>
 
         <p>
-            I'm interested in technology, programming and computers.
-            I enjoy exploring new technologies, building custom PCs
-            and developing my programming skills.
+            I'm a student with an interest in computers and technology.
+            I spend my free time programming, building PCs and taking photos.
         </p>
 
         <div class="actions">
-            <a class="button primary" href="#work">
-                Explore my interests ↓
-            </a>
-
-            <a class="button" href="https://github.com/limjunxi" target="_blank">
-                My GitHub ↗
-            </a>
+            <a class="button primary" href="#work">Explore my interests ↓</a>
+            <a class="button" href="https://github.com/limjunxi" target="_blank">GitHub ↗</a>
         </div>
     </div>
 </section>
 
-<!-- INTERESTS -->
 <section class="section" id="work">
 
     <div class="head">
         <div class="kicker">01 / Interests</div>
-        <h2>What I'm interested in</h2>
-
-        <p class="section-note">
-            A few of the areas I enjoy exploring and developing my skills in.
-        </p>
+        <h2>What I do</h2>
     </div>
 
     <div class="grid">
@@ -411,39 +366,39 @@ footer {
         <article class="project glass">
             <h3>Programming</h3>
             <p>
-                I enjoy learning programming and exploring how software
-                works. I've been developing my skills in Python and
-                experimenting with different programming projects.
+                I've been learning Python and Lua and using them to
+                experiment with different ideas. I enjoy figuring out
+                how things work and trying to turn those ideas into projects.
             </p>
-            <div class="tags">Python · Programming · Software</div>
+            <div class="tags">Python · Lua · Programming</div>
         </article>
 
         <article class="project glass">
-            <h3>Custom PC Building</h3>
+            <h3>PC Building</h3>
             <p>
-                I have an interest in computer hardware and enjoy
-                exploring PC components, hardware compatibility and
-                different computer configurations.
+                I've always been interested in computer hardware.
+                I enjoy looking into different components, comparing
+                specifications and learning about PC configurations.
             </p>
-            <div class="tags">Hardware · PC Building · Technology</div>
+            <div class="tags">Hardware · Custom PCs</div>
         </article>
 
         <article class="project glass">
             <h3>Photography</h3>
             <p>
-                Photography is another interest of mine. I enjoy
-                capturing different moments and experimenting with
-                composition and perspectives.
+                I enjoy photography, especially capturing different
+                scenes and trying out different compositions.
+                It's something I also get to explore through my CCA.
             </p>
-            <div class="tags">Photography · Composition · Editing</div>
+            <div class="tags">Photography · Composition</div>
         </article>
 
         <article class="project glass">
             <h3>Web Development</h3>
             <p>
-                I'm exploring web development through HTML and CSS,
-                learning how to structure websites and create
-                interactive user experiences.
+                I've been learning HTML and CSS to build websites.
+                This portfolio is one of the things I've been working on
+                while learning how web development works.
             </p>
             <div class="tags">HTML · CSS · Web Development</div>
         </article>
@@ -451,62 +406,63 @@ footer {
     </div>
 </section>
 
-<!-- ABOUT -->
 <section class="section" id="about">
 
     <div class="head">
-        <div class="kicker">02 / About Me</div>
-        <h2>A little about myself.</h2>
+        <div class="kicker">02 / About</div>
+        <h2>About me</h2>
     </div>
 
     <div class="about-grid">
 
         <div class="about glass">
+
             <p>
-                I'm Lim Jun Xi Ted, a student at Anglo-Chinese School
-                (Barker Road) with an interest in Information Technology
-                and Computer Science.
+                I'm Lim Jun Xi Ted, currently studying at
+                Anglo-Chinese School (Barker Road).
             </p>
 
             <p>
-                My interest in technology started at a young age.
-                Since then, I've explored different areas of computing,
-                from programming and web development to building
-                custom computers.
+                I've had an interest in computers from a young age.
+                Over time, this has grown into an interest in programming,
+                computer hardware and web development.
             </p>
 
             <p>
-                Through my interests and experiences, I hope to
-                continue expanding my knowledge and developing
-                practical skills in technology.
+                I'm also part of the school's Infocomm Media CCA,
+                where I've been involved in photography and served
+                as an Admin Secretary from 2025 to 2026.
             </p>
+
         </div>
 
         <div class="skills glass">
-            <h3>Skills & Technologies</h3>
+
+            <h3>Skills & Interests</h3>
 
             <span>Python</span>
+            <span>Lua</span>
             <span>HTML</span>
             <span>CSS</span>
             <span>GitHub</span>
             <span>PC Building</span>
             <span>Photography</span>
+
         </div>
 
     </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section" id="contact">
 
     <div class="contact glass">
+
         <div class="kicker">03 / Contact</div>
 
-        <h2>Get in touch.</h2>
+        <h2>Contact</h2>
 
         <p>
-            Feel free to explore my GitHub to see my programming
-            projects and experiments.
+            You can find some of my work and projects on GitHub.
         </p>
 
         <div class="actions">
@@ -516,6 +472,7 @@ footer {
                 Visit my GitHub ↗
             </a>
         </div>
+
     </div>
 
 </section>
@@ -526,21 +483,13 @@ footer {
     © 2026 Lim Jun Xi Ted
 </footer>
 
-<!-- MUSIC CONTROL -->
 <button class="sound" id="mute" aria-label="Unmute" title="Unmute">
-    <img
-        id="soundIcon"
-        src="https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png"
-        alt="Sound off">
+    <img id="soundIcon"
+         src="https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png"
+         alt="Sound off">
 </button>
 
 <script>
-
-/* =================================
-   YOUTUBE BACKGROUND MUSIC SETTINGS
-   ================================= */
-
-/* Replace this with your YouTube URL */
 const MUSIC_YOUTUBE_URL = "https://www.youtube.com/watch?v=o4qjk8_5gmU";
 
 function youtubeId(link) {
@@ -560,34 +509,23 @@ function youtubeId(link) {
 }
 
 const musicId = youtubeId(MUSIC_YOUTUBE_URL);
-
 const music = document.getElementById("music");
 const muteButton = document.getElementById("mute");
 const soundIcon = document.getElementById("soundIcon");
 
 let muted = true;
 
-/* Initialise YouTube player */
 if (musicId) {
-
     music.src =
         "https://www.youtube-nocookie.com/embed/" +
         musicId +
-        "?autoplay=1" +
-        "&mute=1" +
-        "&loop=1" +
-        "&playlist=" + musicId +
-        "&controls=0" +
-        "&enablejsapi=1";
-
+        "?autoplay=1&mute=1&loop=1&playlist=" +
+        musicId +
+        "&controls=0&enablejsapi=1";
 }
 
-/* Mute / Unmute */
 muteButton.addEventListener("click", () => {
-
-    if (!musicId) {
-        return;
-    }
+    if (!musicId) return;
 
     music.contentWindow.postMessage(
         JSON.stringify({
@@ -605,14 +543,8 @@ muteButton.addEventListener("click", () => {
         : "https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png";
 
     muteButton.title = muted ? "Unmute" : "Mute";
-
-    muteButton.setAttribute(
-        "aria-label",
-        muteButton.title
-    );
-
+    muteButton.setAttribute("aria-label", muteButton.title);
 });
-
 </script>
 
 </body>
