@@ -398,7 +398,6 @@
             border: 1px solid rgba(255,255,255,.1);
         }
 
-        /* Rounded-square music toggle */
         .music-toggle {
             position: fixed;
             bottom: 25px;
@@ -702,7 +701,7 @@
         © 2026 Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <!-- This prompt is visible immediately on every page load -->
+    <!-- Music prompt -->
     <div class="music-overlay" id="musicOverlay">
         <div class="music-modal">
             <h2>Play music?</h2>
@@ -724,8 +723,8 @@
             title="Toggle music">
         <svg id="musicIcon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M11 5L6 9H3v6h3l5 4V5Z"></path>
-            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-            <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+            <path d="M16 9l5 6"></path>
+            <path d="M21 9l-5 6"></path>
         </svg>
     </button>
 
@@ -735,6 +734,8 @@
         let player = null;
         let playerReady = false;
         let isMuted = true;
+        let wantsMusic = false;
+        let musicDeclined = false;
 
         const musicOverlay = document.getElementById("musicOverlay");
         const playMusicButton = document.getElementById("playMusicButton");
@@ -766,58 +767,66 @@
             musicOverlay.style.display = "none";
         }
 
-        function playMusic() {
-            if (!playerReady || !player) return;
+        function startMusic() {
+            if (!playerReady || !player || musicDeclined) return;
 
-            player.unMute();
             player.setVolume(100);
+            player.unMute();
             player.playVideo();
 
             isMuted = false;
             updateMusicIcon();
-            closeMusicPrompt();
         }
 
-        function skipMusic() {
+        // YES: Close prompt immediately, then play when player is ready.
+        playMusicButton.addEventListener("click", function () {
+            wantsMusic = true;
+            musicDeclined = false;
+
+            closeMusicPrompt();
+
+            if (playerReady) {
+                startMusic();
+            }
+        });
+
+        // NO: Close prompt and do not start music.
+        skipMusicButton.addEventListener("click", function () {
+            wantsMusic = false;
+            musicDeclined = true;
+            isMuted = true;
+
             if (playerReady && player) {
                 player.mute();
                 player.pauseVideo();
             }
 
-            isMuted = true;
             updateMusicIcon();
             closeMusicPrompt();
-        }
+        });
 
-        playMusicButton.addEventListener("click", playMusic);
-        skipMusicButton.addEventListener("click", skipMusic);
-
+        // Floating music toggle.
         musicToggle.addEventListener("click", function () {
             if (!playerReady || !player) return;
 
             if (isMuted) {
-                player.unMute();
-                player.setVolume(100);
-                player.playVideo();
-                isMuted = false;
+                musicDeclined = false;
+                wantsMusic = true;
+                startMusic();
             } else {
                 player.mute();
                 isMuted = true;
+                updateMusicIcon();
             }
-
-            updateMusicIcon();
         });
 
-        // Load YouTube's player API
-        const youtubeScript = document.createElement("script");
-        youtubeScript.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(youtubeScript);
-
-        function onYouTubeIframeAPIReady() {
+        // YouTube API callback.
+        window.onYouTubeIframeAPIReady = function () {
             player = new YT.Player("youtubePlayer", {
                 height: "1",
                 width: "1",
                 videoId: "o4qjk8_5gmU",
+
                 playerVars: {
                     autoplay: 0,
                     controls: 0,
@@ -825,27 +834,37 @@
                     playlist: "o4qjk8_5gmU",
                     playsinline: 1
                 },
+
                 events: {
                     onReady: function () {
                         playerReady = true;
+
                         player.mute();
-                        playMusicButton.disabled = false;
-                        playMusicButton.textContent = "Yes";
+                        player.setVolume(100);
+
+                        if (wantsMusic && !musicDeclined) {
+                            startMusic();
+                        }
                     },
-                    onError: function () {
-                        playMusicButton.disabled = true;
-                        playMusicButton.textContent = "Unavailable";
+
+                    onError: function (event) {
+                        console.error("YouTube player error:", event.data);
                     }
                 }
             });
-        }
+        };
 
-        // Keep the button usable while the YouTube player loads.
-        playMusicButton.disabled = true;
-        playMusicButton.textContent = "Loading...";
+        // Load YouTube API.
+        const youtubeScript = document.createElement("script");
+        youtubeScript.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(youtubeScript);
+
+        // Buttons are clickable immediately, even while YouTube loads.
+        playMusicButton.disabled = false;
+        skipMusicButton.disabled = false;
+
         updateMusicIcon();
     </script>
 
 </body>
 </html>
-
