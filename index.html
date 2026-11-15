@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +14,11 @@
 <style>
 :root {
     --background: #ffffff;
-    --surface: #ffffff;
-    --surface-soft: #f8f8f8;
+    --surface: rgba(255,255,255,.82);
+    --surface-soft: rgba(255,255,255,.72);
     --text: #171717;
     --muted: #737373;
-    --border: #e8e8e8;
+    --border: rgba(225,225,225,.85);
     --accent: #555555;
     --shadow: 0 12px 40px rgba(0,0,0,.045);
 }
@@ -34,12 +34,28 @@ html {
     scroll-padding-top: 100px;
 }
 
+/* FIXED BACKGROUND */
+
 body {
+    position: relative;
     font-family: 'Montserrat', sans-serif;
-    background: #fff;
+    background: transparent;
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    pointer-events: none;
 }
 
 a {
@@ -71,6 +87,7 @@ nav {
     padding: 15px 24px;
     background: rgba(255,255,255,.88);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 18px;
     box-shadow: 0 5px 25px rgba(0,0,0,.035);
@@ -109,10 +126,11 @@ nav {
 
 section {
     padding: 110px 0;
+    background: transparent;
 }
 
 .section-label {
-    color: #888;
+    color: #555;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -130,7 +148,7 @@ section {
 
 .section-description {
     max-width: 650px;
-    color: var(--muted);
+    color: #555;
     font-size: 14px;
 }
 
@@ -142,6 +160,7 @@ section {
     align-items: center;
     padding-top: 120px;
     padding-bottom: 80px;
+    position: relative;
 }
 
 .hero-content {
@@ -156,8 +175,10 @@ section {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: #666;
+    color: #555;
     margin-bottom: 28px;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(12px);
 }
 
 .hero-title {
@@ -169,14 +190,18 @@ section {
 }
 
 .hero-title span {
-    color: #999;
+    color: #777;
 }
 
 .hero-description {
     max-width: 600px;
     font-size: 16px;
-    color: #737373;
+    color: #555;
     margin-bottom: 35px;
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(10px);
+    padding: 12px 15px;
+    border-radius: 12px;
 }
 
 .hero-buttons {
@@ -209,7 +234,8 @@ section {
 .btn-secondary {
     border: 1px solid var(--border);
     color: #333;
-    background: white;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
@@ -222,7 +248,7 @@ section {
     bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
-    color: #aaa;
+    color: #555;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -242,7 +268,9 @@ section {
     padding: 30px;
     border: 1px solid var(--border);
     border-radius: 17px;
-    background: #fff;
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     transition: .25s ease;
     box-shadow: var(--shadow);
 }
@@ -253,7 +281,7 @@ section {
 }
 
 .card-number {
-    color: #aaa;
+    color: #888;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -284,7 +312,8 @@ section {
     padding: 10px 17px;
     border: 1px solid var(--border);
     border-radius: 9px;
-    background: #fff;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(12px);
     font-size: 12px;
     font-weight: 600;
     color: #444;
@@ -303,7 +332,9 @@ section {
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 26px;
-    background: #fff;
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     box-shadow: var(--shadow);
     transition: .2s ease;
 }
@@ -335,12 +366,21 @@ section {
 }
 
 .about-text {
-    color: #666;
+    color: #444;
     font-size: 14px;
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(15px);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
 }
 
 .about-text p {
     margin-bottom: 17px;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
 }
 
 .about-details {
@@ -348,6 +388,8 @@ section {
     border-radius: 16px;
     padding: 25px;
     box-shadow: var(--shadow);
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(18px);
 }
 
 .detail-row {
@@ -363,7 +405,7 @@ section {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: #999;
+    color: #777;
     text-transform: uppercase;
 }
 
@@ -380,7 +422,9 @@ section {
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 30px;
-    background: #fff;
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     box-shadow: var(--shadow);
 }
 
@@ -399,6 +443,7 @@ section {
     border-radius: 11px;
     transition: .2s ease;
     min-width: 0;
+    background: rgba(255,255,255,.75);
 }
 
 .contact-item:hover {
@@ -417,7 +462,7 @@ section {
 }
 
 .contact-label {
-    color: #999;
+    color: #777;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -436,8 +481,10 @@ footer {
     padding: 30px 20px;
     border-top: 1px solid var(--border);
     text-align: center;
-    color: #999;
+    color: #555;
     font-size: 11px;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(15px);
 }
 
 /* MUSIC CONTROL */
@@ -463,6 +510,7 @@ footer {
     border: 1px solid var(--border);
     border-radius: 25px;
     background: rgba(255,255,255,.95);
+    backdrop-filter: blur(20px);
     box-shadow: 0 5px 25px rgba(0,0,0,.08);
     opacity: 0;
     visibility: hidden;
@@ -513,11 +561,18 @@ footer {
     height: 48px;
     border: 1px solid var(--border);
     border-radius: 15px;
-    background: white;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(15px);
     box-shadow: 0 5px 25px rgba(0,0,0,.08);
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.speaker-display:hover {
+    transform: scale(1.05);
 }
 
 .speaker-display svg {
@@ -528,88 +583,9 @@ footer {
     stroke-width: 1.8;
 }
 
-/* MUSIC PROMPT */
-
-.music-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(255,255,255,.78);
-    backdrop-filter: blur(15px);
-}
-
-.music-modal.hidden {
+.speaker-display.muted svg path:nth-child(2),
+.speaker-display.muted svg path:nth-child(3) {
     display: none;
-}
-
-.music-modal-card {
-    width: min(430px, 100%);
-    padding: 38px;
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 22px;
-    box-shadow: 0 20px 80px rgba(0,0,0,.1);
-    text-align: center;
-}
-
-.modal-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #999;
-    margin-bottom: 17px;
-}
-
-.music-modal-card h2 {
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 12px;
-}
-
-.music-modal-card p {
-    color: #777;
-    font-size: 12px;
-    margin-bottom: 25px;
-}
-
-.modal-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.modal-buttons button {
-    flex: 1;
-    padding: 13px 10px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 700;
-    transition: .2s ease;
-}
-
-#musicYes {
-    color: white;
-    background: #171717;
-    border-color: #171717;
-}
-
-#musicYes:hover {
-    background: #444;
-}
-
-#musicNo {
-    background: white;
-    color: #333;
-}
-
-#musicNo:hover {
-    background: #f5f5f5;
 }
 
 /* REVEAL ANIMATIONS */
@@ -689,10 +665,6 @@ footer {
 
     .hero-title {
         font-size: 53px;
-    }
-
-    .music-modal-card {
-        padding: 28px 22px;
     }
 }
 
@@ -983,31 +955,13 @@ footer {
         >
     </div>
 
-    <div class="speaker-display" aria-label="Background music control">
+    <button class="speaker-display" id="speakerButton" type="button" aria-label="Mute music">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
             <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
             <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
         </svg>
-    </div>
-</div>
-
-<!-- MUSIC PROMPT -->
-
-<div class="music-modal" id="musicModal">
-    <div class="music-modal-card">
-        <div class="modal-label">LIM JUN XI TED · PORTFOLIO</div>
-        <h2>Enjoy some music?</h2>
-        <p>
-            Would you like to listen to background music while
-            exploring my portfolio?
-        </p>
-
-        <div class="modal-buttons">
-            <button id="musicYes" type="button">Yes, play music</button>
-            <button id="musicNo" type="button">No, thanks</button>
-        </div>
-    </div>
+    </button>
 </div>
 
 <audio id="backgroundMusic" preload="auto"></audio>
@@ -1024,17 +978,16 @@ function resetScroll() {
 }
 
 window.addEventListener("load", resetScroll);
+
 window.addEventListener("pageshow", function(event) {
     if (event.persisted) resetScroll();
 });
 
-/* MUSIC PLAYLIST */
+/* MUSIC PLAYLIST - AUTOPLAY */
 
 const music = document.getElementById("backgroundMusic");
-const musicModal = document.getElementById("musicModal");
-const musicYes = document.getElementById("musicYes");
-const musicNo = document.getElementById("musicNo");
 const volumeSlider = document.getElementById("volumeSlider");
+const speakerButton = document.getElementById("speakerButton");
 
 const playlist = [
     "./Loose.mp3",
@@ -1042,39 +995,63 @@ const playlist = [
 ];
 
 let currentTrack = 0;
-let musicEnabled = false;
+let musicMuted = false;
+let playbackStarted = false;
 
 music.volume = 0.35;
 
-function playCurrentTrack() {
-    if (!musicEnabled) return;
+function updateSpeaker() {
+    speakerButton.classList.toggle("muted", musicMuted);
+    speakerButton.setAttribute(
+        "aria-label",
+        musicMuted ? "Unmute music" : "Mute music"
+    );
+}
 
+function playCurrentTrack() {
     music.src = playlist[currentTrack];
     music.load();
 
-    music.play().catch(function(error) {
-        console.warn("Music playback failed:", error);
+    music.play().then(function() {
+        playbackStarted = true;
+    }).catch(function(error) {
+        console.warn("Autoplay was blocked by the browser:", error);
     });
 }
 
 music.addEventListener("ended", function() {
-    if (!musicEnabled) return;
-
     currentTrack = (currentTrack + 1) % playlist.length;
     playCurrentTrack();
 });
 
-musicYes.addEventListener("click", function() {
-    musicEnabled = true;
-    currentTrack = 0;
-    musicModal.classList.add("hidden");
+/* AUTOPLAY ON ENTRY */
+
+window.addEventListener("load", function() {
     playCurrentTrack();
 });
 
-musicNo.addEventListener("click", function() {
-    musicEnabled = false;
-    music.pause();
-    musicModal.classList.add("hidden");
+/* START MUSIC AFTER FIRST INTERACTION IF BLOCKED */
+
+function startMusicAfterInteraction() {
+    if (playbackStarted) return;
+
+    playCurrentTrack();
+}
+
+document.addEventListener("click", startMusicAfterInteraction, { once: true });
+document.addEventListener("keydown", startMusicAfterInteraction, { once: true });
+
+/* SPEAKER MUTE BUTTON */
+
+speakerButton.addEventListener("click", function() {
+    musicMuted = !musicMuted;
+    music.muted = musicMuted;
+
+    updateSpeaker();
+
+    if (!musicMuted && !playbackStarted) {
+        playCurrentTrack();
+    }
 });
 
 /* VOLUME SLIDER */
@@ -1083,8 +1060,19 @@ volumeSlider.addEventListener("input", function() {
     const volume = Number(this.value) / 100;
 
     music.volume = volume;
-    music.muted = volume === 0;
+
+    if (volume === 0) {
+        musicMuted = true;
+        music.muted = true;
+    } else {
+        musicMuted = false;
+        music.muted = false;
+    }
+
+    updateSpeaker();
 });
+
+updateSpeaker();
 
 /* SCROLL INDICATOR */
 
@@ -1128,3 +1116,4 @@ if ("IntersectionObserver" in window) {
 
 </body>
 </html>
+```
