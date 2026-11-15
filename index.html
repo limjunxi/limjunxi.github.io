@@ -59,8 +59,7 @@
             );
         }
 
-        header, main, footer, .music-overlay, .music-control,
-        .version {
+        header, main, footer, .music-overlay, .music-control, .version {
             position: relative;
             z-index: 1;
         }
@@ -249,24 +248,25 @@
             transform: translateY(-3px);
         }
 
-        /* Interests */
+        /* Achievements & Work */
 
-        #interests {
+        #achievements {
             padding-top: 110px;
             padding-bottom: 110px;
         }
 
-        .interest-grid {
+        .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
             margin-top: 38px;
         }
 
-        .interest-card {
-            overflow: hidden;
-            border-radius: 10px;
+        .achievement-card {
+            padding: 25px;
+            min-height: 190px;
             border: 1px solid var(--border);
+            border-radius: 10px;
             background: rgba(70, 36, 105, 0.14);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
@@ -274,38 +274,40 @@
             animation: cardIn .7s ease both;
         }
 
-        .interest-card:hover {
-            transform: translateY(-6px);
+        .achievement-card:hover {
+            transform: translateY(-5px);
             background: rgba(91, 48, 133, 0.27);
         }
 
-        .interest-card img {
-            width: 100%;
-            height: 155px;
-            object-fit: cover;
-            display: block;
-            filter: saturate(.85);
-            transition: transform .5s ease;
-        }
-
-        .interest-card:hover img {
-            transform: scale(1.04);
-        }
-
-        .interest-content {
-            padding: 19px 17px 21px;
-        }
-
-        .interest-content h3 {
-            font-size: 14px;
+        .achievement-category {
+            color: var(--purple-light);
+            font-size: 9px;
             font-weight: 700;
-            margin-bottom: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 17px;
         }
 
-        .interest-content p {
+        .achievement-card h3 {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .achievement-card p {
             color: var(--muted);
             font-size: 11px;
-            line-height: 1.8;
+            line-height: 1.9;
+        }
+
+        .achievement-card a {
+            display: inline-block;
+            margin-top: 17px;
+            color: var(--purple-light);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .achievement-card a:hover {
+            text-decoration: underline;
         }
 
         /* About */
@@ -549,22 +551,33 @@
             line-height: 1.6;
         }
 
-        /* Minimal music icon and animated volume slider */
+        /* Minimal music icon and volume slider */
 
         .music-control {
             position: fixed;
             left: 24px;
             bottom: 22px;
             z-index: 500;
-            width: 38px;
-            height: 38px;
+            width: 48px;
+            height: 48px;
+        }
+
+        /* Invisible hover area connects the icon and slider */
+        .music-control::before {
+            content: "";
+            position: absolute;
+            left: -12px;
+            bottom: 25px;
+            width: 72px;
+            height: 165px;
+            background: transparent;
         }
 
         .music-toggle {
             position: absolute;
             inset: 0;
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -583,7 +596,7 @@
         }
 
         .music-toggle:active {
-            transform: scale(.9);
+            transform: scale(.92);
         }
 
         .music-toggle svg {
@@ -593,24 +606,20 @@
 
         .volume-popup {
             position: absolute;
-            left: 50%;
+            left: 0;
             bottom: 42px;
-            width: 42px;
-            height: 125px;
-            padding: 12px 0;
+            width: 48px;
+            height: 145px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(220,190,255,0.22);
-            border-radius: 20px;
-            background: rgba(48, 25, 70, 0.62);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background: transparent;
+            border: none;
+            box-shadow: none;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transform: translate(-50%, 12px) scale(.92);
-            transform-origin: bottom center;
+            transform: translateY(12px);
             transition:
                 opacity .25s ease,
                 transform .3s cubic-bezier(.2,.8,.2,1),
@@ -618,25 +627,52 @@
         }
 
         .music-control:hover .volume-popup,
-        .music-control:focus-within .volume-popup {
+        .music-control:focus-within .volume-popup,
+        .music-control.slider-active .volume-popup {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
-            transform: translate(-50%, 0) scale(1);
+            transform: translateY(0);
         }
 
         .volume-slider {
-            width: 92px;
-            height: 4px;
+            width: 110px;
+            height: 5px;
             margin: 0;
+            padding: 0;
             accent-color: var(--purple-light);
             cursor: pointer;
             transform: rotate(-90deg);
+            background: transparent;
+            touch-action: none;
         }
 
-        .volume-slider:focus-visible {
-            outline: 2px solid var(--purple-light);
-            outline-offset: 5px;
+        .volume-slider::-webkit-slider-runnable-track {
+            height: 5px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.35);
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            cursor: grab;
+        }
+
+        .volume-slider::-moz-range-track {
+            height: 5px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.35);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            cursor: grab;
+        }
+
+        .volume-slider:active::-webkit-slider-thumb {
+            cursor: grabbing;
+        }
+
+        .volume-slider:active::-moz-range-thumb {
+            cursor: grabbing;
         }
 
         /* Version */
@@ -703,7 +739,7 @@
         /* Responsive */
 
         @media (max-width: 850px) {
-            .interest-grid {
+            .achievement-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -718,11 +754,6 @@
         }
 
         @media (max-width: 600px) {
-            body {
-                background-size: auto 100vh;
-                background-size: 100% auto;
-            }
-
             header {
                 padding: 17px 5%;
             }
@@ -755,33 +786,27 @@
                 font-size: 12px;
             }
 
-            #interests {
+            #achievements {
                 padding-top: 80px;
                 padding-bottom: 80px;
             }
 
-            .interest-grid {
-                gap: 11px;
+            .achievement-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
 
-            .interest-card img {
-                height: 120px;
-            }
-
-            .interest-content {
-                padding: 14px 12px 16px;
-            }
-
-            .interest-content h3 {
-                font-size: 12px;
-            }
-
-            .interest-content p {
-                font-size: 10px;
+            .achievement-card {
+                min-height: 0;
             }
 
             .contact-panel {
                 padding: 25px 19px;
+            }
+
+            .music-control {
+                left: 17px;
+                bottom: 17px;
             }
         }
 
@@ -803,7 +828,7 @@
 
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#interests">Interests</a>
+                <a href="#achievements">Achievements</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -825,56 +850,66 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a href="#interests" class="button button-primary">Explore my interests</a>
+                    <a href="#achievements" class="button button-primary">View my work</a>
                     <a href="#contact" class="button button-secondary">Get in touch</a>
                 </div>
             </div>
         </section>
 
-        <section id="interests">
-            <div class="section-label">What I enjoy</div>
-            <h2 class="section-heading">My Interests</h2>
+        <!--
+            ACHIEVEMENTS & WORK
+
+            To add an achievement:
+            1. Copy an entire achievement-card block.
+            2. Change the category, title and description.
+            3. Optionally add a link to proof of work.
+
+            You only need to edit this section to update your achievements.
+        -->
+
+        <section id="achievements">
+            <div class="section-label">My experience</div>
+            <h2 class="section-heading">Achievements & Work</h2>
 
             <p class="section-description">
-                A few of the things I spend my time learning and working on.
+                A collection of projects, experiences and accomplishments.
             </p>
 
-            <div class="interest-grid">
+            <div class="achievement-grid">
 
-                <article class="interest-card">
-                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=85"
-                         alt="Programming code on a computer screen" loading="lazy">
-                    <div class="interest-content">
-                        <h3>Programming</h3>
-                        <p>Learning to write code, solve problems and create projects using different programming languages.</p>
-                    </div>
+                <!-- ACHIEVEMENT 1 -->
+                <article class="achievement-card">
+                    <div class="achievement-category">PROJECT</div>
+                    <h3>Your Project Title</h3>
+                    <p>
+                        Add a description of a project you have worked on,
+                        what you created and the technologies you used.
+                    </p>
+                    <!-- Optional link:
+                    <a href="YOUR_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                        View project
+                    </a>
+                    -->
                 </article>
 
-                <article class="interest-card">
-                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=85"
-                         alt="Custom desktop computer setup" loading="lazy">
-                    <div class="interest-content">
-                        <h3>PC Building</h3>
-                        <p>Exploring computer hardware, component compatibility and building custom PC setups.</p>
-                    </div>
+                <!-- ACHIEVEMENT 2 -->
+                <article class="achievement-card">
+                    <div class="achievement-category">EXPERIENCE</div>
+                    <h3>Your Experience Title</h3>
+                    <p>
+                        Describe an experience, responsibility or contribution
+                        you would like to showcase.
+                    </p>
                 </article>
 
-                <article class="interest-card">
-                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=85"
-                         alt="Camera used for photography" loading="lazy">
-                    <div class="interest-content">
-                        <h3>Photography</h3>
-                        <p>Capturing moments, experimenting with composition and learning more about photography.</p>
-                    </div>
-                </article>
-
-                <article class="interest-card">
-                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=700&q=85"
-                         alt="Website displayed on a computer" loading="lazy">
-                    <div class="interest-content">
-                        <h3>Web Development</h3>
-                        <p>Building websites and experimenting with HTML, CSS and interactive features.</p>
-                    </div>
+                <!-- ACHIEVEMENT 3 -->
+                <article class="achievement-card">
+                    <div class="achievement-category">ACHIEVEMENT</div>
+                    <h3>Your Achievement Title</h3>
+                    <p>
+                        Describe an award, competition, certification
+                        or other accomplishment.
+                    </p>
                 </article>
 
             </div>
@@ -985,6 +1020,7 @@
     <audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
 
     <!-- Music prompt -->
+
     <div class="music-overlay" id="musicOverlay">
         <div class="music-dialog">
             <h2>Play music?</h2>
@@ -1002,7 +1038,8 @@
         </div>
     </div>
 
-    <!-- Minimal music control -->
+    <!-- Music icon and volume slider -->
+
     <div class="music-control" id="musicControl">
 
         <div class="volume-popup">
@@ -1121,6 +1158,7 @@
         const musicIcon = document.getElementById("musicIcon");
         const musicStatus = document.getElementById("musicStatus");
         const volumeSlider = document.getElementById("volumeSlider");
+        const musicControl = document.getElementById("musicControl");
 
         audio.volume = 0.5;
 
@@ -1192,7 +1230,7 @@
             overlay.classList.add("hidden");
         });
 
-        // Icon click toggles mute without pausing the music.
+        // Clicking the speaker toggles mute, not playback.
 
         toggleButton.addEventListener("click", async () => {
             if (audio.paused) {
@@ -1204,20 +1242,29 @@
             updateMusicIcon();
         });
 
-        // Volume slider.
+        // Slider controls volume.
 
         volumeSlider.addEventListener("input", () => {
             const newVolume = Number(volumeSlider.value);
 
             audio.volume = newVolume;
-
-            if (newVolume > 0) {
-                audio.muted = false;
-            } else {
-                audio.muted = true;
-            }
+            audio.muted = newVolume === 0;
 
             updateMusicIcon();
+        });
+
+        // Keep the slider open while it is being dragged.
+
+        volumeSlider.addEventListener("pointerdown", () => {
+            musicControl.classList.add("slider-active");
+        });
+
+        window.addEventListener("pointerup", () => {
+            musicControl.classList.remove("slider-active");
+        });
+
+        window.addEventListener("pointercancel", () => {
+            musicControl.classList.remove("slider-active");
         });
 
         audio.addEventListener("play", () => {
