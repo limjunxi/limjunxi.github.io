@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#160d22">
-
     <title>Lim Jun Xi Ted | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +20,6 @@
             --muted: #b6a8c4;
             --border: rgba(218, 190, 255, 0.16);
             --glass: rgba(26, 15, 39, 0.69);
-            --glass-light: rgba(255, 255, 255, 0.045);
         }
 
         * {
@@ -46,15 +44,6 @@
             background-attachment: scroll;
             min-height: 100vh;
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 7, 24, 0.36);
-            pointer-events: none;
-            z-index: -1;
         }
 
         a {
@@ -89,7 +78,7 @@
         .logo {
             font-size: 17px;
             font-weight: 800;
-            letter-spacing: -0.7px;
+            letter-spacing: -.7px;
             white-space: nowrap;
         }
 
@@ -165,6 +154,7 @@
             display: flex;
             align-items: center;
             padding-top: 76px;
+            position: relative;
         }
 
         .hero-content {
@@ -491,7 +481,7 @@
             font-size: 10px;
         }
 
-        /* MUSIC PROMPT */
+        /* TRANSLUCENT MUSIC PROMPT */
 
         .music-overlay {
             position: fixed;
@@ -501,9 +491,12 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: rgba(9, 4, 15, .73);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+
+            /* Transparent overlay: background remains visible */
+            background: rgba(9, 4, 15, 0.27);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+
             opacity: 1;
             visibility: visible;
             transition: opacity .35s ease, visibility .35s ease;
@@ -520,10 +513,16 @@
             max-width: 390px;
             padding: 37px 32px;
             text-align: center;
-            background: rgba(35, 20, 49, .92);
-            border: 1px solid rgba(201, 165, 255, .28);
+
+            /* Glass panel transparency */
+            background: rgba(35, 20, 49, 0.43);
+            border: 1px solid rgba(201, 165, 255, 0.30);
             border-radius: 19px;
-            box-shadow: 0 25px 90px rgba(0,0,0,.35);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.18);
             animation: modalIn .5s ease;
         }
 
@@ -533,7 +532,7 @@
         }
 
         .music-modal p {
-            color: var(--muted);
+            color: #ded2e9;
             font-size: 11px;
             line-height: 1.8;
             margin-bottom: 26px;
@@ -556,15 +555,15 @@
         }
 
         .music-yes {
-            background: var(--purple);
+            background: rgba(181,138,255,.88);
             color: #1b1028;
             border: 1px solid var(--purple);
         }
 
         .music-no {
-            background: rgba(255,255,255,.05);
+            background: rgba(255,255,255,.08);
             color: white;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,255,255,.22);
         }
 
         .music-actions button:hover {
@@ -874,7 +873,6 @@
     <section id="home">
         <div class="container">
             <div class="hero-content">
-
                 <div class="hero-tag">PERSONAL PORTFOLIO · 2026</div>
 
                 <h1 class="hero-title">
@@ -898,7 +896,6 @@
                         Get In Touch
                     </a>
                 </div>
-
             </div>
         </div>
 
@@ -922,11 +919,8 @@
 
             <div class="achievement-grid">
 
-                <!-- STUDY TOOLKIT -->
-
                 <article class="achievement-card reveal">
                     <div class="achievement-category">WEB DEVELOPMENT</div>
-
                     <h3>Study Toolkit</h3>
 
                     <p>
@@ -945,11 +939,8 @@
                     </span>
                 </article>
 
-                <!-- PORTFOLIO WEBSITE -->
-
                 <article class="achievement-card reveal">
                     <div class="achievement-category">WEB DEVELOPMENT</div>
-
                     <h3>Personal Portfolio</h3>
 
                     <p>
@@ -964,11 +955,8 @@
                     </span>
                 </article>
 
-                <!-- INFOCOMM MEDIA -->
-
                 <article class="achievement-card reveal">
                     <div class="achievement-category">SCHOOL LEADERSHIP</div>
-
                     <h3>Infocomm Media CCA</h3>
 
                     <p>
@@ -984,11 +972,8 @@
                     </span>
                 </article>
 
-                <!-- PHOTOGRAPHY -->
-
                 <article class="achievement-card reveal">
                     <div class="achievement-category">CREATIVE WORK</div>
-
                     <h3>Photography</h3>
 
                     <p>
@@ -1016,7 +1001,6 @@
 
                 <div class="reveal">
                     <div class="section-label">A LITTLE ABOUT ME</div>
-
                     <h2 class="section-title">About Me.</h2>
 
                     <div class="about-text">
@@ -1177,7 +1161,7 @@
     <div class="version">VERSION 18</div>
 
     <script>
-        /* ALWAYS START AT THE TOP */
+        /* START AT TOP */
 
         if ("scrollRestoration" in history) {
             history.scrollRestoration = "manual";
@@ -1200,6 +1184,13 @@
 
         music.volume = Number(volumeSlider.value);
 
+        // Check whether the audio file can be loaded.
+        music.addEventListener("error", () => {
+            console.error(
+                "Music file could not be loaded. Check that Loose.mp3 exists in the repository root."
+            );
+        });
+
         yesButton.addEventListener("click", async () => {
             music.volume = Number(volumeSlider.value);
 
@@ -1207,7 +1198,9 @@
                 await music.play();
                 overlay.classList.add("hidden");
             } catch (error) {
-                alert("Music could not be played. Please check that Loose.mp3 is uploaded to the repository.");
+                alert(
+                    "Music could not be played. Check that Loose.mp3 is uploaded to the root of your GitHub repository and that its filename matches exactly."
+                );
             }
         });
 
@@ -1217,6 +1210,7 @@
             overlay.classList.add("hidden");
         });
 
+        // The slider is the only volume control.
         volumeSlider.addEventListener("input", () => {
             music.volume = Number(volumeSlider.value);
         });
@@ -1228,6 +1222,7 @@
 
         menuToggle.addEventListener("click", () => {
             navLinks.classList.toggle("open");
+
             menuToggle.textContent =
                 navLinks.classList.contains("open") ? "×" : "☰";
         });
@@ -1303,6 +1298,7 @@
                 const gain = audioContext.createGain();
 
                 oscillator.type = "sine";
+
                 oscillator.frequency.setValueAtTime(
                     650,
                     audioContext.currentTime
@@ -1330,7 +1326,7 @@
                 oscillator.stop(audioContext.currentTime + 0.06);
 
             } catch (error) {
-                // Sound is optional; the website works without it.
+                // Optional sound; website remains functional without it.
             }
         }
 
