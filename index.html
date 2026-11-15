@@ -14,13 +14,19 @@
 <style>
 :root {
     --background: #ffffff;
-    --surface: rgba(255,255,255,.42);
-    --surface-soft: rgba(255,255,255,.32);
+    --surface: rgba(255,255,255,.78);
+    --surface-soft: rgba(255,255,255,.65);
     --text: #171717;
     --muted: #555;
-    --border: transparent;
+    --border: rgba(255,255,255,.8);
     --accent: #555555;
-    --shadow: 0 12px 40px rgba(0,0,0,.07);
+    --shadow: 0 12px 40px rgba(0,0,0,.055);
+    --snow-glass: rgba(255,255,255,.76);
+    --snow-glass-light: rgba(255,255,255,.60);
+    --snow-blur: blur(28px) saturate(160%);
+    --snow-shadow:
+        0 12px 40px rgba(0,0,0,.055),
+        inset 0 1px 1px rgba(255,255,255,.95);
 }
 
 * {
@@ -88,12 +94,12 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 15px 24px;
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    border: none;
-    border-radius: 18px;
-    box-shadow: 0 8px 35px rgba(0,0,0,.07);
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(32px) saturate(170%);
+    -webkit-backdrop-filter: blur(32px) saturate(170%);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 20px;
+    box-shadow: var(--snow-shadow);
 }
 
 .nav-logo {
@@ -101,6 +107,7 @@ nav {
     font-weight: 800;
     letter-spacing: -.4px;
     white-space: nowrap;
+    color: #171717;
 }
 
 .nav-links {
@@ -132,26 +139,50 @@ section {
 }
 
 .section-label {
+    display: table;
+    width: fit-content;
+    max-width: 100%;
     color: #555;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 12px;
+    padding: 5px 10px;
+    background: rgba(255,255,255,.68);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-radius: 7px;
 }
 
 .section-title {
+    display: table;
+    width: fit-content;
+    max-width: 100%;
     font-size: clamp(30px, 5vw, 46px);
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 18px;
+    padding: 8px 13px;
+    color: #171717;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+    border-radius: 9px;
 }
 
 .section-description {
+    display: table;
+    width: fit-content;
     max-width: 650px;
-    color: #555;
+    color: #444;
     font-size: 14px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,.70);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 8px;
 }
 
 /* HERO */
@@ -173,37 +204,51 @@ section {
     display: inline-block;
     padding: 8px 14px;
     border: none;
-    border-radius: 100px;
-    background: rgba(255,255,255,.42);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    border-radius: 7px;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
     color: #444;
     margin-bottom: 28px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.045);
+    box-shadow: none;
 }
 
 .hero-title {
+    display: table;
+    max-width: 100%;
     font-size: clamp(48px, 9vw, 100px);
     line-height: 1.04;
     letter-spacing: -6px;
     font-weight: 800;
     margin-bottom: 25px;
+    padding: 12px 17px;
     color: #171717;
-    text-shadow: 0 2px 20px rgba(255,255,255,.25);
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 10px;
+    text-shadow: none;
 }
 
 .hero-title span {
     color: #777;
+    background: none;
 }
 
 .hero-description {
+    display: table;
     max-width: 600px;
     font-size: 16px;
     color: #444;
     margin-bottom: 35px;
+    padding: 12px 15px;
+    background: rgba(255,255,255,.74);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 9px;
 }
 
 .hero-buttons {
@@ -237,14 +282,14 @@ section {
 
 .btn-secondary {
     color: #222;
-    background: rgba(255,255,255,.55);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 5px 20px rgba(0,0,0,.055);
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: var(--snow-shadow);
 }
 
 .btn-secondary:hover {
-    background: rgba(255,255,255,.8);
+    background: rgba(255,255,255,.96);
     transform: translateY(-2px);
 }
 
@@ -253,10 +298,15 @@ section {
     bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
-    color: #555;
+    color: #333;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2px;
+    padding: 7px 12px;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 7px;
     transition: opacity .3s;
 }
 
@@ -271,18 +321,18 @@ section {
 
 .interest-card {
     padding: 30px;
-    border: none;
-    border-radius: 17px;
-    background: rgba(255,255,255,.42);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 19px;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(30px) saturate(170%);
+    -webkit-backdrop-filter: blur(30px) saturate(170%);
     transition: .25s ease;
-    box-shadow: var(--shadow);
+    box-shadow: var(--snow-shadow);
 }
 
 .interest-card:hover {
     transform: translateY(-5px);
-    background: rgba(255,255,255,.58);
+    background: rgba(255,255,255,.88);
 }
 
 .card-number {
@@ -312,19 +362,23 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    padding: 18px;
+    background: rgba(255,255,255,.74);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-radius: 14px;
+    box-shadow: var(--snow-shadow);
 }
 
 .skill {
-    padding: 10px 17px;
+    padding: 3px 5px;
     border: none;
-    border-radius: 9px;
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border-radius: 0;
+    background: transparent;
     font-size: 12px;
     font-weight: 600;
     color: #333;
-    box-shadow: 0 5px 18px rgba(0,0,0,.045);
+    box-shadow: none;
 }
 
 /* ACHIEVEMENTS */
@@ -337,19 +391,19 @@ section {
 }
 
 .achievement-card {
-    border: none;
-    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 19px;
     padding: 26px;
-    background: rgba(255,255,255,.43);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(30px) saturate(170%);
+    -webkit-backdrop-filter: blur(30px) saturate(170%);
+    box-shadow: var(--snow-shadow);
     transition: .2s ease;
 }
 
 .achievement-card:hover {
     transform: translateY(-4px);
-    background: rgba(255,255,255,.6);
+    background: rgba(255,255,255,.9);
 }
 
 .achievement-card h3 {
@@ -381,21 +435,26 @@ section {
 
 .about-text p {
     margin-bottom: 17px;
+    padding: 12px 15px;
+    background: rgba(255,255,255,.74);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 9px;
 }
 
 .about-details {
-    border: none;
-    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 19px;
     padding: 25px;
-    background: rgba(255,255,255,.43);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(30px) saturate(170%);
+    -webkit-backdrop-filter: blur(30px) saturate(170%);
+    box-shadow: var(--snow-shadow);
 }
 
 .detail-row {
     padding: 13px 0;
-    border-bottom: 1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.07);
 }
 
 .detail-row:last-child {
@@ -415,19 +474,20 @@ section {
     font-weight: 600;
     margin-top: 4px;
     color: #171717;
+    overflow-wrap: anywhere;
 }
 
 /* CONTACT */
 
 .contact-card {
     margin-top: 35px;
-    border: none;
-    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 20px;
     padding: 30px;
-    background: rgba(255,255,255,.43);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(30px) saturate(170%);
+    -webkit-backdrop-filter: blur(30px) saturate(170%);
+    box-shadow: var(--snow-shadow);
 }
 
 .contact-list {
@@ -441,15 +501,15 @@ section {
     align-items: center;
     gap: 14px;
     padding: 13px;
-    border: none;
-    border-radius: 11px;
-    background: rgba(255,255,255,.38);
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 13px;
+    background: rgba(255,255,255,.72);
     transition: .2s ease;
     min-width: 0;
 }
 
 .contact-item:hover {
-    background: rgba(255,255,255,.72);
+    background: rgba(255,255,255,.96);
     transform: translateY(-2px);
 }
 
@@ -482,14 +542,19 @@ section {
 /* FOOTER */
 
 footer {
-    padding: 30px 20px;
-    border-top: none;
+    margin: 20px auto;
+    width: fit-content;
+    max-width: calc(100% - 30px);
+    padding: 15px 25px;
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 12px;
     text-align: center;
     color: #444;
     font-size: 11px;
-    background: rgba(255,255,255,.22);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: var(--snow-shadow);
 }
 
 /* MUSIC CONTROL */
@@ -512,12 +577,12 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 12px 0;
-    border: none;
-    border-radius: 25px;
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 22px;
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(28px) saturate(170%);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    box-shadow: var(--snow-shadow);
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px);
@@ -551,7 +616,7 @@ footer {
     height: 14px;
     border-radius: 50%;
     background: #222;
-    border: none;
+    border: 2px solid white;
     box-shadow: 0 1px 5px rgba(0,0,0,.2);
 }
 
@@ -560,18 +625,18 @@ footer {
     height: 14px;
     border-radius: 50%;
     background: #222;
-    border: none;
+    border: 2px solid white;
 }
 
 .speaker-display {
     width: 48px;
     height: 48px;
-    border: none;
-    border-radius: 15px;
-    background: rgba(255,255,255,.55);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    border: 1px solid rgba(255,255,255,.95);
+    border-radius: 16px;
+    background: rgba(255,255,255,.86);
+    backdrop-filter: blur(28px) saturate(170%);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    box-shadow: var(--snow-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -595,9 +660,9 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(255,255,255,.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255,255,255,.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 .music-modal.hidden {
@@ -607,12 +672,14 @@ footer {
 .music-modal-card {
     width: min(430px, 100%);
     padding: 38px;
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: none;
-    border-radius: 22px;
-    box-shadow: 0 20px 80px rgba(0,0,0,.12);
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+    border: 1px solid rgba(255,255,255,.95);
+    border-radius: 24px;
+    box-shadow:
+        0 25px 90px rgba(0,0,0,.10),
+        inset 0 1px 1px rgba(255,255,255,1);
     text-align: center;
 }
 
@@ -666,12 +733,13 @@ footer {
 }
 
 #musicNo {
-    background: rgba(255,255,255,.58);
+    background: rgba(255,255,255,.88);
     color: #222;
+    box-shadow: var(--snow-shadow);
 }
 
 #musicNo:hover {
-    background: rgba(255,255,255,.85);
+    background: #fff;
     transform: translateY(-2px);
 }
 
@@ -764,334 +832,6 @@ footer {
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
         animation-duration: .01ms !important;
-    }
-}
-
-/* ==========================================
-   APPLE-STYLE WHITE LIQUID GLASS
-   TEXT BACKDROPS AND SURFACES
-========================================== */
-
-:root {
-    --liquid-white: rgba(255, 255, 255, 0.52);
-    --liquid-white-strong: rgba(255, 255, 255, 0.68);
-    --liquid-blur: blur(28px) saturate(180%);
-    --liquid-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.055),
-        inset 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
-/* ALL TEXT BACKDROPS */
-
-.nav-logo,
-.nav-links a,
-.hero-tag,
-.hero-title,
-.hero-description,
-.section-label,
-.section-title,
-.section-description,
-.card-number,
-.interest-card h3,
-.interest-card p,
-.skill,
-.achievement-card h3,
-.achievement-card p,
-.about-text p,
-.detail-label,
-.detail-value,
-.contact-label,
-.contact-value,
-footer {
-    display: table;
-    width: fit-content;
-    max-width: 100%;
-    padding: 9px 15px;
-    border: none;
-    border-radius: 13px;
-    background: var(--liquid-white);
-    backdrop-filter: var(--liquid-blur);
-    -webkit-backdrop-filter: var(--liquid-blur);
-    box-shadow: var(--liquid-shadow);
-}
-
-/* NAVIGATION */
-
-nav {
-    background: rgba(255, 255, 255, 0.57);
-    backdrop-filter: blur(35px) saturate(190%);
-    -webkit-backdrop-filter: blur(35px) saturate(190%);
-    border: none;
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.07),
-        inset 0 1px 1px rgba(255, 255, 255, 0.85);
-    border-radius: 22px;
-}
-
-.nav-logo {
-    padding: 7px 12px;
-    border-radius: 10px;
-    font-size: 13px;
-}
-
-.nav-links a {
-    padding: 8px 12px;
-    border-radius: 10px;
-    transition: background .25s ease, color .25s ease;
-}
-
-.nav-links a:hover {
-    background: rgba(255,255,255,.75);
-}
-
-/* HERO TEXT */
-
-.hero-tag {
-    border-radius: 100px;
-    padding: 10px 17px;
-}
-
-.hero-title {
-    padding: 17px 22px;
-    border-radius: 22px;
-    line-height: 1.15;
-    background: rgba(255,255,255,.48);
-    box-shadow: var(--liquid-shadow);
-}
-
-.hero-title span {
-    background: none;
-    box-shadow: none;
-    padding: 0;
-}
-
-.hero-description {
-    padding: 16px 19px;
-    border-radius: 16px;
-    line-height: 1.8;
-}
-
-/* SECTION HEADINGS */
-
-.section-label {
-    padding: 8px 13px;
-    border-radius: 9px;
-    font-size: 10px;
-}
-
-.section-title {
-    padding: 13px 18px;
-    border-radius: 17px;
-    margin-bottom: 15px;
-}
-
-.section-description {
-    padding: 13px 17px;
-    border-radius: 13px;
-    line-height: 1.8;
-}
-
-/* INTEREST CARDS */
-
-.interest-card,
-.achievement-card,
-.about-details,
-.contact-card {
-    background: rgba(255,255,255,.42);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: none;
-    border-radius: 22px;
-    box-shadow:
-        0 12px 40px rgba(0,0,0,.065),
-        inset 0 1px 1px rgba(255,255,255,.8);
-}
-
-.interest-card h3,
-.achievement-card h3 {
-    padding: 9px 13px;
-    border-radius: 11px;
-    margin-bottom: 12px;
-}
-
-.interest-card p,
-.achievement-card p {
-    padding: 12px 14px;
-    border-radius: 12px;
-    line-height: 1.8;
-}
-
-/* SKILLS */
-
-.skill {
-    display: inline-block;
-    padding: 10px 17px;
-    border-radius: 100px;
-    background: rgba(255,255,255,.62);
-    transition: transform .25s ease, background .25s ease;
-}
-
-.skill:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,.88);
-}
-
-/* ABOUT */
-
-.about-text p {
-    display: block;
-    width: 100%;
-    padding: 16px 19px;
-    margin-bottom: 17px;
-    border-radius: 16px;
-    line-height: 1.9;
-}
-
-.detail-row {
-    border-bottom: 1px solid rgba(255,255,255,.5);
-    padding: 12px 0;
-}
-
-.detail-label,
-.detail-value {
-    padding: 7px 11px;
-    border-radius: 9px;
-}
-
-.detail-label {
-    margin-bottom: 4px;
-}
-
-/* CONTACT */
-
-.contact-card {
-    padding: 28px;
-}
-
-.contact-item {
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: none;
-    border-radius: 16px;
-    padding: 16px;
-    transition: .25s ease;
-}
-
-.contact-item:hover {
-    background: rgba(255,255,255,.78);
-    transform: translateY(-3px);
-}
-
-.contact-label,
-.contact-value {
-    padding: 5px 9px;
-    border-radius: 8px;
-}
-
-.contact-label {
-    margin-bottom: 4px;
-}
-
-/* BUTTONS */
-
-.btn {
-    border: none;
-    border-radius: 13px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-.btn-secondary {
-    background: rgba(255,255,255,.65);
-    box-shadow: var(--liquid-shadow);
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,.9);
-}
-
-/* MUSIC CONTROL */
-
-.volume-container,
-.speaker-display {
-    background: rgba(255,255,255,.62);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: none;
-    box-shadow: var(--liquid-shadow);
-    border-radius: 17px;
-}
-
-/* MUSIC PROMPT */
-
-.music-modal {
-    background: rgba(255,255,255,.18);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-.music-modal-card {
-    background: rgba(255,255,255,.65);
-    backdrop-filter: blur(35px) saturate(190%);
-    -webkit-backdrop-filter: blur(35px) saturate(190%);
-    border: none;
-    border-radius: 26px;
-    box-shadow:
-        0 25px 90px rgba(0,0,0,.12),
-        inset 0 1px 1px rgba(255,255,255,.9);
-}
-
-.modal-label,
-.music-modal-card h2,
-.music-modal-card p {
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 9px 14px;
-    border-radius: 12px;
-    background: rgba(255,255,255,.48);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-.modal-buttons button {
-    border: none;
-    border-radius: 13px;
-}
-
-/* FOOTER */
-
-footer {
-    display: block;
-    width: fit-content;
-    margin: 20px auto;
-    padding: 12px 20px;
-    border-radius: 100px;
-    background: rgba(255,255,255,.5);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-}
-
-/* MOBILE */
-
-@media (max-width: 430px) {
-    .hero-title {
-        padding: 13px 15px;
-        letter-spacing: -3px;
-    }
-
-    .section-title {
-        padding: 11px 13px;
-    }
-
-    .section-description,
-    .hero-description {
-        font-size: 13px;
-    }
-
-    nav {
-        border-radius: 18px;
     }
 }
 </style>
