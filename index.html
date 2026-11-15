@@ -58,6 +58,8 @@ main, footer {
     z-index: 1;
 }
 
+/* NAVIGATION */
+
 header {
     position: sticky;
     top: 0;
@@ -92,6 +94,8 @@ nav {
     color: white;
 }
 
+/* HERO */
+
 .hero, .section {
     width: min(1000px,90%);
     margin: auto;
@@ -125,6 +129,8 @@ h1 {
     color: var(--muted);
 }
 
+/* BUTTONS */
+
 .actions {
     display: flex;
     gap: 12px;
@@ -152,6 +158,8 @@ h1 {
 .button.primary {
     background: rgba(181,136,255,.62);
 }
+
+/* SECTIONS */
 
 .section {
     padding: 78px 0;
@@ -213,6 +221,8 @@ h1 {
     word-spacing: 10px;
 }
 
+/* ABOUT */
+
 .about-grid {
     display: grid;
     grid-template-columns: 1.2fr .8fr;
@@ -237,6 +247,8 @@ h1 {
     font-size: 12px;
 }
 
+/* CONTACT */
+
 .contact {
     padding: 36px;
 }
@@ -246,6 +258,8 @@ h1 {
     line-height: 1.7;
 }
 
+/* FOOTER */
+
 footer {
     padding: 28px 5%;
     text-align: center;
@@ -253,21 +267,36 @@ footer {
     font-size: 12px;
 }
 
+/* MUSIC BUTTON */
+
 .sound {
     position: fixed;
-    left: 20px;
-    bottom: 20px;
-    z-index: 9;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    border: 1px solid #fff7;
-    background: rgba(136,91,201,.42);
-    backdrop-filter: blur(16px);
-    display: grid;
-    place-items: center;
+    left: 22px;
+    bottom: 22px;
+    z-index: 20;
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 16px;
+
+    background: rgba(136,91,201,.65);
+    backdrop-filter: blur(18px);
+
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+
     cursor: pointer;
-    transition: .2s;
+    transition: .25s;
+}
+
+.sound:hover {
+    background: rgba(165,119,235,.85);
+    transform: translateY(-3px);
 }
 
 .sound img {
@@ -276,19 +305,23 @@ footer {
     object-fit: contain;
 }
 
-.sound:hover {
-    background: rgba(165,119,235,.7);
+.sound:active {
+    transform: scale(.94);
 }
+
+/* YOUTUBE PLAYER */
 
 #music {
     position: fixed;
-    width: 2px;
-    height: 2px;
-    left: -20px;
+    width: 1px;
+    height: 1px;
+    left: -10px;
     bottom: 0;
-    opacity: .01;
+    opacity: 0;
     pointer-events: none;
 }
+
+/* MOBILE */
 
 @media(max-width:700px) {
     .links {
@@ -315,9 +348,8 @@ footer {
 
 <div class="backdrop"></div>
 
-<iframe id="music" title="Background music"
-    allow="autoplay; encrypted-media">
-</iframe>
+<!-- YOUTUBE PLAYER -->
+<div id="music"></div>
 
 <header>
 <nav>
@@ -334,9 +366,13 @@ footer {
 
 <main>
 
+<!-- HOME -->
+
 <section class="hero" id="home">
     <div>
-        <div class="eyebrow">Programming · Technology · Photography</div>
+        <div class="eyebrow">
+            Programming · Technology · Photography
+        </div>
 
         <h1>
             Hi, I'm Lim Jun Xi Ted.
@@ -348,11 +384,18 @@ footer {
         </p>
 
         <div class="actions">
-            <a class="button primary" href="#work">Explore my interests ↓</a>
-            <a class="button" href="https://github.com/limjunxi" target="_blank">GitHub ↗</a>
+            <a class="button primary" href="#work">
+                Explore my interests ↓
+            </a>
+
+            <a class="button" href="https://github.com/limjunxi" target="_blank">
+                GitHub ↗
+            </a>
         </div>
     </div>
 </section>
+
+<!-- INTERESTS -->
 
 <section class="section" id="work">
 
@@ -406,6 +449,8 @@ footer {
     </div>
 </section>
 
+<!-- ABOUT -->
+
 <section class="section" id="about">
 
     <div class="head">
@@ -453,6 +498,8 @@ footer {
     </div>
 </section>
 
+<!-- CONTACT -->
+
 <section class="section" id="contact">
 
     <div class="contact glass">
@@ -483,14 +530,26 @@ footer {
     © 2026 Lim Jun Xi Ted
 </footer>
 
-<button class="sound" id="mute" aria-label="Unmute" title="Unmute">
-    <img id="soundIcon"
-         src="https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png"
-         alt="Sound off">
+<!-- MUSIC BUTTON -->
+
+<button class="sound" id="mute" aria-label="Mute music" title="Mute music">
+    <img
+        id="soundIcon"
+        src="https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png"
+        alt="Sound on">
 </button>
+
+<!-- YOUTUBE API -->
 
 <script>
 const MUSIC_YOUTUBE_URL = "https://www.youtube.com/watch?v=o4qjk8_5gmU";
+
+let player;
+let isMuted = false;
+let playerReady = false;
+
+const muteButton = document.getElementById("mute");
+const soundIcon = document.getElementById("soundIcon");
 
 function youtubeId(link) {
     try {
@@ -508,43 +567,103 @@ function youtubeId(link) {
     }
 }
 
-const musicId = youtubeId(o4qjk8_5gmU);
-const music = document.getElementById("music");
-const muteButton = document.getElementById("mute");
-const soundIcon = document.getElementById("soundIcon");
+const videoId = youtubeId(o4qjk8_5gmU);
 
-let muted = true;
+function updateButton() {
+    if (isMuted) {
+        soundIcon.src =
+            "https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png";
 
-if (musicId) {
-    music.src =
-        "https://www.youtube-nocookie.com/embed/" +
-        musicId +
-        "?autoplay=1&mute=1&loop=1&playlist=" +
-        musicId +
-        "&controls=0&enablejsapi=1";
+        muteButton.title = "Unmute music";
+        muteButton.setAttribute("aria-label", "Unmute music");
+    } else {
+        soundIcon.src =
+            "https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png";
+
+        muteButton.title = "Mute music";
+        muteButton.setAttribute("aria-label", "Mute music");
+    }
 }
 
-muteButton.addEventListener("click", () => {
-    if (!musicId) return;
+/* Load YouTube API */
 
-    music.contentWindow.postMessage(
-        JSON.stringify({
-            event: "command",
-            func: muted ? "unMute" : "mute",
-            args: []
-        }),
-        "https://www.youtube-nocookie.com"
-    );
+function onYouTubeIframeAPIReady() {
 
-    muted = !muted;
+    if (!videoId) return;
 
-    soundIcon.src = muted
-        ? "https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png"
-        : "https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png";
+    player = new YT.Player("music", {
+        height: "1",
+        width: "1",
 
-    muteButton.title = muted ? "Unmute" : "Mute";
-    muteButton.setAttribute("aria-label", muteButton.title);
+        videoId: videoId,
+
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            loop: 1,
+            playlist: videoId,
+            playsinline: 1,
+            disablekb: 1,
+            fs: 0
+        },
+
+        events: {
+            onReady: function(event) {
+                playerReady = true;
+
+                // Always attempt to start unmuted.
+                isMuted = false;
+                updateButton();
+
+                event.target.unMute();
+                event.target.setVolume(100);
+                event.target.playVideo();
+            },
+
+            onStateChange: function(event) {
+                // Restart when the video finishes.
+                if (event.data === YT.PlayerState.ENDED) {
+                    player.playVideo();
+                }
+            }
+        }
+    });
+}
+
+/* MUTE / UNMUTE */
+
+muteButton.addEventListener("click", function() {
+
+    if (!playerReady || !player) return;
+
+    if (isMuted) {
+        player.unMute();
+        player.setVolume(100);
+        player.playVideo();
+
+        isMuted = false;
+
+    } else {
+        player.mute();
+
+        isMuted = true;
+    }
+
+    updateButton();
+
 });
+
+/* Initial icon is always sound on */
+updateButton();
+
+/* Load YouTube API script */
+
+const youtubeScript = document.createElement("script");
+
+youtubeScript.src = "https://www.youtube.com/iframe_api";
+
+document.head.appendChild(youtubeScript);
+
 </script>
 
 </body>
