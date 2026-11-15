@@ -13,65 +13,63 @@
 
 <style>
 :root {
-    --purple: #b58aff;
-    --purple-light: #d0b5ff;
-    --background: #160d22;
-    --text: #ffffff;
-    --muted: #ded3e9;
-    --border: rgba(218,190,255,.2);
-    --glass: rgba(19,10,30,.88);
+    --purple: #a970e8;
+    --purple-light: #c49af5;
+    --muted: rgba(255,255,255,.72);
+    --glass: rgba(22,12,35,.82);
+    --border: rgba(255,255,255,.13);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
     scroll-behavior: smooth;
-    scroll-padding-top: 95px;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    color: var(--text);
-    background-color: var(--background);
-    background-image: url("./background.jpg");
-    background-position: center top;
-    background-size: 100% auto;
-    background-repeat: repeat-y;
-    background-attachment: scroll;
+    color: white;
+    background: #160d22;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-body::before {
-    content: "";
+.background {
     position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: -2;
+    background-image: url("./background.jpg");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: repeat-y;
     pointer-events: none;
-    background: linear-gradient(
-        180deg,
-        rgba(12,5,20,.48),
-        rgba(12,5,20,.28) 45%,
-        rgba(12,5,20,.65)
-    );
 }
 
-header, main, footer, .music-control, .version {
-    position: relative;
-    z-index: 1;
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        rgba(15,8,24,.48),
+        rgba(17,8,28,.75) 55%,
+        rgba(15,8,24,.92)
+    );
+    pointer-events: none;
+}
+
+button, input, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 a {
     color: inherit;
     text-decoration: none;
-}
-
-button, input, textarea {
-    font-family: inherit;
 }
 
 /* HEADER */
@@ -81,398 +79,369 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 76px;
-    padding: 0 8%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(15,7,25,.93);
+    z-index: 100;
+    padding: 18px 7%;
+    background: rgba(18,10,29,.82);
     backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-    z-index: 1000;
-    animation: slideDown .7s ease;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.navbar {
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 800;
+    letter-spacing: 1px;
     white-space: nowrap;
 }
 
 .logo span {
-    color: var(--purple);
+    color: var(--purple-light);
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 27px;
+    list-style: none;
 }
 
 .nav-links a {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
-    transition: .2s;
+    color: rgba(255,255,255,.78);
+    font-size: 12px;
+    font-weight: 600;
+    transition: .25s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover {
     color: var(--purple-light);
 }
 
 .menu-toggle {
     display: none;
-    background: transparent;
     border: none;
+    background: none;
     color: white;
-    font-size: 24px;
-    cursor: pointer;
+    font-size: 25px;
 }
 
 /* GENERAL */
 
 .container {
-    width: 84%;
-    max-width: 1200px;
+    width: 86%;
+    max-width: 1150px;
     margin: auto;
+}
+
+main {
+    padding-top: 110px;
+}
+
+section {
+    padding: 65px 0;
+    scroll-margin-top: 85px;
 }
 
 .section-label {
     color: var(--purple-light);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
-    margin-bottom: 13px;
-    text-shadow: 0 2px 8px #000;
+    margin-bottom: 12px;
 }
 
 .section-title {
-    font-size: clamp(30px, 4vw, 43px);
+    font-size: clamp(29px,4vw,42px);
     font-weight: 800;
-    letter-spacing: -1.8px;
-    margin-bottom: 15px;
-    text-shadow: 0 3px 14px rgba(0,0,0,.8);
+    margin-bottom: 14px;
+    text-shadow: 0 3px 15px rgba(0,0,0,.5);
 }
 
 .section-description {
-    color: #eee5f7;
+    color: var(--muted);
     font-size: 13px;
-    line-height: 1.9;
+    line-height: 1.8;
     max-width: 650px;
-    text-shadow: 0 2px 8px rgba(0,0,0,.9);
+}
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 12px 35px rgba(0,0,0,.18);
+}
+
+.panel {
+    padding: 27px;
+    margin-top: 25px;
+}
+
+.panel h3 {
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.panel-description {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 9px;
+    padding: 12px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    transition: .25s;
+    color: white;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#9860d0,#7040a7);
+    border: none;
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,.07);
+}
+
+.btn-danger {
+    background: rgba(220,75,95,.13);
+    border-color: rgba(220,75,95,.25);
+    color: #ffb4c0;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+.btn-small {
+    padding: 9px 13px;
+    font-size: 10px;
+}
+
+/* INPUTS */
+
+.input {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 9px;
+    outline: none;
+    color: white;
+    font-size: 12px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.13);
+    transition: .2s;
+}
+
+.input::placeholder {
+    color: rgba(255,255,255,.42);
+}
+
+.input:focus {
+    border-color: var(--purple-light);
+    background: rgba(255,255,255,.1);
+}
+
+textarea.input {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.7;
 }
 
 /* HERO */
 
-#home {
-    min-height: 65vh;
-    display: flex;
-    align-items: center;
-    padding-top: 125px;
-    padding-bottom: 65px;
-}
-
-.hero-content {
-    max-width: 850px;
-    padding: 42px;
-    background: rgba(17,8,27,.82);
-    border: 1px solid var(--border);
-    border-radius: 19px;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
-    animation: fadeUp .9s ease both;
+.hero {
+    padding: 55px 0 45px;
 }
 
 .hero-tag {
     display: inline-block;
-    color: var(--purple-light);
-    background: rgba(181,138,255,.14);
-    border: 1px solid rgba(181,138,255,.3);
+    padding: 9px 17px;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(30,16,45,.75);
     border-radius: 30px;
-    padding: 9px 15px;
+    color: var(--purple-light);
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.5px;
-    margin-bottom: 25px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
 }
 
-.hero-title {
-    font-size: clamp(42px, 7vw, 72px);
-    line-height: 1.1;
+.hero h1 {
+    font-size: clamp(37px,6vw,65px);
     font-weight: 800;
-    letter-spacing: -3px;
-    margin-bottom: 20px;
+    letter-spacing: -2px;
+    line-height: 1.15;
+    text-shadow: 0 5px 25px rgba(0,0,0,.6);
 }
 
-.hero-title span {
-    color: var(--purple);
+.hero h1 span {
+    color: var(--purple-light);
 }
 
-.hero-description {
-    color: #e8ddec;
+.hero p {
+    max-width: 650px;
+    color: rgba(255,255,255,.82);
     font-size: 13px;
-    line-height: 2;
-    max-width: 580px;
+    line-height: 1.9;
+    margin-top: 19px;
 }
 
 /* TOOL NAVIGATION */
 
-.tool-navigation {
+.tool-nav {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 28px;
 }
 
-.tool-navigation a {
-    padding: 12px 16px;
-    border-radius: 8px;
-    background: rgba(255,255,255,.07);
+.tool-nav a {
+    padding: 11px 15px;
+    background: rgba(24,13,38,.8);
     border: 1px solid var(--border);
+    border-radius: 9px;
     font-size: 10px;
     font-weight: 700;
+    color: rgba(255,255,255,.8);
     transition: .25s;
 }
 
-.tool-navigation a:hover {
-    background: rgba(181,138,255,.2);
+.tool-nav a:hover {
+    background: rgba(150,96,208,.25);
     border-color: var(--purple);
-    transform: translateY(-3px);
-}
-
-/* MAIN TOOL SECTIONS */
-
-.tool-section {
-    padding: 55px 0;
-    scroll-margin-top: 95px;
-}
-
-.section-heading {
-    padding: 26px;
-    background: rgba(17,8,27,.82);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    backdrop-filter: blur(13px);
-    -webkit-backdrop-filter: blur(13px);
-    margin-bottom: 25px;
-}
-
-.tool-card {
-    padding: 29px;
-    background: rgba(19,10,30,.91);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 12px 35px rgba(0,0,0,.18);
-    transition: border-color .25s, transform .25s;
-}
-
-.tool-card:hover {
-    border-color: rgba(181,138,255,.5);
-}
-
-.tool-card h3 {
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.tool-card-description {
-    color: #ded3e9;
-    font-size: 11px;
-    line-height: 1.9;
-    margin-bottom: 23px;
-}
-
-.tool-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.full-width {
-    grid-column: 1 / -1;
-}
-
-/* INPUTS */
-
-.input-label {
-    display: block;
-    color: #e9dff2;
-    font-size: 10px;
-    font-weight: 700;
-    margin-bottom: 9px;
-}
-
-.tool-input,
-.tool-textarea {
-    width: 100%;
-    padding: 13px 14px;
-    background: rgba(255,255,255,.075);
-    border: 1px solid rgba(218,190,255,.25);
-    border-radius: 8px;
     color: white;
-    font-size: 11px;
-    outline: none;
-    transition: border-color .2s, background .2s;
-}
-
-.tool-input::placeholder,
-.tool-textarea::placeholder {
-    color: #bdb0ca;
-}
-
-.tool-input:focus,
-.tool-textarea:focus {
-    border-color: var(--purple);
-    background: rgba(181,138,255,.1);
-}
-
-.tool-input option {
-    background: #21132f;
-    color: white;
-}
-
-.tool-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.input-group {
-    margin-bottom: 17px;
-}
-
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 13px 18px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: 800;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: .25s;
-}
-
-.button-primary {
-    background: var(--purple);
-    color: #1b1028;
-    border-color: var(--purple);
-}
-
-.button-primary:hover {
-    background: var(--purple-light);
-    transform: translateY(-2px);
-}
-
-.button-secondary {
-    background: rgba(255,255,255,.08);
-    border-color: var(--border);
-    color: white;
-}
-
-.button-secondary:hover {
-    background: rgba(181,138,255,.2);
-    border-color: var(--purple);
-}
-
-.button-danger {
-    background: rgba(255,90,110,.12);
-    border-color: rgba(255,110,130,.3);
-    color: #ffb2bf;
-}
-
-.button-danger:hover {
-    background: rgba(255,90,110,.24);
-}
-
-.button-small {
-    padding: 9px 12px;
-    font-size: 9px;
 }
 
 /* GRADE CALCULATOR */
 
-.grade-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 18px;
-}
-
-.grade-row {
+.grade-input-row {
     display: grid;
-    grid-template-columns: 1.4fr 1fr auto;
-    gap: 10px;
+    grid-template-columns: 1.5fr 1fr auto;
+    gap: 12px;
     align-items: center;
+    margin-bottom: 12px;
 }
 
-.grade-row .tool-input {
+.grade-input-row .input {
     min-width: 0;
 }
 
-.remove-grade {
-    width: 35px;
-    height: 35px;
-    border-radius: 7px;
-    background: rgba(255,90,110,.12);
-    border: 1px solid rgba(255,110,130,.3);
-    color: #ffb2bf;
-    cursor: pointer;
-    font-size: 16px;
+.remove-subject {
+    border: none;
+    color: #ffabb9;
+    background: rgba(220,75,95,.12);
+    border-radius: 8px;
+    width: 39px;
+    height: 39px;
+    font-size: 17px;
 }
 
-.grade-result {
-    display: none;
-    margin-top: 22px;
-    padding: 22px;
-    background: rgba(181,138,255,.12);
-    border: 1px solid rgba(181,138,255,.3);
-    border-radius: 12px;
-}
-
-.grade-result.visible {
-    display: block;
-    animation: fadeUp .3s ease;
+.grade-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
 }
 
 .result-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+    margin-top: 22px;
 }
 
-.result-item {
-    padding: 15px;
-    background: rgba(0,0,0,.2);
-    border-radius: 9px;
+.result-box {
+    padding: 19px;
+    border-radius: 12px;
+    background: rgba(150,96,208,.12);
+    border: 1px solid rgba(177,132,226,.2);
 }
 
-.result-item small {
+.result-box small {
     display: block;
-    color: #d4c4e4;
-    font-size: 9px;
+    color: var(--muted);
+    font-size: 10px;
     font-weight: 700;
-    margin-bottom: 8px;
+    letter-spacing: 1px;
+    margin-bottom: 9px;
 }
 
-.result-item strong {
-    font-size: 23px;
-    color: white;
+.result-box strong {
+    font-size: 25px;
+    color: var(--purple-light);
 }
 
 /* STUDY PLANNER */
 
-.task-form {
-    display: grid;
-    grid-template-columns: 1fr auto;
+.task-input-row {
+    display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+}
+
+.task-input-row .input {
+    flex: 1;
+    min-width: 0;
+}
+
+.planner-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.stat-box {
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.09);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.stat-box small {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-box strong {
+    font-size: 22px;
+}
+
+.progress-track {
+    height: 7px;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 23px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#8050b5,#c49af5);
+    border-radius: 20px;
+    transition: width .3s;
 }
 
 .task-list {
@@ -484,388 +453,357 @@ header {
 .task-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 12px;
     padding: 15px;
-    background: rgba(255,255,255,.055);
-    border: 1px solid rgba(218,190,255,.15);
-    border-radius: 9px;
-    transition: .2s;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 11px;
+    background: rgba(255,255,255,.045);
 }
 
-.task-item.completed {
-    opacity: .65;
-}
-
-.task-item.completed .task-name {
-    text-decoration: line-through;
-    color: #b9a9ca;
-}
-
-.task-main {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-}
-
-.task-check {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    border: 1px solid rgba(218,190,255,.55);
-    border-radius: 5px;
+.task-item input[type="checkbox"] {
+    accent-color: #b58be9;
+    width: 17px;
+    height: 17px;
     cursor: pointer;
-    background: rgba(255,255,255,.08);
+    flex-shrink: 0;
 }
 
-.task-check:checked {
-    background: var(--purple);
-    border-color: var(--purple);
-}
-
-.task-check:checked::after {
-    content: "✓";
-    display: block;
-    color: #1b1028;
-    text-align: center;
+.task-text {
+    flex: 1;
+    min-width: 0;
     font-size: 12px;
-    font-weight: 800;
-}
-
-.task-name {
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
+    line-height: 1.6;
     overflow-wrap: anywhere;
 }
 
-.task-date {
-    color: #c8b9d7;
-    font-size: 9px;
-    margin-top: 5px;
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: rgba(255,255,255,.42);
 }
 
-.task-delete {
-    flex-shrink: 0;
-}
-
-.planner-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.stat-box {
-    padding: 15px;
-    background: rgba(181,138,255,.1);
-    border: 1px solid rgba(181,138,255,.2);
-    border-radius: 9px;
-    text-align: center;
-}
-
-.stat-box strong {
-    display: block;
-    font-size: 21px;
-    margin-bottom: 5px;
-}
-
-.stat-box small {
-    color: #d8c9e7;
-    font-size: 9px;
-    font-weight: 700;
-}
-
-.progress-track {
-    width: 100%;
-    height: 7px;
-    background: rgba(255,255,255,.12);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 12px;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: var(--purple);
-    border-radius: 10px;
-    transition: width .3s ease;
+.delete-task {
+    border: none;
+    background: transparent;
+    color: #ffabb9;
+    font-size: 17px;
+    padding: 4px 7px;
 }
 
 .empty-state {
-    padding: 24px;
     text-align: center;
-    color: #cbbbd9;
-    background: rgba(255,255,255,.035);
-    border: 1px dashed rgba(218,190,255,.2);
-    border-radius: 9px;
-    font-size: 11px;
-    line-height: 1.8;
+    color: rgba(255,255,255,.48);
+    padding: 30px 10px;
+    font-size: 12px;
 }
 
 /* FLASHCARDS */
 
-.flashcard-display {
-    min-height: 220px;
-    perspective: 1000px;
+.deck-toolbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-.flashcard {
-    position: relative;
+.deck-select {
     width: 100%;
-    min-height: 220px;
-    transform-style: preserve-3d;
-    transition: transform .55s ease;
-    cursor: pointer;
+    padding: 13px 14px;
+    color: white;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 9px;
+    outline: none;
+    font-size: 12px;
 }
 
-.flashcard.flipped {
-    transform: rotateY(180deg);
+.deck-select option {
+    color: white;
+    background: #21142f;
 }
 
-.flashcard-face {
-    position: absolute;
-    inset: 0;
+.deck-management {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.deck-create-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.deck-info {
+    display: flex;
     align-items: center;
-    padding: 30px;
-    text-align: center;
-    background: rgba(181,138,255,.13);
-    border: 1px solid rgba(181,138,255,.3);
-    border-radius: 14px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.flashcard-back {
-    transform: rotateY(180deg);
-    background: rgba(70,42,100,.55);
-}
-
-.flashcard-face small {
-    color: var(--purple-light);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
     margin-bottom: 17px;
 }
 
-.flashcard-face p {
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.8;
+.deck-info span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.flashcard {
+    min-height: 245px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(184,139,235,.3);
+    background:
+        radial-gradient(circle at top right,rgba(153,100,210,.22),transparent 55%),
+        rgba(255,255,255,.055);
+    cursor: pointer;
+    transition: .3s;
+    user-select: none;
+}
+
+.flashcard:hover {
+    border-color: rgba(196,154,245,.65);
+    transform: translateY(-3px);
+}
+
+.flashcard-inner {
+    width: 100%;
+}
+
+.flashcard-label {
+    display: block;
+    color: var(--purple-light);
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.flashcard-text {
+    font-size: clamp(17px,3vw,23px);
+    font-weight: 700;
+    line-height: 1.65;
     overflow-wrap: anywhere;
 }
 
 .flashcard-hint {
-    color: #c9b9d8;
-    font-size: 9px;
-    text-align: center;
-    margin-top: 12px;
+    color: rgba(255,255,255,.48);
+    font-size: 10px;
+    margin-top: 23px;
 }
 
 .flashcard-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-top: 18px;
 }
 
 .card-counter {
-    color: #e0d5ed;
-    font-size: 10px;
+    color: var(--muted);
+    font-size: 11px;
     font-weight: 700;
+    min-width: 65px;
+    text-align: center;
 }
 
-.flashcard-form {
+.add-card-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 15px;
+    margin-top: 27px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.1);
 }
 
-.flashcard-form .full-width {
-    grid-column: 1 / -1;
+.add-card-form h4 {
+    font-size: 13px;
+    margin-bottom: 3px;
 }
 
-.saved-cards {
+.saved-card-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 18px;
+    gap: 9px;
+    margin-top: 20px;
 }
 
 .saved-card-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
     padding: 12px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(218,190,255,.15);
-    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.09);
+    background: rgba(255,255,255,.04);
+    border-radius: 9px;
 }
 
 .saved-card-item span {
-    color: #eee5f7;
-    font-size: 10px;
-    font-weight: 600;
+    flex: 1;
+    min-width: 0;
+    font-size: 11px;
+    color: rgba(255,255,255,.82);
     overflow-wrap: anywhere;
+}
+
+.saved-card-item button {
+    border: none;
+    background: transparent;
+    color: #ffabb9;
+    font-size: 16px;
+    padding: 4px;
+}
+
+.deck-warning {
+    color: rgba(255,255,255,.52);
+    font-size: 10px;
+    line-height: 1.7;
+    margin-top: 14px;
 }
 
 /* TOAST */
 
 .toast {
     position: fixed;
-    bottom: 90px;
     left: 50%;
-    transform: translate(-50%, 15px);
-    z-index: 3000;
-    padding: 13px 20px;
-    border-radius: 9px;
-    background: rgba(35,20,49,.97);
-    border: 1px solid rgba(181,138,255,.4);
+    bottom: 85px;
+    transform: translate(-50%,20px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 300;
+    padding: 13px 19px;
+    background: rgba(37,23,54,.97);
+    border: 1px solid rgba(196,154,245,.3);
+    border-radius: 10px;
     color: white;
     font-size: 11px;
     font-weight: 600;
-    opacity: 0;
-    visibility: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
     transition: .25s;
-    box-shadow: 0 8px 30px rgba(0,0,0,.3);
-    text-align: center;
     max-width: 90%;
+    text-align: center;
 }
 
 .toast.show {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 0);
+    transform: translate(-50%,0);
 }
 
 /* FOOTER */
 
 footer {
-    padding: 26px 8%;
-    border-top: 1px solid var(--border);
-    background: rgba(12,5,20,.95);
+    padding: 30px 7%;
     text-align: center;
-    color: #e0d4ec;
-    font-size: 10px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    background: rgba(15,8,24,.8);
+    margin-top: 50px;
 }
 
-/* MUSIC PLAYER */
+footer p {
+    color: rgba(255,255,255,.58);
+    font-size: 11px;
+}
+
+/* MUSIC */
 
 .music-control {
     position: fixed;
     right: 28px;
     bottom: 28px;
-    width: 58px;
-    height: 52px;
-    z-index: 1500;
+    z-index: 200;
+    width: 175px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.music-icon {
+    width: 39px;
+    height: 39px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.speaker-icon {
-    width: 26px;
-    height: 26px;
-    color: white;
-    opacity: .95;
     pointer-events: none;
-    filter: drop-shadow(0 2px 5px black);
 }
 
-.volume-hitbox {
-    position: absolute;
-    right: -7px;
-    bottom: 38px;
-    width: 72px;
-    height: 175px;
+.music-icon svg {
+    width: 23px;
+    height: 23px;
+    stroke: white;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 7px rgba(0,0,0,.6));
+}
+
+.volume-wrap {
+    width: 105px;
+    height: 39px;
     display: flex;
     align-items: center;
-    justify-content: center;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity .2s, visibility .2s;
+    transition: opacity .25s;
 }
 
-.music-control:hover .volume-hitbox,
-.music-control:focus-within .volume-hitbox {
+.music-control:hover .volume-wrap,
+.music-control:focus-within .volume-wrap {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
 }
 
-.volume-slider {
+#volumeSlider {
+    width: 100%;
+    height: 4px;
     appearance: none;
     -webkit-appearance: none;
-    width: 115px;
-    height: 14px;
-    position: absolute;
-    transform: rotate(-90deg);
-    cursor: pointer;
-    background: transparent;
-    border: none;
+    border-radius: 10px;
     outline: none;
-    padding: 0;
-    margin: 0;
+    cursor: pointer;
+    background: linear-gradient(to right,#bd91ed 35%,rgba(255,255,255,.35) 35%);
 }
 
-.volume-slider::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 4px;
-    background: rgba(255,255,255,.65);
-    border-radius: 5px;
-}
-
-.volume-slider::-webkit-slider-thumb {
+#volumeSlider::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--purple);
-    border: 1px solid white;
-    margin-top: -4px;
+    background: white;
+    border: 2px solid #bd91ed;
 }
 
-.volume-slider::-moz-range-track {
-    width: 100%;
-    height: 4px;
-    background: rgba(255,255,255,.65);
-    border-radius: 5px;
-}
-
-.volume-slider::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
-    border: 1px solid white;
+#volumeSlider::-moz-range-thumb {
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: var(--purple);
+    background: white;
+    border: 2px solid #bd91ed;
 }
 
 /* VERSION */
 
-.version {
+.version-label {
     position: fixed;
-    bottom: 12px;
-    right: 13px;
-    z-index: 1600;
-    color: rgba(255,255,255,.8);
-    font-size: 8px;
-    font-weight: 700;
+    bottom: 9px;
+    right: 10px;
+    z-index: 150;
+    color: rgba(255,255,255,.55);
+    font-size: 9px;
+    font-weight: 600;
     letter-spacing: 1px;
-    text-shadow: 0 2px 5px black;
     pointer-events: none;
 }
 
@@ -873,7 +811,7 @@ footer {
 
 .reveal {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(22px);
     transition: opacity .7s ease, transform .7s ease;
 }
 
@@ -882,57 +820,21 @@ footer {
     transform: translateY(0);
 }
 
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-}
-
 /* RESPONSIVE */
 
-@media(max-width: 800px) {
-    header {
-        padding: 0 6%;
-    }
-
-    .nav-links {
-        gap: 17px;
-    }
-
-    .nav-links a {
-        font-size: 10px;
-    }
-
+@media(max-width:850px) {
     .container {
-        width: 88%;
-    }
-
-    .tool-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .full-width {
-        grid-column: auto;
+        width: 90%;
     }
 }
 
-@media(max-width: 600px) {
+@media(max-width:650px) {
     header {
-        height: 68px;
+        padding: 16px 6%;
     }
 
     .logo {
-        font-size: 13px;
+        font-size: 16px;
     }
 
     .menu-toggle {
@@ -940,75 +842,81 @@ footer {
     }
 
     .nav-links {
+        display: none;
         position: absolute;
-        top: 68px;
+        top: 100%;
         left: 0;
         width: 100%;
-        padding: 20px 6%;
-        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 22px;
-        background: rgba(15,7,25,.98);
+        gap: 0;
+        background: rgba(18,10,29,.98);
         border-bottom: 1px solid var(--border);
     }
 
-    .nav-links.open {
+    .nav-links.active {
         display: flex;
     }
 
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
     .nav-links a {
-        font-size: 12px;
+        display: block;
+        padding: 16px;
     }
 
-    .hero-content {
-        padding: 27px 23px;
+    main {
+        padding-top: 95px;
     }
 
-    .hero-title {
-        font-size: 43px;
-        letter-spacing: -2px;
+    section {
+        padding: 45px 0;
     }
 
-    .tool-card {
-        padding: 21px;
+    .panel {
+        padding: 20px;
     }
 
-    .grade-row {
+    .grade-input-row {
         grid-template-columns: 1fr 1fr auto;
+        gap: 7px;
     }
 
     .planner-stats {
-        gap: 6px;
+        gap: 7px;
     }
 
     .stat-box {
-        padding: 12px 7px;
+        padding: 12px;
     }
 
     .stat-box strong {
-        font-size: 18px;
+        font-size: 19px;
     }
 
-    .task-form {
+    .deck-toolbar {
         grid-template-columns: 1fr;
     }
 
-    .flashcard-form {
+    .deck-create-row {
         grid-template-columns: 1fr;
     }
 
-    .flashcard-form .full-width {
-        grid-column: auto;
+    .task-input-row {
+        flex-direction: column;
     }
 
     .music-control {
-        right: 17px;
-        bottom: 25px;
+        right: 14px;
+        bottom: 22px;
     }
 
-    .tool-section {
-        padding: 38px 0;
+    .version-label {
+        bottom: 5px;
+        right: 6px;
+        font-size: 8px;
     }
 }
 
@@ -1024,362 +932,373 @@ footer {
 
 <body>
 
-<audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
+<div class="background"></div>
+<div class="background-overlay"></div>
 
 <header>
-    <a href="./index.html" class="logo">LIM JUN XI <span>TED.</span></a>
+    <nav class="navbar">
+        <a href="./index.html" class="logo">LIM JUN XI <span>TED.</span></a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
 
-    <nav class="nav-links" id="navLinks">
-        <a href="./index.html">Portfolio</a>
-        <a href="#home" class="active">Study Toolkit</a>
-        <a href="#grades">Grade Calculator</a>
-        <a href="#planner">Study Planner</a>
-        <a href="#flashcards">Flashcards</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="./index.html">Portfolio</a></li>
+            <li><a href="#grade">Grade Calculator</a></li>
+            <li><a href="#planner">Study Planner</a></li>
+            <li><a href="#flashcards">Flashcards</a></li>
+        </ul>
     </nav>
 </header>
 
 <main>
+<div class="container">
 
     <!-- HERO -->
 
-    <section id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-tag">PERSONAL PROJECT · 2026</div>
+    <section class="hero">
+        <div class="hero-tag">STUDY SMARTER · STAY ORGANised</div>
+        <h1>Study <span>Toolkit.</span></h1>
+        <p>
+            A collection of simple tools to help organise your studies,
+            calculate your grades and revise using flashcards.
+            Your saved tasks and flashcard sets stay in this browser.
+        </p>
 
-                <h1 class="hero-title">
-                    Study<br>
-                    <span>Toolkit.</span>
-                </h1>
-
-                <p class="hero-description">
-                    A collection of simple tools designed to help organise
-                    revision, track academic progress and practise through
-                    interactive flashcards. Everything is saved automatically
-                    in your browser.
-                </p>
-
-                <div class="tool-navigation">
-                    <a href="#grades">Grade Calculator</a>
-                    <a href="#planner">Study Planner</a>
-                    <a href="#flashcards">Flashcards</a>
-                </div>
-            </div>
+        <div class="tool-nav">
+            <a href="#grade">Grade Calculator</a>
+            <a href="#planner">Study Planner</a>
+            <a href="#flashcards">Flashcards</a>
         </div>
     </section>
 
     <!-- GRADE CALCULATOR -->
 
-    <section id="grades" class="tool-section">
-        <div class="container">
+    <section id="grade">
+        <div class="section-label">01 / CALCULATOR</div>
+        <h2 class="section-title">Grade Calculator.</h2>
+        <p class="section-description">
+            Enter your subjects and marks to calculate your average.
+            Each mark is out of 100.
+        </p>
 
-            <div class="section-heading reveal">
-                <div class="section-label">ACADEMIC PROGRESS</div>
-                <h2 class="section-title">Grade Calculator.</h2>
-                <p class="section-description">
-                    Enter your subjects and marks to calculate your overall
-                    average and percentage.
-                </p>
+        <div class="glass-card panel">
+            <h3>Subject Marks</h3>
+            <p class="panel-description">
+                Add your subjects and enter the marks you received.
+            </p>
+
+            <div id="gradeRows"></div>
+
+            <div class="grade-actions">
+                <button class="btn btn-secondary" id="addSubject">+ Add Subject</button>
+                <button class="btn btn-primary" id="calculateGrades">Calculate Average</button>
+                <button class="btn btn-secondary" id="clearGrades">Clear All</button>
             </div>
 
-            <div class="tool-card reveal">
-                <h3>Your Subject Results</h3>
-                <p class="tool-card-description">
-                    Enter each subject and its mark out of 100. You can add
-                    or remove subjects whenever you need.
-                </p>
-
-                <div class="grade-list" id="gradeList">
-                    <div class="grade-row">
-                        <input class="tool-input subject-input"
-                               type="text"
-                               placeholder="Subject name"
-                               aria-label="Subject name">
-
-                        <input class="tool-input mark-input"
-                               type="number"
-                               min="0"
-                               max="100"
-                               placeholder="Mark / 100"
-                               aria-label="Subject mark">
-
-                        <button class="remove-grade" type="button"
-                                aria-label="Remove subject">×</button>
-                    </div>
+            <div class="result-grid">
+                <div class="result-box">
+                    <small>AVERAGE</small>
+                    <strong id="averageResult">--</strong>
                 </div>
-
-                <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                    <button class="button button-secondary" id="addGrade">
-                        + Add Subject
-                    </button>
-
-                    <button class="button button-primary" id="calculateGrades">
-                        Calculate Results
-                    </button>
-                </div>
-
-                <div class="grade-result" id="gradeResult">
-                    <div class="result-grid">
-                        <div class="result-item">
-                            <small>AVERAGE MARK</small>
-                            <strong id="averageResult">0%</strong>
-                        </div>
-
-                        <div class="result-item">
-                            <small>SUBJECTS ENTERED</small>
-                            <strong id="subjectCount">0</strong>
-                        </div>
-                    </div>
+                <div class="result-box">
+                    <small>SUBJECTS</small>
+                    <strong id="subjectCount">0</strong>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- STUDY PLANNER -->
 
-    <section id="planner" class="tool-section">
-        <div class="container">
+    <section id="planner">
+        <div class="section-label">02 / ORGANISATION</div>
+        <h2 class="section-title">Study Planner.</h2>
+        <p class="section-description">
+            Keep track of homework, revision and upcoming tasks.
+        </p>
 
-            <div class="section-heading reveal">
-                <div class="section-label">STAY ORGANised</div>
-                <h2 class="section-title">Study Planner.</h2>
-                <p class="section-description">
-                    Keep track of revision tasks, organise your workload
-                    and monitor your progress.
-                </p>
+        <div class="glass-card panel">
+            <h3>Your Tasks</h3>
+            <p class="panel-description">
+                Add tasks and tick them off as you complete them.
+            </p>
+
+            <div class="task-input-row">
+                <input
+                    type="text"
+                    class="input"
+                    id="taskInput"
+                    placeholder="e.g. Revise Additional Mathematics..."
+                    maxlength="120">
+                <button class="btn btn-primary" id="addTask">Add Task</button>
             </div>
 
-            <div class="tool-card reveal">
-
-                <h3>Your Study Tasks</h3>
-                <p class="tool-card-description">
-                    Add tasks below and mark them as completed when you finish.
-                    Your progress is saved automatically.
-                </p>
-
-                <div class="planner-stats">
-                    <div class="stat-box">
-                        <strong id="totalTasks">0</strong>
-                        <small>TOTAL TASKS</small>
-                    </div>
-
-                    <div class="stat-box">
-                        <strong id="completedTasks">0</strong>
-                        <small>COMPLETED</small>
-                    </div>
-
-                    <div class="stat-box">
-                        <strong id="remainingTasks">0</strong>
-                        <small>REMAINING</small>
-                    </div>
+            <div class="planner-stats">
+                <div class="stat-box">
+                    <small>TOTAL</small>
+                    <strong id="totalTasks">0</strong>
                 </div>
-
-                <div class="input-label">OVERALL PROGRESS</div>
-                <div class="progress-track">
-                    <div class="progress-fill" id="progressFill"></div>
+                <div class="stat-box">
+                    <small>COMPLETED</small>
+                    <strong id="completedTasks">0</strong>
                 </div>
-
-                <div style="height:23px;"></div>
-
-                <div class="task-form">
-                    <input
-                        type="text"
-                        id="taskInput"
-                        class="tool-input"
-                        placeholder="e.g. Revise Additional Mathematics"
-                        maxlength="120"
-                    >
-
-                    <button class="button button-primary" id="addTask">
-                        Add Task
-                    </button>
+                <div class="stat-box">
+                    <small>REMAINING</small>
+                    <strong id="remainingTasks">0</strong>
                 </div>
-
-                <div class="task-list" id="taskList">
-                    <div class="empty-state">
-                        No tasks yet. Add your first study task above.
-                    </div>
-                </div>
-
             </div>
+
+            <p style="font-size:10px;color:var(--muted);font-weight:700;">
+                COMPLETION PROGRESS
+            </p>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="task-list" id="taskList"></div>
         </div>
     </section>
 
     <!-- FLASHCARDS -->
 
-    <section id="flashcards" class="tool-section">
-        <div class="container">
+    <section id="flashcards">
+        <div class="section-label">03 / REVISION</div>
+        <h2 class="section-title">Flashcards.</h2>
+        <p class="section-description">
+            Create flashcards and organise them into separate saved sets
+            for different subjects or topics.
+        </p>
 
-            <div class="section-heading reveal">
-                <div class="section-label">ACTIVE RECALL</div>
-                <h2 class="section-title">Flashcards.</h2>
-                <p class="section-description">
-                    Create your own revision cards, test your memory
-                    and practise recalling important information.
+        <div class="glass-card panel">
+
+            <h3>Your Flashcard Sets</h3>
+            <p class="panel-description">
+                Each set has its own collection of cards. Switch between
+                sets whenever you want.
+            </p>
+
+            <div class="deck-toolbar">
+                <select class="deck-select" id="deckSelect" aria-label="Choose flashcard set"></select>
+                <button class="btn btn-secondary" id="deleteDeck">Delete Set</button>
+            </div>
+
+            <div class="deck-create-row">
+                <input
+                    type="text"
+                    class="input"
+                    id="newDeckName"
+                    placeholder="Enter a new set name..."
+                    maxlength="40">
+                <button class="btn btn-primary" id="createDeck">+ Create Set</button>
+            </div>
+
+            <div class="deck-info">
+                <h3 id="activeDeckName">My Flashcards</h3>
+                <span id="deckCardCount">0 cards</span>
+            </div>
+
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner">
+                    <span class="flashcard-label" id="flashcardLabel">QUESTION</span>
+                    <div class="flashcard-text" id="flashcardText">
+                        Create your first flashcard to get started.
+                    </div>
+                    <div class="flashcard-hint" id="flashcardHint">
+                        Your cards will appear here.
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard-controls">
+                <button class="btn btn-secondary" id="previousCard">← Previous</button>
+                <span class="card-counter" id="cardCounter">0 / 0</span>
+                <button class="btn btn-secondary" id="nextCard">Next →</button>
+                <button class="btn btn-primary" id="flipCard">Flip Card</button>
+            </div>
+
+            <div class="add-card-form">
+                <h4>Add a Flashcard</h4>
+
+                <input
+                    type="text"
+                    class="input"
+                    id="questionInput"
+                    placeholder="Question / Front of card..."
+                    maxlength="300">
+
+                <textarea
+                    class="input"
+                    id="answerInput"
+                    placeholder="Answer / Back of card..."
+                    maxlength="500"></textarea>
+
+                <button class="btn btn-primary" id="addFlashcard">
+                    + Save Flashcard
+                </button>
+            </div>
+
+            <div style="margin-top:27px;padding-top:23px;border-top:1px solid rgba(255,255,255,.1);">
+                <h3>Cards in This Set</h3>
+                <p class="panel-description">
+                    View the cards saved in your currently selected set.
                 </p>
+                <div class="saved-card-list" id="savedCardList"></div>
             </div>
 
-            <div class="tool-grid">
-
-                <div class="tool-card reveal">
-
-                    <h3>Revision Cards</h3>
-                    <p class="tool-card-description">
-                        Click the card to reveal its answer.
-                        Use the navigation buttons to move between cards.
-                    </p>
-
-                    <div class="flashcard-display">
-                        <div class="flashcard" id="flashcard">
-                            <div class="flashcard-face flashcard-front">
-                                <small>QUESTION</small>
-                                <p id="flashQuestion">No flashcards yet</p>
-                            </div>
-
-                            <div class="flashcard-face flashcard-back">
-                                <small>ANSWER</small>
-                                <p id="flashAnswer">Create a card to begin</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="flashcard-hint">
-                        Click the card to flip it.
-                    </p>
-
-                    <div class="flashcard-controls">
-                        <button class="button button-secondary" id="previousCard">
-                            Previous
-                        </button>
-
-                        <span class="card-counter" id="cardCounter">
-                            0 / 0
-                        </span>
-
-                        <button class="button button-secondary" id="nextCard">
-                            Next
-                        </button>
-                    </div>
-
-                    <button class="button button-danger button-small"
-                            id="deleteCurrentCard">
-                        Delete Current Card
-                    </button>
-                </div>
-
-                <div class="tool-card reveal">
-
-                    <h3>Create Flashcards</h3>
-                    <p class="tool-card-description">
-                        Add a question and its answer to create a new
-                        revision card.
-                    </p>
-
-                    <div class="input-group">
-                        <label class="input-label" for="questionInput">
-                            QUESTION
-                        </label>
-                        <textarea
-                            id="questionInput"
-                            class="tool-textarea"
-                            placeholder="Enter your question..."
-                            maxlength="500"
-                        ></textarea>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="input-label" for="answerInput">
-                            ANSWER
-                        </label>
-                        <textarea
-                            id="answerInput"
-                            class="tool-textarea"
-                            placeholder="Enter the answer..."
-                            maxlength="1000"
-                        ></textarea>
-                    </div>
-
-                    <button class="button button-primary"
-                            id="addFlashcard">
-                        Create Flashcard
-                    </button>
-
-                    <div class="saved-cards" id="savedCards"></div>
-
-                </div>
-            </div>
+            <p class="deck-warning">
+                Your flashcard sets are saved automatically in this browser.
+                Clearing browser storage or using a different browser or device
+                may remove or hide locally saved sets.
+            </p>
         </div>
     </section>
 
+</div>
 </main>
 
 <footer>
-    © 2026 Lim Jun Xi Ted. All Rights Reserved.
+    <p>© 2026 Lim Jun Xi Ted. All Rights Reserved.</p>
 </footer>
 
-<!-- MUSIC CONTROL -->
+<!-- MUSIC -->
 
-<div class="music-control" id="musicControl">
-    <div class="volume-hitbox">
+<audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto" autoplay></audio>
+
+<div class="music-control" aria-label="Background music volume">
+    <div class="volume-wrap">
         <input
             type="range"
             id="volumeSlider"
-            class="volume-slider"
             min="0"
-            max="1"
-            step="0.01"
-            value="0.35"
-            aria-label="Music volume"
-        >
+            max="100"
+            value="35"
+            aria-label="Music volume">
     </div>
 
-    <svg class="speaker-icon"
-         viewBox="0 0 24 24"
-         fill="none"
-         stroke="currentColor"
-         stroke-width="1.7"
-         stroke-linecap="round"
-         stroke-linejoin="round"
-         aria-hidden="true">
-        <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
-        <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-        <path d="M19 5a10 10 0 0 1 0 14"></path>
-    </svg>
+    <div class="music-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+            <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+            <path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+        </svg>
+    </div>
 </div>
 
-<div class="version">VERSION 23</div>
+<div class="version-label">VERSION 23</div>
 <div class="toast" id="toast"></div>
 
 <script>
-/* STORAGE */
+/* =========================================
+   GENERAL
+========================================= */
+
+const $ = id => document.getElementById(id);
 
 const STORAGE_KEY = "junXiStudyToolkit";
 
-const defaultData = {
-    tasks: [],
-    cards: []
-};
+function showToast(message) {
+    const toast = $("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timeout);
+    showToast.timeout = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2400);
+}
+
+/* MOBILE NAVIGATION */
+
+$("menuToggle").addEventListener("click", () => {
+    $("navLinks").classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        $("navLinks").classList.remove("active");
+    });
+});
+
+/* REVEAL ANIMATIONS */
+
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".section-title, .section-description").forEach(element => {
+    element.classList.add("reveal");
+    revealObserver.observe(element);
+});
+
+/* =========================================
+   DATA + STORAGE
+========================================= */
+
+function createId() {
+    return "deck_" + Date.now().toString(36) +
+        Math.random().toString(36).slice(2, 8);
+}
 
 function loadData() {
     try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-        if (saved && typeof saved === "object") {
+        if (saved && Array.isArray(saved.tasks)) {
+            let decks = Array.isArray(saved.decks) ? saved.decks : [];
+
+            // Migrate cards from the older version into a default deck.
+            if (decks.length === 0) {
+                decks = [{
+                    id: createId(),
+                    name: "My Flashcards",
+                    cards: Array.isArray(saved.cards) ? saved.cards : []
+                }];
+            }
+
+            decks = decks.map(deck => ({
+                id: deck.id || createId(),
+                name: String(deck.name || "Untitled Set"),
+                cards: Array.isArray(deck.cards) ? deck.cards : []
+            }));
+
+            if (decks.length === 0) {
+                decks.push({
+                    id: createId(),
+                    name: "My Flashcards",
+                    cards: []
+                });
+            }
+
+            const activeDeckId = decks.some(deck => deck.id === saved.activeDeckId)
+                ? saved.activeDeckId
+                : decks[0].id;
+
             return {
-                tasks: Array.isArray(saved.tasks) ? saved.tasks : [],
-                cards: Array.isArray(saved.cards) ? saved.cards : []
+                tasks: saved.tasks,
+                decks,
+                activeDeckId
             };
         }
     } catch (error) {
-        console.warn("Could not load saved toolkit data.", error);
+        console.warn("Could not load saved study data.", error);
     }
 
+    const firstDeck = {
+        id: createId(),
+        name: "My Flashcards",
+        cards: []
+    };
+
     return {
-        tasks: [...defaultData.tasks],
-        cards: [...defaultData.cards]
+        tasks: [],
+        decks: [firstDeck],
+        activeDeckId: firstDeck.id
     };
 }
 
@@ -1389,209 +1308,154 @@ function saveData() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (error) {
-        showToast("Unable to save data in this browser.");
+        showToast("Unable to save. Browser storage may be full.");
     }
 }
 
-/* TOAST */
-
-let toastTimeout;
-
-function showToast(message) {
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-    toast.classList.add("show");
-
-    clearTimeout(toastTimeout);
-
-    toastTimeout = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2300);
+function getActiveDeck() {
+    return data.decks.find(deck => deck.id === data.activeDeckId)
+        || data.decks[0];
 }
 
-/* MUSIC */
+function setActiveDeck(id) {
+    if (!data.decks.some(deck => deck.id === id)) return;
 
-const music = document.getElementById("backgroundMusic");
-const volumeSlider = document.getElementById("volumeSlider");
+    data.activeDeckId = id;
+    currentCardIndex = 0;
+    showingAnswer = false;
 
-music.volume = Number(volumeSlider.value);
-
-let musicStarted = false;
-
-async function startMusic() {
-    if (musicStarted) return;
-
-    try {
-        await music.play();
-        musicStarted = true;
-    } catch (error) {
-        console.warn("Music could not start:", error);
-    }
+    saveData();
+    renderDecks();
+    renderFlashcards();
 }
 
-document.addEventListener("click", startMusic, { once: true });
+/* =========================================
+   GRADE CALCULATOR
+========================================= */
 
-music.addEventListener("error", () => {
-    console.error("Loose.mp3 could not be loaded. Check the file path.");
-});
+let subjectCounter = 0;
 
-volumeSlider.addEventListener("input", () => {
-    music.volume = Number(volumeSlider.value);
-});
+function addSubjectRow(name = "", mark = "") {
+    subjectCounter++;
 
-/* MOBILE NAVIGATION */
-
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-    menuToggle.textContent =
-        navLinks.classList.contains("open") ? "×" : "☰";
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.textContent = "☰";
-    });
-});
-
-/* GRADE CALCULATOR */
-
-const gradeList = document.getElementById("gradeList");
-
-function addGradeRow(subject = "", mark = "") {
     const row = document.createElement("div");
-    row.className = "grade-row";
+    row.className = "grade-input-row";
 
-    const subjectInput = document.createElement("input");
-    subjectInput.className = "tool-input subject-input";
-    subjectInput.type = "text";
-    subjectInput.placeholder = "Subject name";
-    subjectInput.setAttribute("aria-label", "Subject name");
-    subjectInput.value = subject;
+    const nameInput = document.createElement("input");
+    nameInput.className = "input";
+    nameInput.placeholder = "Subject name";
+    nameInput.value = name;
+    nameInput.maxLength = 40;
 
     const markInput = document.createElement("input");
-    markInput.className = "tool-input mark-input";
+    markInput.className = "input";
     markInput.type = "number";
+    markInput.placeholder = "Mark / 100";
     markInput.min = "0";
     markInput.max = "100";
-    markInput.placeholder = "Mark / 100";
-    markInput.setAttribute("aria-label", "Subject mark");
+    markInput.step = "any";
     markInput.value = mark;
 
     const removeButton = document.createElement("button");
-    removeButton.className = "remove-grade";
+    removeButton.className = "remove-subject";
     removeButton.type = "button";
     removeButton.textContent = "×";
     removeButton.setAttribute("aria-label", "Remove subject");
 
     removeButton.addEventListener("click", () => {
         row.remove();
+        calculateGrades();
     });
 
-    row.append(subjectInput, markInput, removeButton);
-    gradeList.appendChild(row);
+    row.append(nameInput, markInput, removeButton);
+    $("gradeRows").appendChild(row);
 }
 
-document.getElementById("addGrade").addEventListener("click", () => {
-    addGradeRow();
+$("addSubject").addEventListener("click", () => {
+    addSubjectRow();
 });
 
-document.getElementById("calculateGrades").addEventListener("click", () => {
-    const rows = [...gradeList.querySelectorAll(".grade-row")];
+$("calculateGrades").addEventListener("click", calculateGrades);
 
-    const results = [];
+function calculateGrades() {
+    const rows = [...$("gradeRows").children];
+    const marks = [];
 
     for (const row of rows) {
-        const subject = row.querySelector(".subject-input").value.trim();
-        const markText = row.querySelector(".mark-input").value.trim();
+        const markInput = row.querySelector('input[type="number"]');
+        const value = markInput.value.trim();
 
-        if (!subject && !markText) continue;
+        if (value === "") continue;
 
-        if (!subject || !markText) {
-            showToast("Please complete each subject and mark.");
-            return;
-        }
-
-        const mark = Number(markText);
+        const mark = Number(value);
 
         if (!Number.isFinite(mark) || mark < 0 || mark > 100) {
-            showToast("Marks must be between 0 and 100.");
+            showToast("Please enter marks between 0 and 100.");
+            markInput.focus();
             return;
         }
 
-        results.push(mark);
+        marks.push(mark);
     }
 
-    if (results.length === 0) {
-        showToast("Enter at least one subject and mark.");
+    if (marks.length === 0) {
+        $("averageResult").textContent = "--";
+        $("subjectCount").textContent = "0";
+        showToast("Enter at least one mark first.");
         return;
     }
 
-    const average = results.reduce((sum, mark) => sum + mark, 0)
-        / results.length;
+    const average = marks.reduce((sum, mark) => sum + mark, 0) / marks.length;
 
-    document.getElementById("averageResult").textContent =
-        average.toFixed(2) + "%";
+    $("averageResult").textContent = average.toFixed(2) + "%";
+    $("subjectCount").textContent = marks.length;
+}
 
-    document.getElementById("subjectCount").textContent =
-        results.length;
-
-    document.getElementById("gradeResult").classList.add("visible");
-
-    showToast("Your results have been calculated.");
+$("clearGrades").addEventListener("click", () => {
+    $("gradeRows").innerHTML = "";
+    $("averageResult").textContent = "--";
+    $("subjectCount").textContent = "0";
+    subjectCounter = 0;
+    addSubjectRow();
+    showToast("Grade calculator cleared.");
 });
 
-/* STUDY PLANNER */
+addSubjectRow();
 
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+/* =========================================
+   STUDY PLANNER
+========================================= */
 
 function renderTasks() {
-    taskList.innerHTML = "";
+    const list = $("taskList");
+    list.innerHTML = "";
 
-    const total = data.tasks.length;
     const completed = data.tasks.filter(task => task.completed).length;
+    const total = data.tasks.length;
     const remaining = total - completed;
+    const percentage = total ? (completed / total) * 100 : 0;
 
-    document.getElementById("totalTasks").textContent = total;
-    document.getElementById("completedTasks").textContent = completed;
-    document.getElementById("remainingTasks").textContent = remaining;
-
-    const progress = total === 0 ? 0 : (completed / total) * 100;
-
-    document.getElementById("progressFill").style.width =
-        progress + "%";
+    $("totalTasks").textContent = total;
+    $("completedTasks").textContent = completed;
+    $("remainingTasks").textContent = remaining;
+    $("progressFill").style.width = percentage + "%";
 
     if (total === 0) {
         const empty = document.createElement("div");
         empty.className = "empty-state";
-        empty.textContent =
-            "No tasks yet. Add your first study task above.";
-
-        taskList.appendChild(empty);
+        empty.textContent = "No tasks yet. Add your first study task above.";
+        list.appendChild(empty);
         return;
     }
 
     data.tasks.forEach(task => {
         const item = document.createElement("div");
-        item.className = "task-item";
-
-        if (task.completed) {
-            item.classList.add("completed");
-        }
-
-        const main = document.createElement("div");
-        main.className = "task-main";
+        item.className = "task-item" + (task.completed ? " completed" : "");
 
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.className = "task-check";
         checkbox.checked = task.completed;
-        checkbox.setAttribute("aria-label", "Mark task completed");
+        checkbox.setAttribute("aria-label", "Mark task as completed");
 
         checkbox.addEventListener("change", () => {
             task.completed = checkbox.checked;
@@ -1599,238 +1463,419 @@ function renderTasks() {
             renderTasks();
         });
 
-        const textContainer = document.createElement("div");
-
-        const name = document.createElement("div");
-        name.className = "task-name";
-        name.textContent = task.text;
-
-        const date = document.createElement("div");
-        date.className = "task-date";
-        date.textContent = task.date || "Added task";
-
-        textContainer.append(name, date);
-        main.append(checkbox, textContainer);
+        const text = document.createElement("span");
+        text.className = "task-text";
+        text.textContent = task.text;
 
         const deleteButton = document.createElement("button");
-        deleteButton.className =
-            "button button-danger button-small task-delete";
-        deleteButton.textContent = "Delete";
+        deleteButton.className = "delete-task";
+        deleteButton.textContent = "×";
+        deleteButton.setAttribute("aria-label", "Delete task");
 
         deleteButton.addEventListener("click", () => {
-            data.tasks = data.tasks.filter(t => t.id !== task.id);
+            data.tasks = data.tasks.filter(entry => entry.id !== task.id);
             saveData();
             renderTasks();
             showToast("Task deleted.");
         });
 
-        item.append(main, deleteButton);
-        taskList.appendChild(item);
+        item.append(checkbox, text, deleteButton);
+        list.appendChild(item);
     });
 }
 
 function addTask() {
-    const text = taskInput.value.trim();
+    const input = $("taskInput");
+    const text = input.value.trim();
 
     if (!text) {
         showToast("Enter a task first.");
-        taskInput.focus();
+        input.focus();
         return;
     }
 
     data.tasks.push({
-        id: Date.now() + Math.random(),
+        id: createId(),
         text,
-        completed: false,
-        date: new Date().toLocaleDateString()
+        completed: false
     });
 
-    taskInput.value = "";
-
+    input.value = "";
     saveData();
     renderTasks();
-
     showToast("Task added.");
 }
 
-document.getElementById("addTask").addEventListener("click", addTask);
+$("addTask").addEventListener("click", addTask);
 
-taskInput.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        addTask();
-    }
+$("taskInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") addTask();
 });
 
-/* FLASHCARDS */
+/* =========================================
+   FLASHCARD SET MANAGEMENT
+========================================= */
+
+function renderDecks() {
+    const select = $("deckSelect");
+    select.innerHTML = "";
+
+    data.decks.forEach(deck => {
+        const option = document.createElement("option");
+        option.value = deck.id;
+        option.textContent = deck.name;
+        option.selected = deck.id === data.activeDeckId;
+        select.appendChild(option);
+    });
+
+    const activeDeck = getActiveDeck();
+
+    $("activeDeckName").textContent = activeDeck.name;
+    $("deckCardCount").textContent =
+        activeDeck.cards.length + (activeDeck.cards.length === 1 ? " card" : " cards");
+}
+
+$("deckSelect").addEventListener("change", () => {
+    setActiveDeck($("deckSelect").value);
+});
+
+function createDeck() {
+    const input = $("newDeckName");
+    const name = input.value.trim();
+
+    if (!name) {
+        showToast("Enter a name for your new set.");
+        input.focus();
+        return;
+    }
+
+    if (data.decks.some(deck => deck.name.toLowerCase() === name.toLowerCase())) {
+        showToast("A set with that name already exists.");
+        return;
+    }
+
+    const newDeck = {
+        id: createId(),
+        name,
+        cards: []
+    };
+
+    data.decks.push(newDeck);
+    data.activeDeckId = newDeck.id;
+
+    input.value = "";
+    currentCardIndex = 0;
+    showingAnswer = false;
+
+    saveData();
+    renderDecks();
+    renderFlashcards();
+
+    showToast("New flashcard set created.");
+}
+
+$("createDeck").addEventListener("click", createDeck);
+
+$("newDeckName").addEventListener("keydown", event => {
+    if (event.key === "Enter") createDeck();
+});
+
+$("deleteDeck").addEventListener("click", () => {
+    if (data.decks.length <= 1) {
+        showToast("You must keep at least one flashcard set.");
+        return;
+    }
+
+    const activeDeck = getActiveDeck();
+
+    const confirmed = confirm(
+        `Delete the set "${activeDeck.name}" and all its cards?`
+    );
+
+    if (!confirmed) return;
+
+    data.decks = data.decks.filter(deck => deck.id !== activeDeck.id);
+    data.activeDeckId = data.decks[0].id;
+
+    currentCardIndex = 0;
+    showingAnswer = false;
+
+    saveData();
+    renderDecks();
+    renderFlashcards();
+
+    showToast("Flashcard set deleted.");
+});
+
+/* =========================================
+   FLASHCARD DISPLAY
+========================================= */
 
 let currentCardIndex = 0;
-
-const flashcard = document.getElementById("flashcard");
+let showingAnswer = false;
 
 function renderFlashcards() {
-    const question = document.getElementById("flashQuestion");
-    const answer = document.getElementById("flashAnswer");
-    const counter = document.getElementById("cardCounter");
-    const savedCards = document.getElementById("savedCards");
+    const deck = getActiveDeck();
+    const cards = deck.cards;
 
-    flashcard.classList.remove("flipped");
-    savedCards.innerHTML = "";
+    $("activeDeckName").textContent = deck.name;
+    $("deckCardCount").textContent =
+        cards.length + (cards.length === 1 ? " card" : " cards");
 
-    if (data.cards.length === 0) {
-        question.textContent = "No flashcards yet";
-        answer.textContent = "Create a card to begin";
-        counter.textContent = "0 / 0";
+    if (cards.length === 0) {
+        $("flashcardLabel").textContent = "EMPTY SET";
+        $("flashcardText").textContent = "No flashcards in this set yet.";
+        $("flashcardHint").textContent = "Add your first card below.";
+        $("cardCounter").textContent = "0 / 0";
+        $("savedCardList").innerHTML =
+            '<div class="empty-state">This set does not contain any cards yet.</div>';
 
-        const empty = document.createElement("div");
-        empty.className = "empty-state";
-        empty.textContent = "Your saved flashcards will appear here.";
-
-        savedCards.appendChild(empty);
-        currentCardIndex = 0;
+        $("previousCard").disabled = true;
+        $("nextCard").disabled = true;
+        $("flipCard").disabled = true;
+        $("previousCard").style.opacity = ".4";
+        $("nextCard").style.opacity = ".4";
+        $("flipCard").style.opacity = ".4";
         return;
     }
 
     currentCardIndex = Math.max(
         0,
-        Math.min(currentCardIndex, data.cards.length - 1)
+        Math.min(currentCardIndex, cards.length - 1)
     );
 
-    const card = data.cards[currentCardIndex];
+    $("previousCard").disabled = false;
+    $("nextCard").disabled = false;
+    $("flipCard").disabled = false;
 
-    question.textContent = card.question;
-    answer.textContent = card.answer;
+    $("previousCard").style.opacity = "1";
+    $("nextCard").style.opacity = "1";
+    $("flipCard").style.opacity = "1";
 
-    counter.textContent =
-        (currentCardIndex + 1) + " / " + data.cards.length;
+    const card = cards[currentCardIndex];
 
-    data.cards.forEach((cardItem, index) => {
+    $("flashcardLabel").textContent = showingAnswer ? "ANSWER" : "QUESTION";
+    $("flashcardText").textContent = showingAnswer ? card.back : card.front;
+    $("flashcardHint").textContent = "Click the card or press Flip Card to reveal.";
+    $("cardCounter").textContent = `${currentCardIndex + 1} / ${cards.length}`;
+
+    renderSavedCards();
+}
+
+function renderSavedCards() {
+    const list = $("savedCardList");
+    const deck = getActiveDeck();
+
+    list.innerHTML = "";
+
+    if (deck.cards.length === 0) return;
+
+    deck.cards.forEach((card, index) => {
         const item = document.createElement("div");
         item.className = "saved-card-item";
 
         const text = document.createElement("span");
-        text.textContent =
-            (index + 1) + ". " + cardItem.question;
+        text.textContent = `${index + 1}. ${card.front}`;
 
-        const button = document.createElement("button");
-        button.className = "button button-secondary button-small";
-        button.textContent = "View";
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.textContent = "×";
+        remove.setAttribute("aria-label", "Delete flashcard");
 
-        button.addEventListener("click", () => {
-            currentCardIndex = index;
+        remove.addEventListener("click", () => {
+            deck.cards.splice(index, 1);
+
+            if (currentCardIndex >= deck.cards.length) {
+                currentCardIndex = Math.max(0, deck.cards.length - 1);
+            }
+
+            showingAnswer = false;
+
+            saveData();
             renderFlashcards();
-
-            document.getElementById("flashcards")
-                .scrollIntoView({ behavior: "smooth" });
+            renderDecks();
+            showToast("Flashcard deleted.");
         });
 
-        item.append(text, button);
-        savedCards.appendChild(item);
+        item.append(text, remove);
+        list.appendChild(item);
     });
 }
 
-flashcard.addEventListener("click", () => {
-    if (data.cards.length === 0) return;
-    flashcard.classList.toggle("flipped");
-});
+function flipCard() {
+    const deck = getActiveDeck();
 
-document.getElementById("previousCard").addEventListener("click", () => {
-    if (data.cards.length === 0) return;
+    if (deck.cards.length === 0) return;
+
+    showingAnswer = !showingAnswer;
+    renderFlashcards();
+}
+
+function nextCard() {
+    const deck = getActiveDeck();
+
+    if (deck.cards.length === 0) return;
+
+    currentCardIndex = (currentCardIndex + 1) % deck.cards.length;
+    showingAnswer = false;
+    renderFlashcards();
+}
+
+function previousCard() {
+    const deck = getActiveDeck();
+
+    if (deck.cards.length === 0) return;
 
     currentCardIndex =
-        (currentCardIndex - 1 + data.cards.length) % data.cards.length;
+        (currentCardIndex - 1 + deck.cards.length) % deck.cards.length;
 
+    showingAnswer = false;
     renderFlashcards();
-});
+}
 
-document.getElementById("nextCard").addEventListener("click", () => {
-    if (data.cards.length === 0) return;
+$("flashcard").addEventListener("click", flipCard);
+$("flipCard").addEventListener("click", flipCard);
+$("nextCard").addEventListener("click", nextCard);
+$("previousCard").addEventListener("click", previousCard);
 
-    currentCardIndex =
-        (currentCardIndex + 1) % data.cards.length;
+/* =========================================
+   ADD FLASHCARDS TO ACTIVE SET
+========================================= */
 
-    renderFlashcards();
-});
+function addFlashcard() {
+    const front = $("questionInput").value.trim();
+    const back = $("answerInput").value.trim();
 
-document.getElementById("addFlashcard").addEventListener("click", () => {
-    const question = document.getElementById("questionInput").value.trim();
-    const answer = document.getElementById("answerInput").value.trim();
-
-    if (!question || !answer) {
+    if (!front || !back) {
         showToast("Enter both a question and an answer.");
         return;
     }
 
-    data.cards.push({
-        id: Date.now() + Math.random(),
-        question,
-        answer
+    const deck = getActiveDeck();
+
+    deck.cards.push({
+        id: createId(),
+        front,
+        back
     });
 
-    currentCardIndex = data.cards.length - 1;
+    currentCardIndex = deck.cards.length - 1;
+    showingAnswer = false;
 
-    document.getElementById("questionInput").value = "";
-    document.getElementById("answerInput").value = "";
-
-    saveData();
-    renderFlashcards();
-
-    showToast("Flashcard created.");
-});
-
-document.getElementById("deleteCurrentCard").addEventListener("click", () => {
-    if (data.cards.length === 0) {
-        showToast("There are no flashcards to delete.");
-        return;
-    }
-
-    data.cards.splice(currentCardIndex, 1);
-
-    if (currentCardIndex >= data.cards.length) {
-        currentCardIndex = Math.max(0, data.cards.length - 1);
-    }
+    $("questionInput").value = "";
+    $("answerInput").value = "";
 
     saveData();
+    renderDecks();
     renderFlashcards();
 
-    showToast("Flashcard deleted.");
-});
+    showToast(`Flashcard saved to ${deck.name}.`);
+}
+
+$("addFlashcard").addEventListener("click", addFlashcard);
 
 /* INITIAL RENDER */
 
 renderTasks();
+renderDecks();
 renderFlashcards();
 
-/* SCROLL REVEAL */
+/* =========================================
+   BACKGROUND MUSIC
+========================================= */
 
-const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.12
+const music = $("backgroundMusic");
+const volumeSlider = $("volumeSlider");
+
+music.volume = 0.35;
+music.muted = false;
+
+let musicStarted = false;
+
+function updateVolumeSlider() {
+    const value = Number(volumeSlider.value);
+
+    volumeSlider.style.background =
+        `linear-gradient(to right, #bd91ed ${value}%, rgba(255,255,255,.35) ${value}%)`;
+}
+
+function attemptMusic() {
+    if (musicStarted && !music.paused) return;
+
+    music.volume = Number(volumeSlider.value) / 100;
+    music.muted = false;
+
+    const playAttempt = music.play();
+
+    if (playAttempt && typeof playAttempt.then === "function") {
+        playAttempt.then(() => {
+            musicStarted = true;
+        }).catch(() => {
+            // Audible autoplay may be blocked by the browser.
+            // Retry muted, then unmute on the first user interaction.
+            music.muted = true;
+
+            music.play().then(() => {
+                musicStarted = true;
+            }).catch(() => {
+                // A later user interaction will retry playback.
+            });
+        });
+    }
+}
+
+/* Attempt autoplay as soon as possible. */
+attemptMusic();
+
+/* Retry when the page is ready. */
+window.addEventListener("load", attemptMusic);
+
+/* Retry when the user interacts with the page. */
+function enableMusicAfterInteraction() {
+    if (!musicStarted || music.paused || music.muted) {
+        music.muted = false;
+        music.volume = Number(volumeSlider.value) / 100;
+
+        music.play().then(() => {
+            musicStarted = true;
+        }).catch(() => {
+            // Keep retrying on future interactions.
+        });
+    }
+}
+
+document.addEventListener("pointerdown", enableMusicAfterInteraction);
+document.addEventListener("keydown", enableMusicAfterInteraction);
+
+/* Volume slider. */
+volumeSlider.addEventListener("input", () => {
+    const value = Number(volumeSlider.value);
+
+    music.volume = value / 100;
+    music.muted = value === 0;
+
+    if (value > 0 && music.paused) {
+        music.play().then(() => {
+            musicStarted = true;
+        }).catch(() => {});
+    }
+
+    updateVolumeSlider();
 });
 
-document.querySelectorAll(".reveal").forEach(element => {
-    revealObserver.observe(element);
-});
+updateVolumeSlider();
 
-/* CLICK SOUNDS */
+/* =========================================
+   BUTTON CLICK SOUNDS
+========================================= */
 
 let audioContext;
 
 function playClickSound() {
     try {
-        const AudioContext =
-            window.AudioContext || window.webkitAudioContext;
-
-        if (!AudioContext) return;
-
-        if (!audioContext) {
-            audioContext = new AudioContext();
-        }
+        audioContext = audioContext || new (
+            window.AudioContext || window.webkitAudioContext
+        )();
 
         if (audioContext.state === "suspended") {
             audioContext.resume();
@@ -1839,42 +1884,33 @@ function playClickSound() {
         const oscillator = audioContext.createOscillator();
         const gain = audioContext.createGain();
 
-        oscillator.type = "sine";
-        oscillator.frequency.setValueAtTime(
-            650,
-            audioContext.currentTime
-        );
-
-        oscillator.frequency.exponentialRampToValueAtTime(
-            420,
-            audioContext.currentTime + 0.045
-        );
-
-        gain.gain.setValueAtTime(0.035, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            audioContext.currentTime + 0.055
-        );
-
         oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.06);
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(650, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(
+            420,
+            audioContext.currentTime + 0.06
+        );
 
+        gain.gain.setValueAtTime(0.045, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + 0.07
+        );
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.07);
     } catch (error) {
-        // Click sounds are optional.
+        // Click sound is optional.
     }
 }
 
-document.addEventListener("click", event => {
-    const target = event.target.closest(
-        "button, .button, .nav-links a, .logo, .tool-navigation a"
-    );
-
-    if (target) {
-        playClickSound();
-    }
+document.querySelectorAll(
+    "button, .tool-nav a, .nav-links a, .logo"
+).forEach(element => {
+    element.addEventListener("click", playClickSound);
 });
 </script>
 
