@@ -248,7 +248,7 @@
             transform: translateY(-3px);
         }
 
-        /* Achievements & Work */
+        /* Achievements and Work */
 
         #achievements {
             padding-top: 110px;
@@ -264,7 +264,7 @@
 
         .achievement-card {
             padding: 25px;
-            min-height: 190px;
+            min-height: 220px;
             border: 1px solid var(--border);
             border-radius: 10px;
             background: rgba(70, 36, 105, 0.14);
@@ -308,6 +308,17 @@
 
         .achievement-card a:hover {
             text-decoration: underline;
+        }
+
+        .project-status {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 9px;
+            border: 1px solid rgba(213,189,255,.22);
+            border-radius: 4px;
+            color: #e6d5ff;
+            font-size: 9px;
+            letter-spacing: .5px;
         }
 
         /* About */
@@ -458,7 +469,7 @@
             letter-spacing: .5px;
         }
 
-        /* Music popup */
+        /* Music prompt */
 
         .music-overlay {
             position: fixed;
@@ -551,79 +562,52 @@
             line-height: 1.6;
         }
 
-        /* Minimal music icon and volume slider */
+        /* Music controls: speaker is display-only */
 
         .music-control {
             position: fixed;
             left: 24px;
             bottom: 22px;
             z-index: 500;
-            width: 48px;
+            width: 54px;
             height: 48px;
         }
 
-        /* Invisible hover area connects the icon and slider */
-        .music-control::before {
-            content: "";
+        .speaker-icon {
             position: absolute;
-            left: -12px;
-            bottom: 25px;
-            width: 72px;
-            height: 165px;
-            background: transparent;
-        }
-
-        .music-toggle {
-            position: absolute;
-            inset: 0;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            border: none;
-            border-radius: 50%;
-            background: transparent;
+            left: 0;
+            bottom: 0;
+            width: 28px;
+            height: 28px;
             color: white;
-            cursor: pointer;
-            transition: color .2s ease, transform .2s ease;
-        }
-
-        .music-toggle:hover {
-            color: var(--purple-light);
-            transform: scale(1.12);
-        }
-
-        .music-toggle:active {
-            transform: scale(.92);
-        }
-
-        .music-toggle svg {
-            width: 23px;
-            height: 23px;
+            pointer-events: none;
+            display: block;
         }
 
         .volume-popup {
             position: absolute;
-            left: 0;
-            bottom: 42px;
-            width: 48px;
-            height: 145px;
+            left: -10px;
+            bottom: 34px;
+            width: 58px;
+            height: 155px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+
+            /* Transparent rectangular hover area */
             background: transparent;
             border: none;
             box-shadow: none;
+
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transform: translateY(12px);
+            transform: translateY(10px);
+
             transition:
-                opacity .25s ease,
-                transform .3s cubic-bezier(.2,.8,.2,1),
-                visibility .25s ease;
+                opacity .22s ease,
+                transform .25s ease,
+                visibility .22s ease;
         }
 
         .music-control:hover .volume-popup,
@@ -636,43 +620,61 @@
         }
 
         .volume-slider {
-            width: 110px;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 112px;
             height: 5px;
             margin: 0;
             padding: 0;
-            accent-color: var(--purple-light);
+            border: none;
+            outline: none;
+            background: transparent;
             cursor: pointer;
             transform: rotate(-90deg);
-            background: transparent;
             touch-action: none;
         }
 
         .volume-slider::-webkit-slider-runnable-track {
-            height: 5px;
+            height: 4px;
             border-radius: 10px;
-            background: rgba(255,255,255,.35);
+            background: rgba(255,255,255,.48);
         }
 
         .volume-slider::-webkit-slider-thumb {
-            cursor: grab;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            margin-top: -4px;
+            border: none;
+            border-radius: 50%;
+            background: var(--purple-light);
+            box-shadow: 0 0 8px rgba(193,154,255,.4);
         }
 
         .volume-slider::-moz-range-track {
-            height: 5px;
+            height: 4px;
             border-radius: 10px;
-            background: rgba(255,255,255,.35);
+            background: rgba(255,255,255,.48);
         }
 
         .volume-slider::-moz-range-thumb {
-            cursor: grab;
+            width: 12px;
+            height: 12px;
+            border: none;
+            border-radius: 50%;
+            background: var(--purple-light);
+            box-shadow: 0 0 8px rgba(193,154,255,.4);
         }
 
-        .volume-slider:active::-webkit-slider-thumb {
-            cursor: grabbing;
+        .volume-slider:focus-visible::-webkit-slider-thumb {
+            outline: 2px solid white;
+            outline-offset: 3px;
         }
 
-        .volume-slider:active::-moz-range-thumb {
-            cursor: grabbing;
+        .volume-slider:focus-visible::-moz-range-thumb {
+            outline: 2px solid white;
+            outline-offset: 3px;
         }
 
         /* Version */
@@ -693,47 +695,23 @@
         /* Animations */
 
         @keyframes heroIn {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes popupIn {
-            from {
-                opacity: 0;
-                transform: translateY(18px) scale(.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(18px) scale(.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes headerIn {
-            from {
-                opacity: 0;
-                transform: translateY(-12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes cardIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive */
@@ -859,12 +837,10 @@
         <!--
             ACHIEVEMENTS & WORK
 
-            To add an achievement:
-            1. Copy an entire achievement-card block.
-            2. Change the category, title and description.
-            3. Optionally add a link to proof of work.
-
-            You only need to edit this section to update your achievements.
+            To add a new card:
+            1. Copy one complete achievement-card article.
+            2. Change its category, title and description.
+            3. Add a link if you have a project or evidence to show.
         -->
 
         <section id="achievements">
@@ -872,44 +848,84 @@
             <h2 class="section-heading">Achievements & Work</h2>
 
             <p class="section-description">
-                A collection of projects, experiences and accomplishments.
+                Selected projects, technical interests and experiences.
             </p>
 
             <div class="achievement-grid">
 
-                <!-- ACHIEVEMENT 1 -->
+                <!-- PROJECT: PERSONAL PORTFOLIO -->
                 <article class="achievement-card">
-                    <div class="achievement-category">PROJECT</div>
-                    <h3>Your Project Title</h3>
+                    <div class="achievement-category">WEB DEVELOPMENT</div>
+                    <h3>Personal Portfolio Website</h3>
                     <p>
-                        Add a description of a project you have worked on,
-                        what you created and the technologies you used.
+                        Designed and developed a personal portfolio website
+                        using HTML and CSS. Focused on responsive layouts,
+                        visual design, interactive elements and a personalised
+                        browsing experience.
                     </p>
-                    <!-- Optional link:
-                    <a href="YOUR_LINK_HERE" target="_blank" rel="noopener noreferrer">
-                        View project
-                    </a>
-                    -->
+                    <span class="project-status">Website project</span>
                 </article>
 
-                <!-- ACHIEVEMENT 2 -->
+                <!-- PROJECT: ROBLOX GAME DESIGN -->
                 <article class="achievement-card">
-                    <div class="achievement-category">EXPERIENCE</div>
-                    <h3>Your Experience Title</h3>
+                    <div class="achievement-category">GAME DEVELOPMENT</div>
+                    <h3>Roblox Game Development</h3>
                     <p>
-                        Describe an experience, responsibility or contribution
-                        you would like to showcase.
+                        Explored game mechanics and progression systems using
+                        Roblox Studio and Lua. Developed concepts involving
+                        player progression, in-game economies, upgrades and
+                        interactive gameplay.
                     </p>
+                    <span class="project-status">Game design and development</span>
                 </article>
 
-                <!-- ACHIEVEMENT 3 -->
+                <!-- PROJECT: PYTHON -->
                 <article class="achievement-card">
-                    <div class="achievement-category">ACHIEVEMENT</div>
-                    <h3>Your Achievement Title</h3>
+                    <div class="achievement-category">PROGRAMMING</div>
+                    <h3>Python Study Toolkit</h3>
                     <p>
-                        Describe an award, competition, certification
-                        or other accomplishment.
+                        A proposed Python utility project featuring simple
+                        calculation tools, input validation and useful
+                        functions designed to make everyday study tasks easier.
                     </p>
+                    <span class="project-status">Project concept</span>
+                </article>
+
+                <!-- EXPERIENCE: INFOCOMM MEDIA -->
+                <article class="achievement-card">
+                    <div class="achievement-category">LEADERSHIP & CCA</div>
+                    <h3>Infocomm Media CCA</h3>
+                    <p>
+                        Served as Admin Secretary from 2025 to 2026.
+                        Developed organisational skills, took on administrative
+                        responsibilities and gained further exposure to
+                        computers and technology.
+                    </p>
+                    <span class="project-status">2025 – 2026</span>
+                </article>
+
+                <!-- EXPERIENCE: PHOTOGRAPHY -->
+                <article class="achievement-card">
+                    <div class="achievement-category">CREATIVE WORK</div>
+                    <h3>Photography</h3>
+                    <p>
+                        Developed an interest in photography through
+                        Infocomm Media CCA, exploring visual composition,
+                        capturing moments and documenting activities.
+                    </p>
+                    <span class="project-status">Creative interest</span>
+                </article>
+
+                <!-- PROJECT: PC BUILDING -->
+                <article class="achievement-card">
+                    <div class="achievement-category">HARDWARE</div>
+                    <h3>Custom PC Building</h3>
+                    <p>
+                        Developed an interest in computer hardware through
+                        learning about PC components, system compatibility,
+                        hardware specifications and custom PC configurations.
+                    </p>
+                    <span class="project-status">Technical interest</span>
                 </article>
 
             </div>
@@ -923,23 +939,25 @@
 
                 <div class="about-text">
                     <p>
-                        I am a student at Anglo-Chinese School (Barker Road)
-                        with a strong interest in computers and technology.
-                        Over time, this interest has developed into hobbies
-                        such as programming, custom PC building and photography.
+                        I was a student at Anglo-Chinese School (Barker Road),
+                        where I developed a strong interest in computers,
+                        technology and creative projects.
                     </p>
 
                     <p>
-                        I was also part of the school's Infocomm Media CCA,
-                        where I served as Admin Secretary from 2025 to 2026.
-                        Through the CCA, I gained experience working with
-                        others, handling responsibilities and developing
-                        my knowledge of computers.
+                        During my time in school, I was part of the
+                        Infocomm Media CCA and served as Admin Secretary
+                        from 2025 to 2026. Through this experience, I
+                        developed organisational skills, worked alongside
+                        fellow CCA members and improved my knowledge of
+                        computers and technology.
                     </p>
 
                     <p>
-                        I enjoy exploring new technologies and working on
-                        projects that allow me to put what I learn into practice.
+                        Outside of school, I enjoy programming, custom PC
+                        building and photography. I am particularly interested
+                        in Computer Science and enjoy exploring how software
+                        and technology can be used to create useful projects.
                     </p>
 
                     <div class="skills">
@@ -956,7 +974,9 @@
                 <div class="about-details">
                     <div class="detail-row">
                         <div class="detail-label">Education</div>
-                        <div class="detail-value">Anglo-Chinese School (Barker Road)</div>
+                        <div class="detail-value">
+                            Former student of Anglo-Chinese School (Barker Road)
+                        </div>
                     </div>
 
                     <div class="detail-row">
@@ -970,8 +990,10 @@
                     </div>
 
                     <div class="detail-row">
-                        <div class="detail-label">Main Interests</div>
-                        <div class="detail-value">Computer Science, Programming, Photography</div>
+                        <div class="detail-label">Interests</div>
+                        <div class="detail-value">
+                            Computer Science, Programming, Photography
+                        </div>
                     </div>
                 </div>
 
@@ -1038,7 +1060,7 @@
         </div>
     </div>
 
-    <!-- Music icon and volume slider -->
+    <!-- Display-only speaker and volume slider -->
 
     <div class="music-control" id="musicControl">
 
@@ -1052,22 +1074,23 @@
                 step="0.01"
                 value="0.5"
                 aria-label="Music volume"
-                title="Adjust volume">
+                title="Adjust music volume">
         </div>
 
-        <button class="music-toggle" id="musicToggle"
-                type="button" aria-label="Mute music"
-                title="Mute or unmute music">
+        <svg class="speaker-icon"
+             id="musicIcon"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.8"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+            <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
+            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+            <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+        </svg>
 
-            <svg id="musicIcon" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
-                <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-                <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
-            </svg>
-
-        </button>
     </div>
 
     <div class="version">VERSION 18</div>
@@ -1154,7 +1177,6 @@
         const overlay = document.getElementById("musicOverlay");
         const playButton = document.getElementById("playMusicButton");
         const skipButton = document.getElementById("skipMusicButton");
-        const toggleButton = document.getElementById("musicToggle");
         const musicIcon = document.getElementById("musicIcon");
         const musicStatus = document.getElementById("musicStatus");
         const volumeSlider = document.getElementById("volumeSlider");
@@ -1162,49 +1184,33 @@
 
         audio.volume = 0.5;
 
-        let musicPlaying = false;
-
-        const playIcon = `
+        const speakerOn = `
             <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
             <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
             <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
         `;
 
-        const muteIcon = `
+        const speakerOff = `
             <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
         `;
 
         function updateMusicIcon() {
-            const isMuted = audio.muted || audio.volume === 0;
-
-            musicIcon.innerHTML = isMuted ? muteIcon : playIcon;
-
-            toggleButton.setAttribute(
-                "aria-label",
-                isMuted ? "Unmute music" : "Mute music"
-            );
-
-            toggleButton.title = isMuted ? "Unmute music" : "Mute music";
+            musicIcon.innerHTML =
+                audio.volume === 0 ? speakerOff : speakerOn;
         }
 
         async function startMusic() {
             musicStatus.textContent = "Starting music...";
 
             try {
-                audio.muted = false;
+                audio.volume = Number(volumeSlider.value);
                 await audio.play();
 
-                musicPlaying = true;
                 updateMusicIcon();
                 overlay.classList.add("hidden");
                 musicStatus.textContent = "";
 
             } catch (error) {
-                musicPlaying = false;
-                updateMusicIcon();
-
                 if (audio.error) {
                     musicStatus.textContent =
                         "Unable to load Loose.mp3. Check the filename and upload.";
@@ -1219,7 +1225,6 @@
 
         function stopMusic() {
             audio.pause();
-            musicPlaying = false;
             updateMusicIcon();
         }
 
@@ -1230,30 +1235,15 @@
             overlay.classList.add("hidden");
         });
 
-        // Clicking the speaker toggles mute, not playback.
-
-        toggleButton.addEventListener("click", async () => {
-            if (audio.paused) {
-                await startMusic();
-                return;
-            }
-
-            audio.muted = !audio.muted;
-            updateMusicIcon();
-        });
-
-        // Slider controls volume.
+        // The slider is the only music volume control.
+        // No click-to-mute behaviour is attached to the speaker.
 
         volumeSlider.addEventListener("input", () => {
-            const newVolume = Number(volumeSlider.value);
-
-            audio.volume = newVolume;
-            audio.muted = newVolume === 0;
-
+            audio.volume = Number(volumeSlider.value);
             updateMusicIcon();
         });
 
-        // Keep the slider open while it is being dragged.
+        // Keep the slider visible while the user is dragging it.
 
         volumeSlider.addEventListener("pointerdown", () => {
             musicControl.classList.add("slider-active");
@@ -1265,16 +1255,6 @@
 
         window.addEventListener("pointercancel", () => {
             musicControl.classList.remove("slider-active");
-        });
-
-        audio.addEventListener("play", () => {
-            musicPlaying = true;
-            updateMusicIcon();
-        });
-
-        audio.addEventListener("pause", () => {
-            musicPlaying = false;
-            updateMusicIcon();
         });
 
         audio.addEventListener("volumechange", updateMusicIcon);
