@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#160d22">
+
     <title>Lim Jun Xi Ted | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,11 +14,14 @@
 
     <style>
         :root {
-            --purple: #c19aff;
-            --purple-light: #ddc9ff;
-            --text: #faf7ff;
-            --muted: #d0c3df;
-            --border: rgba(225, 200, 255, 0.20);
+            --purple: #b58aff;
+            --purple-light: #d0b5ff;
+            --background: #160d22;
+            --text: #f5efff;
+            --muted: #b6a8c4;
+            --border: rgba(218, 190, 255, 0.16);
+            --glass: rgba(26, 15, 39, 0.69);
+            --glass-light: rgba(255, 255, 255, 0.045);
         }
 
         * {
@@ -34,7 +38,7 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text);
-            background-color: #120b1b;
+            background-color: var(--background);
             background-image: url("./background.jpg");
             background-position: center top;
             background-size: 100% auto;
@@ -42,26 +46,15 @@
             background-attachment: scroll;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        body::after {
+        body::before {
             content: "";
-            position: absolute;
+            position: fixed;
             inset: 0;
-            z-index: 0;
+            background: rgba(15, 7, 24, 0.36);
             pointer-events: none;
-            background: linear-gradient(
-                120deg,
-                rgba(18, 8, 31, 0.25),
-                rgba(37, 15, 59, 0.13),
-                rgba(13, 7, 24, 0.30)
-            );
-        }
-
-        header, main, footer, .music-overlay, .music-control, .version {
-            position: relative;
-            z-index: 1;
+            z-index: -1;
         }
 
         a {
@@ -70,37 +63,34 @@
         }
 
         button {
-            font: inherit;
+            font-family: inherit;
         }
 
-        /* Navigation */
+        /* HEADER */
 
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            padding: 19px 7%;
-            background: rgba(35, 17, 54, 0.18);
-            border-bottom: 1px solid rgba(255,255,255,0.10);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            animation: headerIn .7s ease both;
-        }
-
-        nav {
-            max-width: 1250px;
-            margin: auto;
+            height: 76px;
+            padding: 0 8%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            background: rgba(19, 10, 29, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            animation: slideDown .7s ease;
         }
 
         .logo {
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 800;
             letter-spacing: -0.7px;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -109,380 +99,414 @@
 
         .nav-links {
             display: flex;
-            gap: 34px;
             align-items: center;
+            gap: 32px;
         }
 
         .nav-links a {
-            color: #e3d9ed;
-            font-size: 12px;
-            font-weight: 600;
-            transition: color .2s ease, transform .2s ease;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            transition: color .2s ease;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--purple-light);
-            transform: translateY(-2px);
         }
 
-        main {
-            max-width: 1250px;
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 0;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* GENERAL */
+
+        .container {
+            width: 84%;
+            max-width: 1200px;
             margin: auto;
-            padding: 0 7%;
         }
 
         section {
-            scroll-margin-top: 100px;
+            scroll-margin-top: 95px;
         }
 
         .section-label {
-            color: var(--purple-light);
+            color: var(--purple);
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 13px;
         }
 
-        .section-heading {
-            font-size: clamp(27px, 4vw, 39px);
-            letter-spacing: -1.5px;
-            font-weight: 700;
-            margin-bottom: 14px;
+        .section-title {
+            font-size: clamp(30px, 4vw, 43px);
+            font-weight: 800;
+            letter-spacing: -1.8px;
+            margin-bottom: 15px;
         }
 
         .section-description {
             color: var(--muted);
             font-size: 13px;
             line-height: 1.9;
-            max-width: 540px;
+            max-width: 620px;
         }
 
-        /* Home */
+        /* HERO */
 
         #home {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 100px;
+            padding-top: 76px;
         }
 
-        .hero {
-            width: 100%;
-            padding: 55px 52px;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            background: rgba(68, 35, 101, 0.12);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 18px 70px rgba(0,0,0,0.10);
-            animation: heroIn 1s cubic-bezier(.2,.8,.2,1) both;
+        .hero-content {
+            max-width: 850px;
+            padding: 80px 0;
+            animation: fadeUp .9s ease both;
         }
 
-        .hero-small {
+        .hero-tag {
+            display: inline-block;
             color: var(--purple-light);
-            font-size: 11px;
+            background: rgba(181, 138, 255, 0.11);
+            border: 1px solid rgba(181, 138, 255, 0.23);
+            border-radius: 30px;
+            padding: 9px 15px;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 22px;
+            letter-spacing: 1.5px;
+            margin-bottom: 28px;
         }
 
-        .hero h1 {
-            font-size: clamp(43px, 8vw, 86px);
+        .hero-title {
+            font-size: clamp(43px, 8vw, 82px);
             line-height: 1.08;
-            letter-spacing: -5px;
             font-weight: 800;
-            margin-bottom: 20px;
+            letter-spacing: -4px;
+            margin-bottom: 24px;
         }
 
-        .hero h1 span {
-            color: var(--purple-light);
+        .hero-title span {
+            color: var(--purple);
         }
 
         .hero-description {
-            max-width: 540px;
-            color: #e0d6e9;
+            color: #d0c3dc;
             font-size: 14px;
             line-height: 2;
+            max-width: 590px;
+            margin-bottom: 35px;
         }
 
-        .hero-actions {
+        .hero-buttons {
             display: flex;
-            gap: 13px;
             flex-wrap: wrap;
-            margin-top: 32px;
+            gap: 13px;
         }
 
         .button {
             display: inline-flex;
-            justify-content: center;
             align-items: center;
-            padding: 13px 22px;
-            border-radius: 7px;
+            justify-content: center;
+            padding: 14px 21px;
+            border-radius: 9px;
             font-size: 11px;
-            font-weight: 700;
-            transition: .22s ease;
+            font-weight: 800;
+            transition: .25s ease;
+            cursor: pointer;
         }
 
         .button-primary {
-            color: #21132e;
-            background: #d1b4ff;
-            border: 1px solid #d1b4ff;
+            background: var(--purple);
+            color: #1b1028;
+            border: 1px solid var(--purple);
         }
 
         .button-primary:hover {
-            background: white;
+            background: var(--purple-light);
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(193,154,255,.22);
         }
 
         .button-secondary {
-            color: white;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.24);
+            background: rgba(255,255,255,.045);
+            border: 1px solid var(--border);
+            color: var(--text);
         }
 
         .button-secondary:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(181,138,255,.13);
+            border-color: var(--purple);
             transform: translateY(-3px);
         }
 
-        /* Achievements and Work */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            left: 8%;
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        /* ACHIEVEMENTS */
 
         #achievements {
-            padding-top: 110px;
-            padding-bottom: 110px;
+            padding: 115px 0;
+        }
+
+        .achievement-header {
+            margin-bottom: 40px;
         }
 
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 17px;
-            margin-top: 38px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
         }
 
         .achievement-card {
-            padding: 25px;
-            min-height: 220px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 245px;
+            padding: 29px;
+            background: var(--glass);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            background: rgba(70, 36, 105, 0.14);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            transition: transform .3s ease, background .3s ease;
-            animation: cardIn .7s ease both;
+            border-radius: 17px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: transform .3s ease, border-color .3s ease, background .3s ease;
+            overflow: hidden;
         }
 
         .achievement-card:hover {
-            transform: translateY(-5px);
-            background: rgba(91, 48, 133, 0.27);
+            transform: translateY(-6px);
+            border-color: rgba(181,138,255,.48);
+            background: rgba(38, 22, 53, .83);
         }
 
         .achievement-category {
-            color: var(--purple-light);
+            color: var(--purple);
             font-size: 9px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 2px;
             margin-bottom: 17px;
         }
 
         .achievement-card h3 {
-            font-size: 15px;
-            margin-bottom: 12px;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 13px;
+            letter-spacing: -.5px;
         }
 
         .achievement-card p {
             color: var(--muted);
             font-size: 11px;
             line-height: 1.9;
-        }
-
-        .achievement-card a {
-            display: inline-block;
-            margin-top: 17px;
-            color: var(--purple-light);
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .achievement-card a:hover {
-            text-decoration: underline;
+            margin-bottom: 20px;
         }
 
         .project-status {
             display: inline-block;
-            margin-top: 16px;
-            padding: 6px 9px;
-            border: 1px solid rgba(213,189,255,.22);
-            border-radius: 4px;
-            color: #e6d5ff;
+            color: #d2c1e7;
             font-size: 9px;
+            font-weight: 700;
             letter-spacing: .5px;
+            margin-top: auto;
+            padding: 8px 11px;
+            background: rgba(181,138,255,.09);
+            border: 1px solid rgba(181,138,255,.15);
+            border-radius: 6px;
         }
 
-        /* About */
+        .project-link {
+            display: inline-block;
+            color: var(--purple-light);
+            font-size: 11px;
+            font-weight: 800;
+            margin: 0 0 17px;
+            transition: .2s;
+        }
+
+        .project-link:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        /* ABOUT */
 
         #about {
-            padding: 30px 0 115px;
+            padding: 100px 0;
         }
 
         .about-layout {
             display: grid;
             grid-template-columns: 1.1fr .9fr;
-            gap: 55px;
+            gap: 45px;
             align-items: start;
-            margin-top: 35px;
         }
 
         .about-text {
-            color: #e0d6e9;
+            color: var(--muted);
             font-size: 13px;
             line-height: 2.1;
+            margin-top: 20px;
         }
 
-        .about-text p + p {
-            margin-top: 18px;
+        .about-text p {
+            margin-bottom: 17px;
         }
 
-        .about-details {
-            padding: 25px;
+        .about-panel {
+            padding: 29px;
+            background: var(--glass);
             border: 1px solid var(--border);
-            border-radius: 11px;
-            background: rgba(68, 35, 101, 0.15);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
         }
 
-        .detail-row {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.10);
+        .about-panel h3 {
+            font-size: 15px;
+            margin-bottom: 23px;
         }
 
-        .detail-row:first-child {
-            padding-top: 0;
+        .skill-group {
+            margin-bottom: 22px;
         }
 
-        .detail-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .skill-group:last-child {
+            margin-bottom: 0;
         }
 
-        .detail-label {
+        .skill-heading {
             color: var(--purple-light);
-            font-size: 9px;
-            letter-spacing: 2px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
-        .detail-value {
-            color: #f2eafa;
-            font-size: 12px;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        .skills {
+        .skill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 22px;
+            gap: 8px;
         }
 
         .skill {
-            padding: 9px 12px;
-            border: 1px solid rgba(213,189,255,0.22);
-            border-radius: 5px;
-            background: rgba(117,75,164,0.14);
-            color: #e9dcff;
+            color: #d8cce5;
+            background: rgba(255,255,255,.045);
+            border: 1px solid var(--border);
+            padding: 8px 11px;
+            border-radius: 6px;
             font-size: 10px;
             font-weight: 600;
-            transition: .2s ease;
         }
 
-        .skill:hover {
-            background: rgba(193,154,255,.25);
-            transform: translateY(-2px);
-        }
-
-        /* Contact */
+        /* CONTACT */
 
         #contact {
-            padding: 25px 0 110px;
+            padding: 115px 0 130px;
         }
 
-        .contact-panel {
-            padding: 40px;
-            border-radius: 13px;
-            border: 1px solid var(--border);
-            background: rgba(68, 35, 101, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: start;
         }
 
         .contact-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .contact-item {
-            padding: 19px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.045);
-            transition: background .2s ease, transform .2s ease;
-            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: .25s;
         }
 
         .contact-item:hover {
-            background: rgba(180,139,255,0.13);
-            transform: translateY(-3px);
+            border-color: var(--purple);
+            transform: translateX(4px);
         }
 
-        .contact-item h3 {
+        .contact-icon {
+            width: 39px;
+            height: 39px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(181,138,255,.12);
+            border: 1px solid rgba(181,138,255,.17);
+            border-radius: 9px;
             color: var(--purple-light);
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            font-size: 15px;
+            font-weight: 800;
         }
 
-        .contact-item p {
-            color: #f1e9f8;
+        .contact-info small {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info span {
+            color: var(--text);
             font-size: 11px;
+            font-weight: 600;
             overflow-wrap: anywhere;
         }
 
-        /* Footer */
+        /* FOOTER */
 
         footer {
-            border-top: 1px solid rgba(255,255,255,0.12);
-            padding: 23px 7%;
+            padding: 26px 8%;
+            border-top: 1px solid var(--border);
+            background: rgba(16, 8, 24, .75);
             text-align: center;
-            background: rgba(25, 12, 38, 0.18);
-            color: #c6b7d4;
+            color: var(--muted);
             font-size: 10px;
-            letter-spacing: .5px;
         }
 
-        /* Music prompt */
+        /* MUSIC PROMPT */
 
         .music-overlay {
             position: fixed;
             inset: 0;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            background: rgba(12, 5, 20, 0.25);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            transition: opacity .45s ease, visibility .45s ease;
+            background: rgba(9, 4, 15, .73);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .35s ease, visibility .35s ease;
         }
 
         .music-overlay.hidden {
@@ -491,171 +515,143 @@
             pointer-events: none;
         }
 
-        .music-dialog {
+        .music-modal {
             width: 100%;
             max-width: 390px;
-            padding: 35px;
+            padding: 37px 32px;
             text-align: center;
-            border: 1px solid rgba(220,190,255,0.30);
-            border-radius: 15px;
-            background: rgba(75, 42, 112, 0.48);
-            box-shadow: 0 20px 70px rgba(0,0,0,0.20);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            animation: popupIn .55s cubic-bezier(.2,.8,.2,1) both;
+            background: rgba(35, 20, 49, .92);
+            border: 1px solid rgba(201, 165, 255, .28);
+            border-radius: 19px;
+            box-shadow: 0 25px 90px rgba(0,0,0,.35);
+            animation: modalIn .5s ease;
         }
 
-        .music-dialog h2 {
-            font-size: 23px;
-            letter-spacing: -1px;
+        .music-modal h2 {
+            font-size: 24px;
             margin-bottom: 11px;
         }
 
-        .music-dialog p {
-            color: #e1d5ed;
-            font-size: 12px;
-            line-height: 1.8;
-        }
-
-        .music-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .music-buttons button {
-            flex: 1;
-            border: none;
-            cursor: pointer;
-            border-radius: 6px;
-            padding: 13px;
+        .music-modal p {
+            color: var(--muted);
             font-size: 11px;
-            font-weight: 700;
-            transition: .2s ease;
+            line-height: 1.8;
+            margin-bottom: 26px;
         }
 
-        #playMusicButton {
-            background: #d1b4ff;
-            color: #21132e;
+        .music-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
 
-        #playMusicButton:hover {
-            background: white;
-            transform: translateY(-3px);
+        .music-actions button {
+            min-width: 105px;
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
         }
 
-        #skipMusicButton {
-            background: rgba(255,255,255,0.10);
+        .music-yes {
+            background: var(--purple);
+            color: #1b1028;
+            border: 1px solid var(--purple);
+        }
+
+        .music-no {
+            background: rgba(255,255,255,.05);
             color: white;
-            border: 1px solid rgba(255,255,255,0.18);
+            border: 1px solid var(--border);
         }
 
-        #skipMusicButton:hover {
-            background: rgba(255,255,255,0.19);
+        .music-actions button:hover {
             transform: translateY(-3px);
         }
 
-        .music-status {
-            margin-top: 14px;
-            color: #f0e7fa;
-            font-size: 10px;
-            line-height: 1.6;
-        }
-
-        /* Music controls: speaker is display-only */
+        /* MUSIC VOLUME CONTROL */
 
         .music-control {
             position: fixed;
-            left: 24px;
-            bottom: 22px;
-            z-index: 500;
+            right: 30px;
+            bottom: 30px;
             width: 54px;
             height: 48px;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .speaker-icon {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 28px;
-            height: 28px;
+            width: 25px;
+            height: 25px;
             color: white;
+            opacity: .85;
             pointer-events: none;
-            display: block;
+            transition: opacity .2s;
         }
 
-        .volume-popup {
+        .music-control:hover .speaker-icon {
+            opacity: 1;
+        }
+
+        .volume-hitbox {
             position: absolute;
-            left: -10px;
-            bottom: 34px;
-            width: 58px;
-            height: 155px;
+            right: -8px;
+            bottom: 38px;
+            width: 72px;
+            height: 175px;
             display: flex;
-            justify-content: center;
             align-items: center;
-
-            /* Transparent rectangular hover area */
-            background: transparent;
-            border: none;
-            box-shadow: none;
-
+            justify-content: center;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transform: translateY(10px);
-
-            transition:
-                opacity .22s ease,
-                transform .25s ease,
-                visibility .22s ease;
+            transition: opacity .2s, visibility .2s;
         }
 
-        .music-control:hover .volume-popup,
-        .music-control:focus-within .volume-popup,
-        .music-control.slider-active .volume-popup {
+        .music-control:hover .volume-hitbox,
+        .music-control:focus-within .volume-hitbox {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
-            transform: translateY(0);
         }
 
         .volume-slider {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 112px;
-            height: 5px;
-            margin: 0;
-            padding: 0;
-            border: none;
-            outline: none;
-            background: transparent;
-            cursor: pointer;
+            width: 115px;
+            height: 4px;
+            position: absolute;
             transform: rotate(-90deg);
-            touch-action: none;
+            accent-color: var(--purple);
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
+            outline: none;
         }
 
         .volume-slider::-webkit-slider-runnable-track {
-            height: 4px;
-            border-radius: 10px;
-            background: rgba(255,255,255,.48);
+            height: 3px;
+            background: rgba(255,255,255,.5);
+            border-radius: 5px;
         }
 
         .volume-slider::-webkit-slider-thumb {
             appearance: none;
-            -webkit-appearance: none;
             width: 12px;
             height: 12px;
-            margin-top: -4px;
-            border: none;
             border-radius: 50%;
-            background: var(--purple-light);
-            box-shadow: 0 0 8px rgba(193,154,255,.4);
+            background: var(--purple);
+            margin-top: -4.5px;
         }
 
         .volume-slider::-moz-range-track {
-            height: 4px;
-            border-radius: 10px;
-            background: rgba(255,255,255,.48);
+            height: 3px;
+            background: rgba(255,255,255,.5);
+            border-radius: 5px;
         }
 
         .volume-slider::-moz-range-thumb {
@@ -663,132 +659,166 @@
             height: 12px;
             border: none;
             border-radius: 50%;
-            background: var(--purple-light);
-            box-shadow: 0 0 8px rgba(193,154,255,.4);
+            background: var(--purple);
         }
 
-        .volume-slider:focus-visible::-webkit-slider-thumb {
-            outline: 2px solid white;
-            outline-offset: 3px;
-        }
-
-        .volume-slider:focus-visible::-moz-range-thumb {
-            outline: 2px solid white;
-            outline-offset: 3px;
-        }
-
-        /* Version */
+        /* VERSION */
 
         .version {
             position: fixed;
-            right: 17px;
-            bottom: 13px;
-            z-index: 500;
-            color: rgba(255,255,255,.85);
-            font-size: 9px;
-            font-weight: 500;
+            bottom: 12px;
+            right: 13px;
+            z-index: 1600;
+            color: rgba(255,255,255,.65);
+            font-size: 8px;
+            font-weight: 600;
             letter-spacing: 1px;
-            text-shadow: 0 1px 5px rgba(0,0,0,.7);
             pointer-events: none;
         }
 
-        /* Animations */
+        /* ANIMATIONS */
 
-        @keyframes heroIn {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .7s ease, transform .7s ease;
         }
 
-        @keyframes popupIn {
-            from { opacity: 0; transform: translateY(18px) scale(.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes headerIn {
-            from { opacity: 0; transform: translateY(-12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes cardIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
-
-        @media (max-width: 850px) {
-            .achievement-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
             }
-
-            .about-layout {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-
-            .contact-list {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 600px) {
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
             header {
-                padding: 17px 5%;
+                padding: 0 6%;
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .container {
+                width: 88%;
+            }
+
+            .about-layout,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                letter-spacing: -2.5px;
+            }
+        }
+
+        @media(max-width: 600px) {
+            header {
+                height: 68px;
             }
 
             .logo {
                 font-size: 15px;
             }
 
+            .menu-toggle {
+                display: block;
+            }
+
             .nav-links {
-                gap: 12px;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                width: 100%;
+                padding: 20px 6%;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 22px;
+                background: rgba(19, 10, 29, .97);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
             }
 
             .nav-links a {
-                font-size: 9px;
+                font-size: 12px;
             }
 
-            main {
-                padding: 0 5%;
+            #home {
+                min-height: 90vh;
             }
 
-            .hero {
-                padding: 38px 25px;
-            }
-
-            .hero h1 {
-                letter-spacing: -3px;
+            .hero-title {
+                font-size: 46px;
             }
 
             .hero-description {
                 font-size: 12px;
             }
 
-            #achievements {
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
-
             .achievement-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
             }
 
             .achievement-card {
-                min-height: 0;
+                min-height: 220px;
+                padding: 24px;
             }
 
-            .contact-panel {
-                padding: 25px 19px;
+            #achievements,
+            #about,
+            #contact {
+                padding: 80px 0;
             }
 
             .music-control {
-                left: 17px;
-                bottom: 17px;
+                right: 17px;
+                bottom: 25px;
+            }
+
+            .scroll-indicator {
+                left: 6%;
+                bottom: 25px;
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
+        @media(prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 scroll-behavior: auto !important;
                 animation-duration: .01ms !important;
@@ -800,295 +830,346 @@
 
 <body>
 
-    <header>
-        <nav>
-            <a href="#home" class="logo">Lim Jun Xi Ted<span>.</span></a>
+    <!-- MUSIC PROMPT -->
 
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+    <div class="music-overlay" id="musicOverlay">
+        <div class="music-modal">
+            <div class="section-label">WELCOME</div>
+            <h2>Play music?</h2>
+            <p>
+                Would you like to listen to some background music
+                while exploring my portfolio?
+            </p>
+
+            <div class="music-actions">
+                <button class="music-yes" id="musicYes">Yes</button>
+                <button class="music-no" id="musicNo">No</button>
             </div>
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+
+    <audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
+
+    <!-- HEADER -->
+
+    <header>
+        <a href="#home" class="logo">JUN XI <span>TED.</span></a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="#achievements">Achievements & Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <main>
+    <!-- HOME -->
 
-        <section id="home">
-            <div class="hero">
-                <div class="hero-small">Personal Portfolio</div>
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
 
-                <h1>Lim Jun Xi Ted<span>.</span></h1>
+                <div class="hero-tag">PERSONAL PORTFOLIO · 2026</div>
+
+                <h1 class="hero-title">
+                    Lim Jun Xi<br>
+                    <span>Ted.</span>
+                </h1>
 
                 <p class="hero-description">
-                    A student with an interest in technology, programming and
-                    creative projects. I enjoy learning how things work,
-                    building with computers and exploring new ideas.
+                    An aspiring computer science enthusiast with an interest
+                    in programming, technology and photography. I enjoy
+                    exploring new ideas, developing projects and learning
+                    through hands-on experience.
                 </p>
 
-                <div class="hero-actions">
-                    <a href="#achievements" class="button button-primary">View my work</a>
-                    <a href="#contact" class="button button-secondary">Get in touch</a>
+                <div class="hero-buttons">
+                    <a href="#achievements" class="button button-primary">
+                        Explore My Work
+                    </a>
+
+                    <a href="#contact" class="button button-secondary">
+                        Get In Touch
+                    </a>
                 </div>
+
             </div>
-        </section>
+        </div>
 
-        <!--
-            ACHIEVEMENTS & WORK
+        <div class="scroll-indicator">SCROLL TO EXPLORE</div>
+    </section>
 
-            To add a new card:
-            1. Copy one complete achievement-card article.
-            2. Change its category, title and description.
-            3. Add a link if you have a project or evidence to show.
-        -->
+    <!-- ACHIEVEMENTS AND WORK -->
 
-        <section id="achievements">
-            <div class="section-label">My experience</div>
-            <h2 class="section-heading">Achievements & Work</h2>
+    <section id="achievements">
+        <div class="container">
 
-            <p class="section-description">
-                Selected projects, technical interests and experiences.
-            </p>
+            <div class="achievement-header reveal">
+                <div class="section-label">WHAT I'VE WORKED ON</div>
+                <h2 class="section-title">Achievements & Work.</h2>
+                <p class="section-description">
+                    A collection of my projects, experiences and activities.
+                    This section will continue to grow as I develop new skills
+                    and work on more projects.
+                </p>
+            </div>
 
             <div class="achievement-grid">
 
-                <!-- PROJECT: PERSONAL PORTFOLIO -->
-                <article class="achievement-card">
+                <!-- STUDY TOOLKIT -->
+
+                <article class="achievement-card reveal">
                     <div class="achievement-category">WEB DEVELOPMENT</div>
-                    <h3>Personal Portfolio Website</h3>
+
+                    <h3>Study Toolkit</h3>
+
+                    <p>
+                        A browser-based study application featuring a grade
+                        calculator, study planner and interactive flashcards.
+                        Built using JavaScript with local storage to preserve
+                        tasks and revision cards between visits.
+                    </p>
+
+                    <a href="study-toolkit.html" class="project-link">
+                        Visit Project →
+                    </a>
+
+                    <span class="project-status">
+                        HTML · CSS · JavaScript
+                    </span>
+                </article>
+
+                <!-- PORTFOLIO WEBSITE -->
+
+                <article class="achievement-card reveal">
+                    <div class="achievement-category">WEB DEVELOPMENT</div>
+
+                    <h3>Personal Portfolio</h3>
+
                     <p>
                         Designed and developed a personal portfolio website
-                        using HTML and CSS. Focused on responsive layouts,
-                        visual design, interactive elements and a personalised
-                        browsing experience.
+                        to showcase my background, technical skills,
+                        experiences and projects. Focused on responsive
+                        design and interactive elements.
                     </p>
-                    <span class="project-status">Website project</span>
+
+                    <span class="project-status">
+                        HTML · CSS · JavaScript
+                    </span>
                 </article>
 
-                <!-- PROJECT: ROBLOX GAME DESIGN -->
-                <article class="achievement-card">
-                    <div class="achievement-category">GAME DEVELOPMENT</div>
-                    <h3>Roblox Game Development</h3>
-                    <p>
-                        Explored game mechanics and progression systems using
-                        Roblox Studio and Lua. Developed concepts involving
-                        player progression, in-game economies, upgrades and
-                        interactive gameplay.
-                    </p>
-                    <span class="project-status">Game design and development</span>
-                </article>
+                <!-- INFOCOMM MEDIA -->
 
-                <!-- PROJECT: PYTHON -->
-                <article class="achievement-card">
-                    <div class="achievement-category">PROGRAMMING</div>
-                    <h3>Python Study Toolkit</h3>
-                    <p>
-                        A proposed Python utility project featuring simple
-                        calculation tools, input validation and useful
-                        functions designed to make everyday study tasks easier.
-                    </p>
-                    <span class="project-status">Project concept</span>
-                </article>
+                <article class="achievement-card reveal">
+                    <div class="achievement-category">SCHOOL LEADERSHIP</div>
 
-                <!-- EXPERIENCE: INFOCOMM MEDIA -->
-                <article class="achievement-card">
-                    <div class="achievement-category">LEADERSHIP & CCA</div>
                     <h3>Infocomm Media CCA</h3>
+
                     <p>
                         Served as Admin Secretary from 2025 to 2026.
-                        Developed organisational skills, took on administrative
-                        responsibilities and gained further exposure to
-                        computers and technology.
+                        Through this role, I developed my organisational
+                        skills and improved my knowledge of computers.
+                        I also helped plan a VIA visit to an Old Folks' Home
+                        with my CCA mates.
                     </p>
-                    <span class="project-status">2025 – 2026</span>
+
+                    <span class="project-status">
+                        Admin Secretary · 2025–2026
+                    </span>
                 </article>
 
-                <!-- EXPERIENCE: PHOTOGRAPHY -->
-                <article class="achievement-card">
+                <!-- PHOTOGRAPHY -->
+
+                <article class="achievement-card reveal">
                     <div class="achievement-category">CREATIVE WORK</div>
-                    <h3>Photography</h3>
-                    <p>
-                        Developed an interest in photography through
-                        Infocomm Media CCA, exploring visual composition,
-                        capturing moments and documenting activities.
-                    </p>
-                    <span class="project-status">Creative interest</span>
-                </article>
 
-                <!-- PROJECT: PC BUILDING -->
-                <article class="achievement-card">
-                    <div class="achievement-category">HARDWARE</div>
-                    <h3>Custom PC Building</h3>
+                    <h3>Photography</h3>
+
                     <p>
-                        Developed an interest in computer hardware through
-                        learning about PC components, system compatibility,
-                        hardware specifications and custom PC configurations.
+                        Participated in photography-related activities
+                        through my Infocomm Media CCA. This gave me
+                        opportunities to develop my interest in visual
+                        storytelling and capturing meaningful moments.
                     </p>
-                    <span class="project-status">Technical interest</span>
+
+                    <span class="project-status">
+                        Photography · Creative Media
+                    </span>
                 </article>
 
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about">
-            <div class="section-label">A little about me</div>
-            <h2 class="section-heading">About Me</h2>
+    <!-- ABOUT -->
+
+    <section id="about">
+        <div class="container">
 
             <div class="about-layout">
 
-                <div class="about-text">
-                    <p>
-                        I was a student at Anglo-Chinese School (Barker Road),
-                        where I developed a strong interest in computers,
-                        technology and creative projects.
-                    </p>
+                <div class="reveal">
+                    <div class="section-label">A LITTLE ABOUT ME</div>
 
-                    <p>
-                        During my time in school, I was part of the
-                        Infocomm Media CCA and served as Admin Secretary
-                        from 2025 to 2026. Through this experience, I
-                        developed organisational skills, worked alongside
-                        fellow CCA members and improved my knowledge of
-                        computers and technology.
-                    </p>
+                    <h2 class="section-title">About Me.</h2>
 
-                    <p>
-                        Outside of school, I enjoy programming, custom PC
-                        building and photography. I am particularly interested
-                        in Computer Science and enjoy exploring how software
-                        and technology can be used to create useful projects.
-                    </p>
+                    <div class="about-text">
+                        <p>
+                            I was a student at Anglo-Chinese School
+                            (Barker Road), where I developed an interest
+                            in technology, computers and programming.
+                        </p>
 
-                    <div class="skills">
-                        <span class="skill">Python</span>
-                        <span class="skill">Lua</span>
-                        <span class="skill">HTML</span>
-                        <span class="skill">CSS</span>
-                        <span class="skill">GitHub</span>
-                        <span class="skill">PC Building</span>
-                        <span class="skill">Photography</span>
+                        <p>
+                            During my time in school, I was part of the
+                            Infocomm Media CCA and served as its
+                            Admin Secretary from 2025 to 2026.
+                            My experiences helped me develop
+                            organisational skills and become more
+                            comfortable working with technology.
+                        </p>
+
+                        <p>
+                            Outside of academics, I enjoy programming,
+                            experimenting with web development and
+                            photography. I am particularly interested
+                            in Computer Science and hope to continue
+                            expanding my technical knowledge through
+                            personal projects.
+                        </p>
                     </div>
                 </div>
 
-                <div class="about-details">
-                    <div class="detail-row">
-                        <div class="detail-label">Education</div>
-                        <div class="detail-value">
-                            Former student of Anglo-Chinese School (Barker Road)
+                <div class="about-panel reveal">
+                    <h3>Technical Skills & Interests</h3>
+
+                    <div class="skill-group">
+                        <div class="skill-heading">PROGRAMMING</div>
+                        <div class="skill-list">
+                            <span class="skill">Python</span>
+                            <span class="skill">Lua</span>
+                            <span class="skill">HTML</span>
+                            <span class="skill">CSS</span>
+                            <span class="skill">JavaScript</span>
                         </div>
                     </div>
 
-                    <div class="detail-row">
-                        <div class="detail-label">CCA</div>
-                        <div class="detail-value">Infocomm Media</div>
-                    </div>
-
-                    <div class="detail-row">
-                        <div class="detail-label">CCA Position</div>
-                        <div class="detail-value">Admin Secretary · 2025–2026</div>
-                    </div>
-
-                    <div class="detail-row">
-                        <div class="detail-label">Interests</div>
-                        <div class="detail-value">
-                            Computer Science, Programming, Photography
+                    <div class="skill-group">
+                        <div class="skill-heading">TOOLS</div>
+                        <div class="skill-list">
+                            <span class="skill">GitHub</span>
+                            <span class="skill">Visual Studio Code</span>
                         </div>
                     </div>
+
+                    <div class="skill-group">
+                        <div class="skill-heading">INTERESTS</div>
+                        <div class="skill-list">
+                            <span class="skill">Computer Science</span>
+                            <span class="skill">Programming</span>
+                            <span class="skill">Web Development</span>
+                            <span class="skill">Photography</span>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact">
-            <div class="contact-panel">
-                <div class="section-label">Contact</div>
-                <h2 class="section-heading">Get in touch.</h2>
+    <!-- CONTACT -->
 
-                <p class="section-description">
-                    Feel free to reach out through any of the platforms below.
-                </p>
+    <section id="contact">
+        <div class="container">
 
-                <div class="contact-list">
+            <div class="contact-layout">
 
-                    <a class="contact-item" href="mailto:lim.junxi.ted@gmail.com">
-                        <h3>Email</h3>
-                        <p>lim.junxi.ted@gmail.com</p>
+                <div class="reveal">
+                    <div class="section-label">LET'S CONNECT</div>
+                    <h2 class="section-title">Get In Touch.</h2>
+
+                    <p class="section-description">
+                        Interested in getting in touch? Feel free to contact
+                        me through any of the platforms listed here.
+                    </p>
+                </div>
+
+                <div class="contact-list reveal">
+
+                    <a href="mailto:lim.junxi.ted@gmail.com" class="contact-item">
+                        <div class="contact-icon">E</div>
+                        <div class="contact-info">
+                            <small>EMAIL</small>
+                            <span>lim.junxi.ted@gmail.com</span>
+                        </div>
                     </a>
 
-                    <a class="contact-item" href="tel:+6585505598">
-                        <h3>Phone</h3>
-                        <p>+65 85505598</p>
+                    <a href="tel:+6585505598" class="contact-item">
+                        <div class="contact-icon">P</div>
+                        <div class="contact-info">
+                            <small>PHONE</small>
+                            <span>+65 85505598</span>
+                        </div>
                     </a>
 
-                    <a class="contact-item"
-                       href="https://www.instagram.com/xixi.j_/"
+                    <a href="https://www.instagram.com/xixi.j_/"
                        target="_blank"
-                       rel="noopener noreferrer">
-                        <h3>Instagram</h3>
-                        <p>@xixi.j_</p>
+                       rel="noopener noreferrer"
+                       class="contact-item">
+                        <div class="contact-icon">I</div>
+                        <div class="contact-info">
+                            <small>INSTAGRAM</small>
+                            <span>@xixi.j_</span>
+                        </div>
                     </a>
 
                 </div>
-            </div>
-        </section>
 
-    </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
 
     <footer>
         © 2026 Lim Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <audio id="backgroundMusic" src="./Loose.mp3" loop preload="auto"></audio>
-
-    <!-- Music prompt -->
-
-    <div class="music-overlay" id="musicOverlay">
-        <div class="music-dialog">
-            <h2>Play music?</h2>
-            <p>
-                There's music playing in the background.
-                Would you like to listen while browsing?
-            </p>
-
-            <div class="music-buttons">
-                <button id="playMusicButton" type="button">Yes, play music</button>
-                <button id="skipMusicButton" type="button">No thanks</button>
-            </div>
-
-            <div class="music-status" id="musicStatus" aria-live="polite"></div>
-        </div>
-    </div>
-
-    <!-- Display-only speaker and volume slider -->
+    <!-- MUSIC CONTROL -->
 
     <div class="music-control" id="musicControl">
 
-        <div class="volume-popup">
+        <div class="volume-hitbox">
             <input
                 type="range"
-                class="volume-slider"
                 id="volumeSlider"
+                class="volume-slider"
                 min="0"
                 max="1"
                 step="0.01"
-                value="0.5"
+                value="0.35"
                 aria-label="Music volume"
-                title="Adjust music volume">
+            >
         </div>
 
         <svg class="speaker-icon"
-             id="musicIcon"
              viewBox="0 0 24 24"
              fill="none"
              stroke="currentColor"
-             stroke-width="1.8"
+             stroke-width="1.7"
              stroke-linecap="round"
              stroke-linejoin="round"
              aria-hidden="true">
-            <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
+            <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
             <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-            <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+            <path d="M19 5a10 10 0 0 1 0 14"></path>
         </svg>
 
     </div>
@@ -1096,177 +1177,172 @@
     <div class="version">VERSION 18</div>
 
     <script>
-        // Always start at the top.
+        /* ALWAYS START AT THE TOP */
 
         if ("scrollRestoration" in history) {
             history.scrollRestoration = "manual";
         }
 
         function returnToTop() {
-            document.documentElement.style.scrollBehavior = "auto";
             window.scrollTo(0, 0);
-
-            requestAnimationFrame(() => {
-                document.documentElement.style.scrollBehavior = "";
-            });
         }
 
         window.addEventListener("load", returnToTop);
         window.addEventListener("pageshow", returnToTop);
 
-        // Subtle button click sound.
+        /* MUSIC */
 
-        let clickAudioContext;
+        const music = document.getElementById("backgroundMusic");
+        const overlay = document.getElementById("musicOverlay");
+        const yesButton = document.getElementById("musicYes");
+        const noButton = document.getElementById("musicNo");
+        const volumeSlider = document.getElementById("volumeSlider");
 
-        function playClickSound() {
+        music.volume = Number(volumeSlider.value);
+
+        yesButton.addEventListener("click", async () => {
+            music.volume = Number(volumeSlider.value);
+
             try {
-                const AudioContextClass =
-                    window.AudioContext || window.webkitAudioContext;
-
-                if (!AudioContextClass) return;
-
-                if (!clickAudioContext) {
-                    clickAudioContext = new AudioContextClass();
-                }
-
-                if (clickAudioContext.state === "suspended") {
-                    clickAudioContext.resume();
-                }
-
-                const oscillator = clickAudioContext.createOscillator();
-                const gain = clickAudioContext.createGain();
-
-                oscillator.type = "sine";
-                oscillator.frequency.setValueAtTime(
-                    620, clickAudioContext.currentTime
-                );
-                oscillator.frequency.exponentialRampToValueAtTime(
-                    390, clickAudioContext.currentTime + 0.045
-                );
-
-                gain.gain.setValueAtTime(
-                    0.0001, clickAudioContext.currentTime
-                );
-                gain.gain.exponentialRampToValueAtTime(
-                    0.055, clickAudioContext.currentTime + 0.005
-                );
-                gain.gain.exponentialRampToValueAtTime(
-                    0.0001, clickAudioContext.currentTime + 0.06
-                );
-
-                oscillator.connect(gain);
-                gain.connect(clickAudioContext.destination);
-
-                oscillator.start();
-                oscillator.stop(clickAudioContext.currentTime + 0.065);
-
+                await music.play();
+                overlay.classList.add("hidden");
             } catch (error) {
-                console.warn("Click sound unavailable:", error);
+                alert("Music could not be played. Please check that Loose.mp3 is uploaded to the repository.");
             }
-        }
-
-        document.querySelectorAll(
-            "button, .button, .nav-links a, .logo, .contact-item"
-        ).forEach(element => {
-            element.addEventListener("click", playClickSound);
         });
 
-        // Music controls.
-
-        const audio = document.getElementById("backgroundMusic");
-        const overlay = document.getElementById("musicOverlay");
-        const playButton = document.getElementById("playMusicButton");
-        const skipButton = document.getElementById("skipMusicButton");
-        const musicIcon = document.getElementById("musicIcon");
-        const musicStatus = document.getElementById("musicStatus");
-        const volumeSlider = document.getElementById("volumeSlider");
-        const musicControl = document.getElementById("musicControl");
-
-        audio.volume = 0.5;
-
-        const speakerOn = `
-            <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
-            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-            <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
-        `;
-
-        const speakerOff = `
-            <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
-        `;
-
-        function updateMusicIcon() {
-            musicIcon.innerHTML =
-                audio.volume === 0 ? speakerOff : speakerOn;
-        }
-
-        async function startMusic() {
-            musicStatus.textContent = "Starting music...";
-
-            try {
-                audio.volume = Number(volumeSlider.value);
-                await audio.play();
-
-                updateMusicIcon();
-                overlay.classList.add("hidden");
-                musicStatus.textContent = "";
-
-            } catch (error) {
-                if (audio.error) {
-                    musicStatus.textContent =
-                        "Unable to load Loose.mp3. Check the filename and upload.";
-                } else {
-                    musicStatus.textContent =
-                        "Playback was blocked. Please try again.";
-                }
-
-                console.error("Audio playback error:", error);
-            }
-        }
-
-        function stopMusic() {
-            audio.pause();
-            updateMusicIcon();
-        }
-
-        playButton.addEventListener("click", startMusic);
-
-        skipButton.addEventListener("click", () => {
-            stopMusic();
+        noButton.addEventListener("click", () => {
+            music.pause();
+            music.currentTime = 0;
             overlay.classList.add("hidden");
         });
 
-        // The slider is the only music volume control.
-        // No click-to-mute behaviour is attached to the speaker.
-
         volumeSlider.addEventListener("input", () => {
-            audio.volume = Number(volumeSlider.value);
-            updateMusicIcon();
+            music.volume = Number(volumeSlider.value);
         });
 
-        // Keep the slider visible while the user is dragging it.
+        /* MOBILE NAVIGATION */
 
-        volumeSlider.addEventListener("pointerdown", () => {
-            musicControl.classList.add("slider-active");
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+            menuToggle.textContent =
+                navLinks.classList.contains("open") ? "×" : "☰";
         });
 
-        window.addEventListener("pointerup", () => {
-            musicControl.classList.remove("slider-active");
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuToggle.textContent = "☰";
+            });
         });
 
-        window.addEventListener("pointercancel", () => {
-            musicControl.classList.remove("slider-active");
+        /* SCROLL REVEAL */
+
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
         });
 
-        audio.addEventListener("volumechange", updateMusicIcon);
-
-        audio.addEventListener("error", () => {
-            musicStatus.textContent =
-                "Could not load Loose.mp3. Check that it exists in the repository root.";
-
-            console.error("Audio file failed to load:", audio.error);
+        document.querySelectorAll(".reveal").forEach(element => {
+            revealObserver.observe(element);
         });
 
-        updateMusicIcon();
+        /* ACTIVE NAVIGATION */
+
+        const sections = document.querySelectorAll("section[id]");
+        const navigationLinks = document.querySelectorAll(".nav-links a");
+
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navigationLinks.forEach(link => {
+                        link.classList.toggle(
+                            "active",
+                            link.getAttribute("href") === "#" + entry.target.id
+                        );
+                    });
+                }
+            });
+        }, {
+            rootMargin: "-35% 0px -55% 0px"
+        });
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        /* BUTTON CLICK SOUNDS */
+
+        let audioContext;
+
+        function playClickSound() {
+            try {
+                const AudioContext =
+                    window.AudioContext || window.webkitAudioContext;
+
+                if (!AudioContext) return;
+
+                if (!audioContext) {
+                    audioContext = new AudioContext();
+                }
+
+                if (audioContext.state === "suspended") {
+                    audioContext.resume();
+                }
+
+                const oscillator = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+
+                oscillator.type = "sine";
+                oscillator.frequency.setValueAtTime(
+                    650,
+                    audioContext.currentTime
+                );
+
+                oscillator.frequency.exponentialRampToValueAtTime(
+                    420,
+                    audioContext.currentTime + 0.045
+                );
+
+                gain.gain.setValueAtTime(
+                    0.045,
+                    audioContext.currentTime
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    audioContext.currentTime + 0.055
+                );
+
+                oscillator.connect(gain);
+                gain.connect(audioContext.destination);
+
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.06);
+
+            } catch (error) {
+                // Sound is optional; the website works without it.
+            }
+        }
+
+        document.addEventListener("click", event => {
+            const target = event.target.closest(
+                "button, .button, .nav-links a, .logo, .contact-item, .project-link"
+            );
+
+            if (target) {
+                playClickSound();
+            }
+        });
     </script>
 
 </body>
