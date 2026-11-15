@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +13,13 @@
 <style>
 :root {
     --background: #ffffff;
-    --surface: #ffffff;
-    --surface-soft: #f8f8f8;
+    --surface: rgba(255,255,255,.42);
+    --surface-soft: rgba(255,255,255,.32);
     --text: #171717;
-    --muted: #737373;
-    --border: #e8e8e8;
+    --muted: #555;
+    --border: transparent;
     --accent: #555555;
-    --shadow: 0 12px 40px rgba(0,0,0,.045);
+    --shadow: 0 12px 40px rgba(0,0,0,.07);
 }
 
 * {
@@ -32,14 +31,33 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    min-height: 100%;
+    background: transparent;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #fff;
+    background: transparent;
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+}
+
+/* BACKGROUND IMAGE */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("./background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    pointer-events: none;
 }
 
 a {
@@ -69,11 +87,12 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 15px 24px;
-    background: rgba(255,255,255,.88);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    border: none;
     border-radius: 18px;
-    box-shadow: 0 5px 25px rgba(0,0,0,.035);
+    box-shadow: 0 8px 35px rgba(0,0,0,.07);
 }
 
 .nav-logo {
@@ -92,7 +111,7 @@ nav {
 .nav-links a {
     font-size: 11px;
     font-weight: 600;
-    color: #666;
+    color: #555;
     transition: color .2s ease;
 }
 
@@ -112,7 +131,7 @@ section {
 }
 
 .section-label {
-    color: #888;
+    color: #555;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -130,7 +149,7 @@ section {
 
 .section-description {
     max-width: 650px;
-    color: var(--muted);
+    color: #555;
     font-size: 14px;
 }
 
@@ -142,6 +161,7 @@ section {
     align-items: center;
     padding-top: 120px;
     padding-bottom: 80px;
+    position: relative;
 }
 
 .hero-content {
@@ -151,13 +171,17 @@ section {
 .hero-tag {
     display: inline-block;
     padding: 8px 14px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 100px;
+    background: rgba(255,255,255,.42);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: #666;
+    color: #444;
     margin-bottom: 28px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.045);
 }
 
 .hero-title {
@@ -166,16 +190,18 @@ section {
     letter-spacing: -6px;
     font-weight: 800;
     margin-bottom: 25px;
+    color: #171717;
+    text-shadow: 0 2px 20px rgba(255,255,255,.25);
 }
 
 .hero-title span {
-    color: #999;
+    color: #777;
 }
 
 .hero-description {
     max-width: 600px;
     font-size: 16px;
-    color: #737373;
+    color: #444;
     margin-bottom: 35px;
 }
 
@@ -191,14 +217,16 @@ section {
     justify-content: center;
     padding: 13px 21px;
     border-radius: 10px;
+    border: none;
     font-size: 12px;
     font-weight: 700;
     transition: .2s ease;
 }
 
 .btn-primary {
-    background: #171717;
+    background: rgba(23,23,23,.92);
     color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
 }
 
 .btn-primary:hover {
@@ -207,13 +235,15 @@ section {
 }
 
 .btn-secondary {
-    border: 1px solid var(--border);
-    color: #333;
-    background: white;
+    color: #222;
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.055);
 }
 
 .btn-secondary:hover {
-    background: #f5f5f5;
+    background: rgba(255,255,255,.8);
     transform: translateY(-2px);
 }
 
@@ -222,7 +252,7 @@ section {
     bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
-    color: #aaa;
+    color: #555;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -240,20 +270,22 @@ section {
 
 .interest-card {
     padding: 30px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 17px;
-    background: #fff;
+    background: rgba(255,255,255,.42);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
     transition: .25s ease;
     box-shadow: var(--shadow);
 }
 
 .interest-card:hover {
     transform: translateY(-5px);
-    border-color: #ccc;
+    background: rgba(255,255,255,.58);
 }
 
 .card-number {
-    color: #aaa;
+    color: #777;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -264,10 +296,11 @@ section {
     font-size: 19px;
     font-weight: 800;
     margin-bottom: 10px;
+    color: #171717;
 }
 
 .interest-card p {
-    color: var(--muted);
+    color: #555;
     font-size: 12px;
 }
 
@@ -282,12 +315,15 @@ section {
 
 .skill {
     padding: 10px 17px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 9px;
-    background: #fff;
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     font-size: 12px;
     font-weight: 600;
-    color: #444;
+    color: #333;
+    box-shadow: 0 5px 18px rgba(0,0,0,.045);
 }
 
 /* ACHIEVEMENTS */
@@ -300,27 +336,30 @@ section {
 }
 
 .achievement-card {
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 16px;
     padding: 26px;
-    background: #fff;
+    background: rgba(255,255,255,.43);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
     box-shadow: var(--shadow);
     transition: .2s ease;
 }
 
 .achievement-card:hover {
     transform: translateY(-4px);
-    border-color: #ccc;
+    background: rgba(255,255,255,.6);
 }
 
 .achievement-card h3 {
     font-size: 16px;
     font-weight: 800;
     margin-bottom: 8px;
+    color: #171717;
 }
 
 .achievement-card p {
-    color: var(--muted);
+    color: #555;
     font-size: 12px;
 }
 
@@ -335,7 +374,7 @@ section {
 }
 
 .about-text {
-    color: #666;
+    color: #444;
     font-size: 14px;
 }
 
@@ -344,15 +383,18 @@ section {
 }
 
 .about-details {
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 16px;
     padding: 25px;
+    background: rgba(255,255,255,.43);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
     box-shadow: var(--shadow);
 }
 
 .detail-row {
     padding: 13px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
 .detail-row:last-child {
@@ -363,7 +405,7 @@ section {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: #999;
+    color: #666;
     text-transform: uppercase;
 }
 
@@ -371,16 +413,19 @@ section {
     font-size: 13px;
     font-weight: 600;
     margin-top: 4px;
+    color: #171717;
 }
 
 /* CONTACT */
 
 .contact-card {
     margin-top: 35px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 18px;
     padding: 30px;
-    background: #fff;
+    background: rgba(255,255,255,.43);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
     box-shadow: var(--shadow);
 }
 
@@ -395,14 +440,16 @@ section {
     align-items: center;
     gap: 14px;
     padding: 13px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 11px;
+    background: rgba(255,255,255,.38);
     transition: .2s ease;
     min-width: 0;
 }
 
 .contact-item:hover {
-    background: #f8f8f8;
+    background: rgba(255,255,255,.72);
+    transform: translateY(-2px);
 }
 
 .contact-item img {
@@ -417,7 +464,7 @@ section {
 }
 
 .contact-label {
-    color: #999;
+    color: #666;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -427,6 +474,7 @@ section {
 .contact-value {
     font-size: 13px;
     font-weight: 600;
+    color: #171717;
     overflow-wrap: anywhere;
 }
 
@@ -434,10 +482,13 @@ section {
 
 footer {
     padding: 30px 20px;
-    border-top: 1px solid var(--border);
+    border-top: none;
     text-align: center;
-    color: #999;
+    color: #444;
     font-size: 11px;
+    background: rgba(255,255,255,.22);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 /* MUSIC CONTROL */
@@ -460,10 +511,12 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 12px 0;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 25px;
-    background: rgba(255,255,255,.95);
-    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px);
@@ -482,11 +535,12 @@ footer {
     -webkit-appearance: none;
     width: 90px;
     height: 4px;
-    background: #ddd;
+    background: rgba(0,0,0,.16);
     border-radius: 10px;
     transform: rotate(-90deg);
     cursor: pointer;
     margin: 0;
+    outline: none;
 }
 
 #volumeSlider::-webkit-slider-thumb {
@@ -496,25 +550,27 @@ footer {
     height: 14px;
     border-radius: 50%;
     background: #222;
-    border: 2px solid white;
+    border: none;
     box-shadow: 0 1px 5px rgba(0,0,0,.2);
 }
 
 #volumeSlider::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: #222;
-    border: 2px solid white;
+    border: none;
 }
 
 .speaker-display {
     width: 48px;
     height: 48px;
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 15px;
-    background: white;
-    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -538,8 +594,9 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(255,255,255,.78);
-    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .music-modal.hidden {
@@ -549,10 +606,12 @@ footer {
 .music-modal-card {
     width: min(430px, 100%);
     padding: 38px;
-    background: #fff;
-    border: 1px solid #e8e8e8;
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: none;
     border-radius: 22px;
-    box-shadow: 0 20px 80px rgba(0,0,0,.1);
+    box-shadow: 0 20px 80px rgba(0,0,0,.12);
     text-align: center;
 }
 
@@ -560,7 +619,7 @@ footer {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 3px;
-    color: #999;
+    color: #555;
     margin-bottom: 17px;
 }
 
@@ -569,10 +628,11 @@ footer {
     font-weight: 800;
     letter-spacing: -1px;
     margin-bottom: 12px;
+    color: #171717;
 }
 
 .music-modal-card p {
-    color: #777;
+    color: #555;
     font-size: 12px;
     margin-bottom: 25px;
 }
@@ -586,7 +646,7 @@ footer {
     flex: 1;
     padding: 13px 10px;
     border-radius: 10px;
-    border: 1px solid var(--border);
+    border: none;
     cursor: pointer;
     font-size: 11px;
     font-weight: 700;
@@ -595,21 +655,23 @@ footer {
 
 #musicYes {
     color: white;
-    background: #171717;
-    border-color: #171717;
+    background: rgba(23,23,23,.92);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
 }
 
 #musicYes:hover {
     background: #444;
+    transform: translateY(-2px);
 }
 
 #musicNo {
-    background: white;
-    color: #333;
+    background: rgba(255,255,255,.58);
+    color: #222;
 }
 
 #musicNo:hover {
-    background: #f5f5f5;
+    background: rgba(255,255,255,.85);
+    transform: translateY(-2px);
 }
 
 /* REVEAL ANIMATIONS */
