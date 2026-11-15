@@ -67,6 +67,7 @@ body::before {
 }
 
 /* White overlay for readability */
+
 body::after {
     content: "";
     position: fixed;
@@ -551,7 +552,8 @@ footer {
 }
 
 /* ==========================================
-   MUSIC PLAYER
+   MINIMAL MUSIC PLAYER
+   HIDDEN VOLUME SLIDER ON HOVER
 ========================================== */
 
 .music-control {
@@ -563,32 +565,54 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 
-    padding: 14px 12px;
-    border-radius: 25px;
-
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: 1px solid rgba(255,255,255,0.95);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    padding: 8px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
+/* Invisible hover area */
+
 .volume-container {
-    height: 105px;
+    position: absolute;
+    bottom: 48px;
+
+    width: 48px;
+    height: 125px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* Reveal slider when hovering over player */
+
+.music-control:hover .volume-container,
+.music-control:focus-within .volume-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 #volumeSlider {
     appearance: none;
     -webkit-appearance: none;
-    width: 85px;
+
+    width: 90px;
     height: 4px;
+
     border-radius: 10px;
-    background: #d1d1d1;
+    background: rgba(0, 0, 0, 0.2);
+
     transform: rotate(-90deg);
     cursor: pointer;
 }
@@ -596,8 +620,10 @@ footer {
 #volumeSlider::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
+
     width: 13px;
     height: 13px;
+
     border-radius: 50%;
     background: #171717;
     border: 2px solid white;
@@ -607,6 +633,7 @@ footer {
 #volumeSlider::-moz-range-thumb {
     width: 10px;
     height: 10px;
+
     border-radius: 50%;
     background: #171717;
     border: 2px solid white;
@@ -614,21 +641,29 @@ footer {
 }
 
 .speaker-display {
-    width: 38px;
-    height: 38px;
-    border-radius: 13px;
-    border: none;
-    background: rgba(255,255,255,0.9);
+    width: 42px;
+    height: 42px;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.8);
+
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
     color: #171717;
+    font: inherit;
+
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .speaker-display:hover {
-    background: white;
+    background: rgba(255,255,255,0.85);
     transform: scale(1.06);
 }
 
@@ -771,7 +806,7 @@ footer {
 <div id="enterScreen" role="button" tabindex="0"
      aria-label="Click to enter the portfolio">
     <div class="enter-content">
-        <h1 class="enter-title">Lim Jun Xi</h1>
+        <h1 class="enter-title">Lim Jun Xi Ted.</h1>
         <div class="enter-line"></div>
         <p class="enter-subtitle">Click anywhere to enter</p>
     </div>
@@ -782,7 +817,7 @@ footer {
 ========================================== -->
 
 <nav>
-    <a href="#home" class="nav-logo">LIM JUN XI</a>
+    <a href="#home" class="nav-logo">LIM JUN XI TED.</a>
 
     <div class="nav-links">
         <a href="#home">HOME</a>
@@ -799,8 +834,15 @@ footer {
      HOME
 ========================================== -->
 
+<section id="home">
+    <div class="hero-content reveal">
+        <div class="hero-small glass">
+            SECONDARY 4 STUDENT · ACS (BARKER ROAD)
+        </div>
+
         <h1 class="hero-title">
             Lim Jun Xi<br>
+            <span>Ted.</span>
         </h1>
 
         <p class="hero-description">
@@ -917,9 +959,11 @@ footer {
 
         <div class="work-item glass reveal">
             <div>
-                <h3>Software Developer</h3>
+                <h3>Infocomm Media CCA</h3>
                 <p>
-                    Designed, built, and delivered custom software solutions for external clients on a contract basis, managing project timelines and technical requirements independently.
+                    Participated in photography-related activities
+                    and collaborated with CCA members on projects
+                    and school activities.
                 </p>
             </div>
             <span class="work-date">2023 – 2026</span>
@@ -929,13 +973,39 @@ footer {
             <div>
                 <h3>Admin Secretary</h3>
                 <p>
-                    Served as Admin Secretary in a Infocomm Media
+                    Served as Admin Secretary in the Infocomm Media
                     CCA, developing organisational skills and gaining
                     a deeper understanding of technology and computers.
                 </p>
             </div>
             <span class="work-date">2025 – 2026</span>
         </div>
+
+        <div class="work-item glass reveal">
+            <div>
+                <h3>Class Monitor</h3>
+                <p>
+                    Took on responsibilities within the class and
+                    developed leadership, communication and
+                    organisational skills.
+                </p>
+            </div>
+            <span class="work-date">2023</span>
+        </div>
+
+        <div class="work-item glass reveal">
+            <div>
+                <h3>Values in Action</h3>
+                <p>
+                    Helped CCA members plan a VIA visit to an
+                    Old Folks' Home, contributing to the organisation
+                    of a community-oriented activity.
+                </p>
+            </div>
+            <span class="work-date">2026</span>
+        </div>
+
+    </div>
 </section>
 
 <!-- ==========================================
@@ -976,7 +1046,7 @@ footer {
 
     <div class="about-card glass reveal">
         <p>
-            I was a Secondary 4 student at Anglo-Chinese
+            I am currently a Secondary 4 student at Anglo-Chinese
             School (Barker Road). I have developed a strong interest
             in information technology from a young age, particularly
             in programming and computer science.
@@ -1136,7 +1206,6 @@ function enterWebsite() {
     if (playbackStarted) return;
 
     playbackStarted = true;
-
     enterScreen.classList.add("hidden");
 
     playCurrentTrack();
