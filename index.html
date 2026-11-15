@@ -1,670 +1,93 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lim Jun Xi Ted</title>
+<div id="music"></div>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<button id="musicButton" onclick="toggleMusic()" aria-label="Mute music">
+    🔊
+</button>
 
 <style>
-:root {
-    --purple: #9b75ff;
-    --glass: rgba(88,55,145,.28);
-    --line: rgba(221,202,255,.25);
-    --text: #fbf8ff;
-    --muted: #e0d6f0;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 84px;
-}
-
-body {
-    position: relative;
-    isolation: isolate;
-    margin: 0;
-    min-height: 100vh;
-    color: var(--text);
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #28163b;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-        linear-gradient(130deg, rgba(30,14,58,.72), rgba(91,48,140,.42)),
-        url('background.jpg') center/cover no-repeat;
-    pointer-events: none;
-}
-
-main, footer {
-    position: relative;
-    z-index: 1;
-}
-
-/* NAVIGATION */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: rgba(68,39,112,.38);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(18px);
-}
-
-nav {
-    width: min(1080px,92%);
-    height: 70px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.brand {
-    font-weight: 800;
-    letter-spacing: -.04em;
-}
-
-.links {
-    display: flex;
-    gap: 25px;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.links a:hover {
-    color: white;
-}
-
-/* HERO */
-
-.hero, .section {
-    width: min(1000px,90%);
-    margin: auto;
-}
-
-.hero {
-    min-height: 590px;
-    display: flex;
-    align-items: center;
-    padding: 90px 0;
-}
-
-.eyebrow, .kicker {
-    color: #dbc5ff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .13em;
-    text-transform: uppercase;
-}
-
-h1 {
-    font-size: clamp(48px,8vw,82px);
-    line-height: 1.04;
-    letter-spacing: -.065em;
-    margin: 18px 0;
-}
-
-.hero p, .section-note, .about p {
-    max-width: 620px;
-    line-height: 1.8;
-    color: var(--muted);
-}
-
-/* BUTTONS */
-
-.actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
-
-.button {
-    display: inline-block;
-    padding: 12px 17px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: rgba(197,162,255,.2);
-    backdrop-filter: blur(12px);
-    font-size: 13px;
-    font-weight: 700;
-    transition: .25s;
-}
-
-.button:hover {
-    background: rgba(197,162,255,.4);
-    transform: translateY(-2px);
-}
-
-.button.primary {
-    background: rgba(181,136,255,.62);
-}
-
-/* SECTIONS */
-
-.section {
-    padding: 78px 0;
-    border-top: 1px solid var(--line);
-}
-
-.section h2 {
-    font-size: clamp(30px,5vw,44px);
-    letter-spacing: -.05em;
-    margin: 9px 0 12px;
-}
-
-.head {
-    margin-bottom: 28px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 16px;
-}
-
-.glass {
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: var(--glass);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 12px 40px #16092b30;
-}
-
-.project {
-    padding: 23px;
-    min-height: 210px;
-    display: flex;
-    flex-direction: column;
-    transition: .25s;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-    background: rgba(105,70,165,.4);
-}
-
-.project h3 {
-    margin: 8px 0;
-}
-
-.project p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.tags {
-    margin-top: auto;
-    padding-top: 18px;
-    color: #e6d6ff;
-    font-size: 11px;
-    word-spacing: 10px;
-}
-
-/* ABOUT */
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 22px;
-}
-
-.about, .skills {
-    padding: 24px;
-}
-
-.skills h3 {
-    margin: 0 0 15px;
-}
-
-.skills span {
-    display: inline-block;
-    padding: 8px 10px;
-    margin: 4px;
-    border: 1px solid var(--line);
-    border-radius: 30px;
-    background: #ba91ff22;
-    font-size: 12px;
-}
-
-/* CONTACT */
-
-.contact {
-    padding: 36px;
-}
-
-.contact p {
-    color: var(--muted);
-    line-height: 1.7;
-}
-
-/* FOOTER */
-
-footer {
-    padding: 28px 5%;
-    text-align: center;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-/* MUSIC BUTTON */
-
-.sound {
-    position: fixed;
-    left: 22px;
-    bottom: 22px;
-    z-index: 20;
-
-    width: 56px;
-    height: 56px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 16px;
-
-    background: rgba(136,91,201,.65);
-    backdrop-filter: blur(18px);
-
-    box-shadow: 0 8px 30px rgba(0,0,0,.25);
-
-    cursor: pointer;
-    transition: .25s;
-}
-
-.sound:hover {
-    background: rgba(165,119,235,.85);
-    transform: translateY(-3px);
-}
-
-.sound img {
-    width: 27px;
-    height: 27px;
-    object-fit: contain;
-}
-
-.sound:active {
-    transform: scale(.94);
-}
-
-/* YOUTUBE PLAYER */
-
 #music {
     position: fixed;
     width: 1px;
     height: 1px;
     left: -10px;
-    bottom: 0;
-    opacity: 0;
-    pointer-events: none;
+    top: -10px;
+    overflow: hidden;
 }
 
-/* MOBILE */
+#musicButton {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
 
-@media(max-width:700px) {
-    .links {
-        gap: 12px;
-        font-size: 11px;
-    }
-
-    .hero {
-        min-height: 520px;
-    }
-
-    .grid, .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section {
-        padding: 60px 0;
-    }
+#musicButton:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
 }
 </style>
-</head>
-
-<body>
-
-<div class="backdrop"></div>
-
-<!-- YOUTUBE PLAYER -->
-<div id="music"></div>
-
-<header>
-<nav>
-    <a class="brand" href="#home">Lim Jun Xi Ted</a>
-
-    <div class="links">
-        <a href="#work">Interests</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="https://github.com/limjunxi" target="_blank">GitHub ↗</a>
-    </div>
-</nav>
-</header>
-
-<main>
-
-<!-- HOME -->
-
-<section class="hero" id="home">
-    <div>
-        <div class="eyebrow">
-            Programming · Technology · Photography
-        </div>
-
-        <h1>
-            Hi, I'm Lim Jun Xi Ted.
-        </h1>
-
-        <p>
-            I'm a student with an interest in computers and technology.
-            I spend my free time programming, building PCs and taking photos.
-        </p>
-
-        <div class="actions">
-            <a class="button primary" href="#work">
-                Explore my interests ↓
-            </a>
-
-            <a class="button" href="https://github.com/limjunxi" target="_blank">
-                GitHub ↗
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- INTERESTS -->
-
-<section class="section" id="work">
-
-    <div class="head">
-        <div class="kicker">01 / Interests</div>
-        <h2>What I do</h2>
-    </div>
-
-    <div class="grid">
-
-        <article class="project glass">
-            <h3>Programming</h3>
-            <p>
-                I've been learning Python and Lua and using them to
-                experiment with different ideas. I enjoy figuring out
-                how things work and trying to turn those ideas into projects.
-            </p>
-            <div class="tags">Python · Lua · Programming</div>
-        </article>
-
-        <article class="project glass">
-            <h3>PC Building</h3>
-            <p>
-                I've always been interested in computer hardware.
-                I enjoy looking into different components, comparing
-                specifications and learning about PC configurations.
-            </p>
-            <div class="tags">Hardware · Custom PCs</div>
-        </article>
-
-        <article class="project glass">
-            <h3>Photography</h3>
-            <p>
-                I enjoy photography, especially capturing different
-                scenes and trying out different compositions.
-                It's something I also get to explore through my CCA.
-            </p>
-            <div class="tags">Photography · Composition</div>
-        </article>
-
-        <article class="project glass">
-            <h3>Web Development</h3>
-            <p>
-                I've been learning HTML and CSS to build websites.
-                This portfolio is one of the things I've been working on
-                while learning how web development works.
-            </p>
-            <div class="tags">HTML · CSS · Web Development</div>
-        </article>
-
-    </div>
-</section>
-
-<!-- ABOUT -->
-
-<section class="section" id="about">
-
-    <div class="head">
-        <div class="kicker">02 / About</div>
-        <h2>About me</h2>
-    </div>
-
-    <div class="about-grid">
-
-        <div class="about glass">
-
-            <p>
-                I'm Lim Jun Xi Ted, currently studying at
-                Anglo-Chinese School (Barker Road).
-            </p>
-
-            <p>
-                I've had an interest in computers from a young age.
-                Over time, this has grown into an interest in programming,
-                computer hardware and web development.
-            </p>
-
-            <p>
-                I'm also part of the school's Infocomm Media CCA,
-                where I've been involved in photography and served
-                as an Admin Secretary from 2025 to 2026.
-            </p>
-
-        </div>
-
-        <div class="skills glass">
-
-            <h3>Skills & Interests</h3>
-
-            <span>Python</span>
-            <span>Lua</span>
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>GitHub</span>
-            <span>PC Building</span>
-            <span>Photography</span>
-
-        </div>
-
-    </div>
-</section>
-
-<!-- CONTACT -->
-
-<section class="section" id="contact">
-
-    <div class="contact glass">
-
-        <div class="kicker">03 / Contact</div>
-
-        <h2>Contact</h2>
-
-        <p>
-            You can find some of my work and projects on GitHub.
-        </p>
-
-        <div class="actions">
-            <a class="button primary"
-               href="https://github.com/limjunxi"
-               target="_blank">
-                Visit my GitHub ↗
-            </a>
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-<footer>
-    © 2026 Lim Jun Xi Ted
-</footer>
-
-<!-- MUSIC BUTTON -->
-
-<button class="sound" id="mute" aria-label="Mute music" title="Mute music">
-    <img
-        id="soundIcon"
-        src="https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png"
-        alt="Sound on">
-</button>
-
-<!-- YOUTUBE API -->
 
 <script>
-const MUSIC_YOUTUBE_URL = "https://www.youtube.com/watch?v=o4qjk8_5gmU";
-
 let player;
 let isMuted = false;
-let playerReady = false;
-
-const muteButton = document.getElementById("mute");
-const soundIcon = document.getElementById("soundIcon");
-
-function youtubeId(link) {
-    try {
-        const url = new URL(link);
-
-        const id = url.hostname === "youtu.be"
-            ? url.pathname.slice(1)
-            : url.searchParams.get("v") ||
-              url.pathname.split("/").filter(Boolean).pop();
-
-        return /^[A-Za-z0-9_-]{11}$/.test(id || "") ? id : "";
-
-    } catch {
-        return "";
-    }
-}
-
-const videoId = youtubeId(o4qjk8_5gmU);
-
-function updateButton() {
-    if (isMuted) {
-        soundIcon.src =
-            "https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png";
-
-        muteButton.title = "Unmute music";
-        muteButton.setAttribute("aria-label", "Unmute music");
-    } else {
-        soundIcon.src =
-            "https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png";
-
-        muteButton.title = "Mute music";
-        muteButton.setAttribute("aria-label", "Mute music");
-    }
-}
-
-/* Load YouTube API */
 
 function onYouTubeIframeAPIReady() {
-
-    if (!videoId) return;
-
     player = new YT.Player("music", {
         height: "1",
         width: "1",
-
-        videoId: videoId,
+        videoId: "o4qjk8_5gmU",
 
         playerVars: {
             autoplay: 1,
             controls: 0,
             loop: 1,
-            playlist: videoId,
-            playsinline: 1,
-            disablekb: 1,
-            fs: 0
+            playlist: "o4qjk8_5gmU",
+            playsinline: 1
         },
 
         events: {
             onReady: function(event) {
-                playerReady = true;
-
-                // Always attempt to start unmuted.
-                isMuted = false;
-                updateButton();
-
                 event.target.unMute();
                 event.target.setVolume(100);
                 event.target.playVideo();
-            },
-
-            onStateChange: function(event) {
-                // Restart when the video finishes.
-                if (event.data === YT.PlayerState.ENDED) {
-                    player.playVideo();
-                }
             }
         }
     });
 }
 
-/* MUTE / UNMUTE */
+function toggleMusic() {
+    if (!player) return;
 
-muteButton.addEventListener("click", function() {
+    if (isMuted === false) {
+        player.mute();
+        isMuted = true;
 
-    if (!playerReady || !player) return;
-
-    if (isMuted) {
+        document.getElementById("musicButton").textContent = "🔇";
+        document.getElementById("musicButton").setAttribute("aria-label", "Unmute music");
+    } else {
         player.unMute();
         player.setVolume(100);
         player.playVideo();
-
         isMuted = false;
 
-    } else {
-        player.mute();
-
-        isMuted = true;
+        document.getElementById("musicButton").textContent = "🔊";
+        document.getElementById("musicButton").setAttribute("aria-label", "Mute music");
     }
+}
 
-    updateButton();
-
-});
-
-/* Initial icon is always sound on */
-updateButton();
-
-/* Load YouTube API script */
-
-const youtubeScript = document.createElement("script");
-
-youtubeScript.src = "https://www.youtube.com/iframe_api";
-
-document.head.appendChild(youtubeScript);
-
+const tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
 </script>
-
-</body>
-</html>
