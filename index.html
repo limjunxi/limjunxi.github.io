@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0814">
     <title>Lim Jun Xi Ted | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --background: #0b0814;
+            --surface: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.12);
+            --purple: #a879f5;
+            --purple-light: #c7a6ff;
+            --text-muted: #aaa4b8;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,212 +30,265 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #090611;
+            background: var(--background);
             color: white;
-            min-height: 100vh;
             overflow-x: hidden;
             isolation: isolate;
         }
 
-        .backdrop {
-            position: fixed;
-            inset: 0;
-            background:
-                linear-gradient(rgba(9, 6, 17, 0.72), rgba(9, 6, 17, 0.88)),
-                url("background.jpg") center/cover no-repeat;
-            z-index: -2;
+        a {
+            color: inherit;
         }
 
-        .backdrop::after {
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(11,8,20,.93),
+                    rgba(11,8,20,.72),
+                    rgba(11,8,20,.94)
+                ),
+                url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=85")
+                center/cover no-repeat;
+        }
+
+        .background::after {
             content: "";
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 20%, rgba(135, 65, 255, 0.2), transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(90, 40, 180, 0.2), transparent 40%);
+                radial-gradient(circle at 15% 25%, rgba(130,75,220,.22), transparent 35%),
+                radial-gradient(circle at 85% 70%, rgba(100,50,190,.18), transparent 35%);
         }
+
+        /* NAVIGATION */
 
         nav {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: min(90%, 1000px);
-            padding: 15px 25px;
+            width: min(1100px, 92%);
+            padding: 16px 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 18px;
+            justify-content: space-between;
+            background: rgba(18,13,30,.78);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
         }
 
         .logo {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 800;
-            letter-spacing: 1px;
-            color: white;
+            letter-spacing: 1.5px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 28px;
         }
 
         nav a {
-            color: rgba(255, 255, 255, 0.75);
-            text-decoration: none;
-            font-size: 12px;
+            color: #c2bdcc;
+            font-size: 11px;
             font-weight: 600;
-            transition: 0.3s;
+            text-decoration: none;
+            transition: color .25s;
         }
 
         nav a:hover {
-            color: #bd91ff;
+            color: var(--purple-light);
         }
+
+        /* GENERAL */
 
         section {
             width: min(1100px, 90%);
             margin: auto;
-            padding: 120px 0;
+            padding: 115px 0;
         }
+
+        .eyebrow {
+            color: var(--purple-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-heading {
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+        }
+
+        .section-heading h2 span {
+            color: var(--purple-light);
+        }
+
+        .section-description {
+            max-width: 570px;
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        /* HERO */
 
         #home {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            padding-top: 150px;
         }
 
-        .intro-label {
-            color: #bd91ff;
-            font-size: 13px;
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border: 1px solid rgba(184,140,255,.25);
+            background: rgba(150,100,240,.10);
+            border-radius: 30px;
+            color: #d0b8ff;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            margin-bottom: 28px;
         }
 
         .hero-title {
-            font-size: clamp(42px, 8vw, 85px);
+            font-size: clamp(45px, 8vw, 88px);
+            line-height: 1.08;
             font-weight: 800;
-            line-height: 1.1;
-            max-width: 900px;
+            letter-spacing: -4px;
         }
 
         .hero-title span {
-            color: #b88aff;
+            color: var(--purple-light);
         }
 
         .hero-description {
-            margin-top: 25px;
             max-width: 600px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.9;
-            font-size: 15px;
+            margin-top: 25px;
+            color: #b9b2c6;
+            font-size: 14px;
+            line-height: 2;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 35px;
             flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 35px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 25px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 12px;
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 11px;
             font-weight: 700;
-            transition: 0.3s;
+            text-decoration: none;
+            transition: .25s;
         }
 
-        .btn-primary {
-            background: #9861e9;
+        .button-primary {
+            background: #9865e8;
             color: white;
         }
 
-        .btn-primary:hover {
+        .button-primary:hover {
             background: #b18aff;
             transform: translateY(-3px);
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.06);
             color: white;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .button-secondary:hover {
+            background: rgba(255,255,255,.13);
             transform: translateY(-3px);
         }
 
-        .section-heading {
-            margin-bottom: 45px;
-        }
-
-        .section-heading p {
-            color: #bd91ff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(30px, 5vw, 45px);
-            font-weight: 800;
-        }
-
-        .section-heading h2 span {
-            color: #b88aff;
-        }
+        /* INTEREST CARDS */
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 22px;
         }
 
         .card {
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            transition: 0.3s;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: transform .3s, border-color .3s;
         }
 
         .card:hover {
             transform: translateY(-6px);
-            border-color: rgba(184, 138, 255, 0.55);
-            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(184,140,255,.5);
         }
 
-        .card-icon {
-            font-size: 30px;
-            margin-bottom: 20px;
+        .card-image {
+            width: 100%;
+            height: 230px;
+            display: block;
+            object-fit: cover;
+            transition: transform .5s;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.04);
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            background: #171020;
+        }
+
+        .card-content {
+            padding: 26px;
         }
 
         .card h3 {
             font-size: 19px;
+            font-weight: 700;
             margin-bottom: 12px;
         }
 
         .card p {
-            font-size: 13px;
+            color: var(--text-muted);
+            font-size: 12px;
             line-height: 1.9;
-            color: rgba(255, 255, 255, 0.65);
         }
 
         .tags {
@@ -236,64 +299,76 @@
         }
 
         .tag {
-            padding: 7px 12px;
+            padding: 7px 11px;
             border-radius: 20px;
-            background: rgba(160, 105, 255, 0.15);
-            border: 1px solid rgba(160, 105, 255, 0.25);
-            color: #d1b5ff;
-            font-size: 10px;
-            font-weight: 600;
+            background: rgba(155,105,240,.12);
+            border: 1px solid rgba(155,105,240,.22);
+            color: #cfb7ff;
+            font-size: 9px;
+            font-weight: 700;
         }
 
-        .about-container {
+        /* ABOUT */
+
+        .about-layout {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 25px;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 24px;
         }
 
         .about-box {
-            padding: 35px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 18px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
         }
 
         .about-box h3 {
-            font-size: 20px;
+            font-size: 19px;
             margin-bottom: 20px;
         }
 
         .about-box p {
-            color: rgba(255, 255, 255, 0.68);
-            font-size: 13px;
+            color: var(--text-muted);
+            font-size: 12px;
             line-height: 2;
             margin-bottom: 15px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 22px;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 9px;
         }
 
         .skill {
-            padding: 10px 15px;
-            background: rgba(160, 105, 255, 0.13);
-            border: 1px solid rgba(160, 105, 255, 0.22);
-            border-radius: 10px;
-            font-size: 11px;
-            color: #d7c0ff;
+            padding: 10px 13px;
+            border-radius: 9px;
+            border: 1px solid rgba(155,105,240,.22);
+            background: rgba(155,105,240,.12);
+            color: #d4c0fa;
+            font-size: 10px;
             font-weight: 600;
         }
 
+        /* CONTACT */
+
         .contact-box {
-            padding: 40px;
+            padding: 55px 30px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--surface);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
         }
@@ -304,53 +379,164 @@
         }
 
         .contact-box p {
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 13px;
+            max-width: 500px;
+            margin: 0 auto 25px;
+            color: var(--text-muted);
+            font-size: 12px;
             line-height: 1.9;
-            margin-bottom: 25px;
         }
+
+        /* FOOTER */
 
         footer {
-            text-align: center;
             padding: 30px 15px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 11px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,.08);
+            color: #777080;
+            font-size: 10px;
         }
 
-        /* Music button */
+        /* MUSIC BUTTON */
 
         #musicButton {
             position: fixed;
             bottom: 25px;
             left: 25px;
-            width: 56px;
-            height: 56px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.13);
+            width: 54px;
+            height: 54px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 15px;
+            background: rgba(30,22,45,.85);
+            color: white;
+            font-family: inherit;
+            font-size: 19px;
+            cursor: pointer;
+            z-index: 3000;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            z-index: 9999;
-            transition: 0.25s;
+            transition: .25s;
         }
 
         #musicButton:hover {
-            background: rgba(160, 105, 255, 0.35);
+            background: #8054c7;
             transform: translateY(-3px);
         }
+
+        /* MUSIC PLAYER */
 
         #music {
             position: fixed;
             width: 200px;
             height: 200px;
-            left: -220px;
-            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .01;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* FIRST VISIT MUSIC PROMPT */
+
+        .music-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(5,3,10,.82);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 5000;
+            transition: opacity .3s, visibility .3s;
+        }
+
+        .music-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
+
+        .music-modal {
+            width: min(420px, 100%);
+            padding: 38px 30px;
+            text-align: center;
+            background: #171020;
+            border: 1px solid rgba(190,150,255,.25);
+            border-radius: 20px;
+            box-shadow: 0 25px 100px rgba(0,0,0,.5);
+        }
+
+        .modal-line {
+            width: 42px;
+            height: 3px;
+            border-radius: 10px;
+            background: var(--purple);
+            margin: 0 auto 24px;
+        }
+
+        .music-modal h2 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .music-modal p {
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        #playMusic {
+            background: #9865e8;
+            color: white;
+            border-color: #9865e8;
+        }
+
+        #playMusic:hover:not(:disabled) {
+            background: #b18aff;
+        }
+
+        #skipMusic {
+            background: rgba(255,255,255,.06);
+            color: white;
+        }
+
+        #skipMusic:hover {
+            background: rgba(255,255,255,.13);
+        }
+
+        .modal-buttons button:disabled {
+            opacity: .45;
+            cursor: wait;
+        }
+
+        #musicStatus {
+            margin-top: 17px;
+            margin-bottom: 0;
+            font-size: 10px;
+            color: #a99bbd;
+        }
+
+        /* RESPONSIVE */
 
         @media (max-width: 700px) {
             nav {
@@ -358,7 +544,7 @@
             }
 
             .logo {
-                font-size: 13px;
+                font-size: 11px;
             }
 
             nav ul {
@@ -366,27 +552,49 @@
             }
 
             nav a {
-                font-size: 10px;
+                font-size: 9px;
             }
 
-            .cards {
+            .hero-title {
+                letter-spacing: -2px;
+            }
+
+            .cards,
+            .about-layout {
                 grid-template-columns: 1fr;
             }
 
-            .about-container {
-                grid-template-columns: 1fr;
+            .card-image {
+                height: 210px;
             }
 
             section {
-                padding: 100px 0;
+                padding: 90px 0;
             }
 
             #home {
                 padding-top: 140px;
             }
+        }
 
-            .hero-description {
-                font-size: 13px;
+        @media (max-width: 390px) {
+            nav ul {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 8px;
+            }
+
+            .logo {
+                font-size: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -394,7 +602,9 @@
 
 <body>
 
-    <div class="backdrop"></div>
+    <div class="background"></div>
+
+    <!-- NAVIGATION -->
 
     <nav>
         <div class="logo">JUN XI TED.</div>
@@ -410,32 +620,36 @@
     <!-- HOME -->
 
     <section id="home">
+        <div class="hero-content">
 
-        <p class="intro-label">Personal Portfolio</p>
+            <div class="hero-label">
+                PERSONAL PORTFOLIO
+            </div>
 
-        <h1 class="hero-title">
-            Lim Jun Xi Ted<span>.</span>
-        </h1>
+            <h1 class="hero-title">
+                Lim Jun Xi Ted<span>.</span>
+            </h1>
 
-        <p class="hero-description">
-            Welcome to my portfolio. I'm interested in technology,
-            programming and computers. This is where I share some of
-            my interests, skills and experiences.
-        </p>
+            <p class="hero-description">
+                Welcome to my portfolio. I'm interested in technology,
+                programming and computers. Here, I share some of my
+                interests, skills and experiences.
+            </p>
 
-        <div class="hero-buttons">
-            <a href="#interests" class="btn btn-primary">
-                Explore My Interests
-            </a>
+            <div class="hero-buttons">
+                <a href="#interests" class="button button-primary">
+                    Explore My Interests
+                </a>
 
-            <a href="https://github.com/limjunxi"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-secondary">
-                Visit My GitHub
-            </a>
+                <a href="https://github.com/limjunxi"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="button button-secondary">
+                    Visit My GitHub
+                </a>
+            </div>
+
         </div>
-
     </section>
 
     <!-- INTERESTS -->
@@ -443,88 +657,131 @@
     <section id="interests">
 
         <div class="section-heading">
-            <p>What I Enjoy</p>
+            <p class="eyebrow">What I Enjoy</p>
             <h2>My <span>Interests.</span></h2>
+            <p class="section-description">
+                A few of the areas of technology and creativity
+                that I enjoy exploring.
+            </p>
         </div>
 
         <div class="cards">
 
-            <div class="card">
-                <div class="card-icon">💻</div>
+            <!-- PROGRAMMING -->
 
-                <h3>Programming</h3>
-
-                <p>
-                    I enjoy learning programming and experimenting
-                    with different ideas. I have worked with Python
-                    and Lua, and I'm interested in developing my
-                    programming skills further.
-                </p>
-
-                <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Lua</span>
-                    <span class="tag">Programming</span>
+            <article class="card">
+                <div class="image-wrapper">
+                    <img
+                        class="card-image"
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85"
+                        alt="Laptop and digital workspace"
+                        loading="lazy">
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-icon">🖥️</div>
+                <div class="card-content">
+                    <h3>Programming</h3>
 
-                <h3>PC Building</h3>
+                    <p>
+                        I enjoy learning programming and experimenting
+                        with different ideas. I have worked with Python
+                        and Lua, and I'm interested in developing my
+                        programming skills further.
+                    </p>
 
-                <p>
-                    Building custom PCs is one of my interests.
-                    I enjoy learning about computer hardware,
-                    comparing components and understanding how
-                    different parts work together.
-                </p>
-
-                <div class="tags">
-                    <span class="tag">Hardware</span>
-                    <span class="tag">Custom PCs</span>
-                    <span class="tag">Technology</span>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Lua</span>
+                        <span class="tag">Programming</span>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
-                <div class="card-icon">📷</div>
+            <!-- PC BUILDING -->
 
-                <h3>Photography</h3>
-
-                <p>
-                    Photography allows me to capture moments and
-                    explore different perspectives. It is also
-                    something I have been involved in through
-                    my school's Infocomm Media CCA.
-                </p>
-
-                <div class="tags">
-                    <span class="tag">Photography</span>
-                    <span class="tag">Creative Media</span>
+            <article class="card">
+                <div class="image-wrapper">
+                    <img
+                        class="card-image"
+                        src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1200&q=85"
+                        alt="Computer and hardware setup"
+                        loading="lazy">
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-icon">🌐</div>
+                <div class="card-content">
+                    <h3>PC Building</h3>
 
-                <h3>Web Development</h3>
+                    <p>
+                        Building custom PCs is one of my interests.
+                        I enjoy learning about computer hardware,
+                        comparing components and understanding how
+                        different parts work together.
+                    </p>
 
-                <p>
-                    I enjoy creating websites and learning how
-                    HTML and CSS work together to build and
-                    customise web pages.
-                </p>
-
-                <div class="tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Web Design</span>
+                    <div class="tags">
+                        <span class="tag">Hardware</span>
+                        <span class="tag">Custom PCs</span>
+                        <span class="tag">Technology</span>
+                    </div>
                 </div>
-            </div>
+            </article>
+
+            <!-- PHOTOGRAPHY -->
+
+            <article class="card">
+                <div class="image-wrapper">
+                    <img
+                        class="card-image"
+                        src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=85"
+                        alt="Digital camera"
+                        loading="lazy">
+                </div>
+
+                <div class="card-content">
+                    <h3>Photography</h3>
+
+                    <p>
+                        Photography allows me to capture moments and
+                        explore different perspectives. It is also
+                        something I have been involved in through
+                        my school's Infocomm Media CCA.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Creative Media</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEB DEVELOPMENT -->
+
+            <article class="card">
+                <div class="image-wrapper">
+                    <img
+                        class="card-image"
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85"
+                        alt="Laptop displaying a development workspace"
+                        loading="lazy">
+                </div>
+
+                <div class="card-content">
+                    <h3>Web Development</h3>
+
+                    <p>
+                        I enjoy creating websites and learning how
+                        HTML and CSS work together to build and
+                        customise web pages.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Web Design</span>
+                    </div>
+                </div>
+            </article>
 
         </div>
-
     </section>
 
     <!-- ABOUT -->
@@ -532,15 +789,21 @@
     <section id="about">
 
         <div class="section-heading">
-            <p>Get To Know Me</p>
+            <p class="eyebrow">Get To Know Me</p>
             <h2>About <span>Me.</span></h2>
         </div>
 
-        <div class="about-container">
+        <div class="about-layout">
 
             <div class="about-box">
 
                 <h3>A Little About Myself</h3>
+
+                <img
+                    class="about-image"
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85"
+                    alt="People working together on a project"
+                    loading="lazy">
 
                 <p>
                     I am a student from Anglo-Chinese School
@@ -574,6 +837,11 @@
 
                 <h3>Skills & Interests</h3>
 
+                <p>
+                    Some of the technologies and areas I have
+                    experience with or am interested in learning.
+                </p>
+
                 <div class="skills">
                     <span class="skill">Python</span>
                     <span class="skill">Lua</span>
@@ -588,7 +856,6 @@
             </div>
 
         </div>
-
     </section>
 
     <!-- CONTACT -->
@@ -596,7 +863,7 @@
     <section id="contact">
 
         <div class="section-heading">
-            <p>Find Me Online</p>
+            <p class="eyebrow">Find Me Online</p>
             <h2>Contact <span>& Links.</span></h2>
         </div>
 
@@ -605,45 +872,109 @@
             <h3>Check Out My Work</h3>
 
             <p>
-                You can find my projects and other work through
-                my GitHub profile.
+                You can find my projects and other work
+                through my GitHub profile.
             </p>
 
             <a href="https://github.com/limjunxi"
                target="_blank"
                rel="noopener noreferrer"
-               class="btn btn-primary">
+               class="button button-primary">
                 Visit My GitHub
             </a>
 
         </div>
-
     </section>
+
+    <!-- FOOTER -->
 
     <footer>
         © 2026 Lim Jun Xi Ted. All Rights Reserved.
     </footer>
 
-    <!-- MUSIC PLAYER -->
+    <!-- YOUTUBE PLAYER -->
 
     <div id="music"></div>
 
+    <!-- MUSIC CONTROL -->
+
     <button
         id="musicButton"
-        onclick="toggleMusic()"
-        aria-label="Mute music"
-        title="Mute music">
-        🔊
+        type="button"
+        aria-label="Unmute music"
+        title="Unmute music">
+        &#9835;
     </button>
 
-    <script>
-        let player = null;
-        let isMuted = false;
+    <!-- PLAY MUSIC PROMPT -->
 
-        // Your original YouTube music video ID
+    <div class="music-overlay" id="musicPrompt">
+        <div class="music-modal">
+
+            <div class="modal-line"></div>
+
+            <h2>Play music?</h2>
+
+            <p>
+                Would you like some background music while
+                exploring the portfolio?
+            </p>
+
+            <div class="modal-buttons">
+                <button id="playMusic" type="button" disabled>
+                    Yes, play music
+                </button>
+
+                <button id="skipMusic" type="button">
+                    No, thanks
+                </button>
+            </div>
+
+            <p id="musicStatus">
+                Loading music player...
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        /* ==================================
+           MUSIC CONFIGURATION
+        ================================== */
+
         const MUSIC_VIDEO_ID = "o4qjk8_5gmU";
 
-        // YouTube player API callback
+        let player = null;
+        let isMuted = true;
+        let playerReady = false;
+
+        const musicButton = document.getElementById("musicButton");
+        const musicPrompt = document.getElementById("musicPrompt");
+        const playMusicButton = document.getElementById("playMusic");
+        const skipMusicButton = document.getElementById("skipMusic");
+        const musicStatus = document.getElementById("musicStatus");
+
+        /* ==================================
+           MUSIC BUTTON DISPLAY
+        ================================== */
+
+        function updateMusicButton() {
+
+            if (isMuted) {
+                musicButton.innerHTML = "&#9835;";
+                musicButton.setAttribute("aria-label", "Unmute music");
+                musicButton.title = "Unmute music";
+            } else {
+                musicButton.innerHTML = "&#9834;";
+                musicButton.setAttribute("aria-label", "Mute music");
+                musicButton.title = "Mute music";
+            }
+        }
+
+        /* ==================================
+           YOUTUBE PLAYER INITIALISATION
+        ================================== */
+
         function onYouTubeIframeAPIReady() {
 
             player = new YT.Player("music", {
@@ -662,70 +993,118 @@
                 },
 
                 events: {
+
                     onReady: function(event) {
 
-                        // Request unmuted playback
-                        event.target.unMute();
+                        playerReady = true;
+
+                        // Muted playback is permitted more often
+                        // by browser autoplay policies.
+                        event.target.mute();
                         event.target.setVolume(100);
                         event.target.playVideo();
 
-                        isMuted = false;
+                        isMuted = true;
                         updateMusicButton();
+
+                        playMusicButton.disabled = false;
+                        musicStatus.textContent =
+                            "Music player ready.";
+                    },
+
+                    onStateChange: function(event) {
+
+                        if (event.data === YT.PlayerState.ENDED) {
+                            player.playVideo();
+                        }
+                    },
+
+                    onError: function(event) {
+
+                        musicStatus.textContent =
+                            "Unable to play this video. It may not allow embedding.";
+
+                        console.error("YouTube error:", event.data);
                     }
                 }
             });
         }
 
-        // Update button icon and accessibility text
-        function updateMusicButton() {
+        /* ==================================
+           PLAY MUSIC PROMPT
+        ================================== */
 
-            const button = document.getElementById("musicButton");
+        playMusicButton.addEventListener("click", function() {
+
+            if (!playerReady || !player) return;
+
+            // This click is the user's direct interaction,
+            // allowing the browser to permit audio playback.
+            player.unMute();
+            player.setVolume(100);
+            player.playVideo();
+
+            isMuted = false;
+            updateMusicButton();
+
+            musicPrompt.classList.add("hidden");
+        });
+
+        skipMusicButton.addEventListener("click", function() {
+
+            if (playerReady && player) {
+                player.mute();
+                player.pauseVideo();
+            }
+
+            isMuted = true;
+            updateMusicButton();
+
+            musicPrompt.classList.add("hidden");
+        });
+
+        /* ==================================
+           MUTE / UNMUTE CONTROL
+        ================================== */
+
+        musicButton.addEventListener("click", function() {
+
+            if (!playerReady || !player) return;
 
             if (isMuted) {
-                button.textContent = "🔇";
-                button.setAttribute("aria-label", "Unmute music");
-                button.title = "Unmute music";
-            } else {
-                button.textContent = "🔊";
-                button.setAttribute("aria-label", "Mute music");
-                button.title = "Mute music";
-            }
-        }
 
-        // Mute and unmute
-        function toggleMusic() {
-
-            if (!player || typeof player.isMuted !== "function") {
-                return;
-            }
-
-            if (isMuted === false) {
-
-                // Currently unmuted: mute it
-                player.mute();
-                isMuted = true;
-
-            } else {
-
-                // Currently muted: unmute it
                 player.unMute();
                 player.setVolume(100);
                 player.playVideo();
+
                 isMuted = false;
 
+            } else {
+
+                player.mute();
+
+                isMuted = true;
             }
 
             updateMusicButton();
-        }
+        });
 
-        // Load YouTube IFrame API
+        /* ==================================
+           LOAD YOUTUBE API
+        ================================== */
+
         const youtubeScript = document.createElement("script");
 
-        youtubeScript.src = "https://www.youtube.com/iframe_api";
+        youtubeScript.src =
+            "https://www.youtube.com/iframe_api";
+
+        youtubeScript.async = true;
 
         document.head.appendChild(youtubeScript);
 
+        updateMusicButton();
     </script>
 
 </body>
 </html>
+
