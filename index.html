@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -763,6 +764,334 @@ footer {
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
         animation-duration: .01ms !important;
+    }
+}
+
+/* ==========================================
+   APPLE-STYLE WHITE LIQUID GLASS
+   TEXT BACKDROPS AND SURFACES
+========================================== */
+
+:root {
+    --liquid-white: rgba(255, 255, 255, 0.52);
+    --liquid-white-strong: rgba(255, 255, 255, 0.68);
+    --liquid-blur: blur(28px) saturate(180%);
+    --liquid-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.055),
+        inset 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+/* ALL TEXT BACKDROPS */
+
+.nav-logo,
+.nav-links a,
+.hero-tag,
+.hero-title,
+.hero-description,
+.section-label,
+.section-title,
+.section-description,
+.card-number,
+.interest-card h3,
+.interest-card p,
+.skill,
+.achievement-card h3,
+.achievement-card p,
+.about-text p,
+.detail-label,
+.detail-value,
+.contact-label,
+.contact-value,
+footer {
+    display: table;
+    width: fit-content;
+    max-width: 100%;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 13px;
+    background: var(--liquid-white);
+    backdrop-filter: var(--liquid-blur);
+    -webkit-backdrop-filter: var(--liquid-blur);
+    box-shadow: var(--liquid-shadow);
+}
+
+/* NAVIGATION */
+
+nav {
+    background: rgba(255, 255, 255, 0.57);
+    backdrop-filter: blur(35px) saturate(190%);
+    -webkit-backdrop-filter: blur(35px) saturate(190%);
+    border: none;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.07),
+        inset 0 1px 1px rgba(255, 255, 255, 0.85);
+    border-radius: 22px;
+}
+
+.nav-logo {
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.nav-links a {
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background .25s ease, color .25s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,.75);
+}
+
+/* HERO TEXT */
+
+.hero-tag {
+    border-radius: 100px;
+    padding: 10px 17px;
+}
+
+.hero-title {
+    padding: 17px 22px;
+    border-radius: 22px;
+    line-height: 1.15;
+    background: rgba(255,255,255,.48);
+    box-shadow: var(--liquid-shadow);
+}
+
+.hero-title span {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.hero-description {
+    padding: 16px 19px;
+    border-radius: 16px;
+    line-height: 1.8;
+}
+
+/* SECTION HEADINGS */
+
+.section-label {
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 10px;
+}
+
+.section-title {
+    padding: 13px 18px;
+    border-radius: 17px;
+    margin-bottom: 15px;
+}
+
+.section-description {
+    padding: 13px 17px;
+    border-radius: 13px;
+    line-height: 1.8;
+}
+
+/* INTEREST CARDS */
+
+.interest-card,
+.achievement-card,
+.about-details,
+.contact-card {
+    background: rgba(255,255,255,.42);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: none;
+    border-radius: 22px;
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.065),
+        inset 0 1px 1px rgba(255,255,255,.8);
+}
+
+.interest-card h3,
+.achievement-card h3 {
+    padding: 9px 13px;
+    border-radius: 11px;
+    margin-bottom: 12px;
+}
+
+.interest-card p,
+.achievement-card p {
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.8;
+}
+
+/* SKILLS */
+
+.skill {
+    display: inline-block;
+    padding: 10px 17px;
+    border-radius: 100px;
+    background: rgba(255,255,255,.62);
+    transition: transform .25s ease, background .25s ease;
+}
+
+.skill:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.88);
+}
+
+/* ABOUT */
+
+.about-text p {
+    display: block;
+    width: 100%;
+    padding: 16px 19px;
+    margin-bottom: 17px;
+    border-radius: 16px;
+    line-height: 1.9;
+}
+
+.detail-row {
+    border-bottom: 1px solid rgba(255,255,255,.5);
+    padding: 12px 0;
+}
+
+.detail-label,
+.detail-value {
+    padding: 7px 11px;
+    border-radius: 9px;
+}
+
+.detail-label {
+    margin-bottom: 4px;
+}
+
+/* CONTACT */
+
+.contact-card {
+    padding: 28px;
+}
+
+.contact-item {
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    transition: .25s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255,255,255,.78);
+    transform: translateY(-3px);
+}
+
+.contact-label,
+.contact-value {
+    padding: 5px 9px;
+    border-radius: 8px;
+}
+
+.contact-label {
+    margin-bottom: 4px;
+}
+
+/* BUTTONS */
+
+.btn {
+    border: none;
+    border-radius: 13px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,.65);
+    box-shadow: var(--liquid-shadow);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.9);
+}
+
+/* MUSIC CONTROL */
+
+.volume-container,
+.speaker-display {
+    background: rgba(255,255,255,.62);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: none;
+    box-shadow: var(--liquid-shadow);
+    border-radius: 17px;
+}
+
+/* MUSIC PROMPT */
+
+.music-modal {
+    background: rgba(255,255,255,.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.music-modal-card {
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(35px) saturate(190%);
+    -webkit-backdrop-filter: blur(35px) saturate(190%);
+    border: none;
+    border-radius: 26px;
+    box-shadow:
+        0 25px 90px rgba(0,0,0,.12),
+        inset 0 1px 1px rgba(255,255,255,.9);
+}
+
+.modal-label,
+.music-modal-card h2,
+.music-modal-card p {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 9px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.48);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-buttons button {
+    border: none;
+    border-radius: 13px;
+}
+
+/* FOOTER */
+
+footer {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 20px;
+    border-radius: 100px;
+    background: rgba(255,255,255,.5);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+/* MOBILE */
+
+@media (max-width: 430px) {
+    .hero-title {
+        padding: 13px 15px;
+        letter-spacing: -3px;
+    }
+
+    .section-title {
+        padding: 11px 13px;
+    }
+
+    .section-description,
+    .hero-description {
+        font-size: 13px;
+    }
+
+    nav {
+        border-radius: 18px;
     }
 }
 </style>
