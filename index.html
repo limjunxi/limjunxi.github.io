@@ -1,5 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lim Jun Xi Ted — Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --purple: #9b75ff;
+    --glass: rgba(88,55,145,.28);
+    --line: rgba(221,202,255,.25);
+    --text: #fbf8ff;
+    --muted: #e0d6f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #28163b;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* BACKGROUND */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        linear-gradient(
+            130deg,
+            rgba(30,14,58,.72),
+            rgba(91,48,140,.42)
+        ),
+        url('background.jpg') center/cover no-repeat;
+    pointer-events: none;
+}
+
+main, footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* NAVIGATION */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(68,39,112,.38);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+}
+
+nav {
+    width: min(1080px,92%);
+    height: 70px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: -.04em;
+}
+
+.brand span {
+    color: #d4b8ff;
+}
+
+.links {
+    display: flex;
+    gap: 25px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.links a {
+    transition: .2s;
+}
+
+.links a:hover {
+    color: #fff;
+}
+
+/* HERO */
+.hero, .section {
+    width: min(1000px,90%);
+    margin: auto;
+}
+
+.hero {
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    padding: 90px 0;
+}
+
+.eyebrow, .kicker {
+    color: #dbc5ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(48px,8vw,82px);
+    line-height: 1.04;
+    letter-spacing: -.065em;
+    margin: 18px 0;
+}
+
+.hero p, .section-note, .about p {
+    max-width: 620px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+/* BUTTONS */
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 17px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(197,162,255,.2);
+    backdrop-filter: blur(12px);
+    font-size: 13px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.button:hover {
+    background: rgba(197,162,255,.4);
+    transform: translateY(-2px);
+}
+
+.button.primary {
+    background: rgba(181,136,255,.62);
+}
+
+/* SECTIONS */
+.section {
+    padding: 78px 0;
+    border-top: 1px solid var(--line);
+}
+
+.section h2 {
+    font-size: clamp(30px,5vw,44px);
+    letter-spacing: -.05em;
+    margin: 9px 0 12px;
+}
+
+.head {
+    margin-bottom: 28px;
+}
+
+/* PROJECT GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 16px;
+}
+
+.glass {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 12px 40px #16092b30;
+}
+
+.project {
+    padding: 23px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    transition: .25s;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    background: rgba(105,70,165,.4);
+}
+
+.project h3 {
+    margin: 8px 0;
+}
+
+.project p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.tags {
+    margin-top: auto;
+    padding-top: 18px;
+    color: #e6d6ff;
+    font-size: 11px;
+    word-spacing: 10px;
+}
+
+/* ABOUT */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 22px;
+}
+
+.about, .skills {
+    padding: 24px;
+}
+
+.skills h3 {
+    margin: 0 0 15px;
+}
+
+.skills span {
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 4px;
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    background: #ba91ff22;
+    font-size: 12px;
+}
+
+/* CONTACT */
+.contact {
+    padding: 36px;
+}
+
+.contact p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+    padding: 28px 5%;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* MUSIC BUTTON */
+.sound {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 9;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid #fff7;
+    background: rgba(136,91,201,.42);
+    backdrop-filter: blur(16px);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.sound img {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+}
+
+.sound:hover {
+    background: rgba(165,119,235,.7);
+    transform: scale(1.05);
+}
+
+/* HIDDEN YOUTUBE PLAYER */
+#music {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    left: -20px;
+    bottom: 0;
+    opacity: .01;
+    pointer-events: none;
+}
+
+/* MOBILE */
+@media(max-width:700px) {
+    .links {
+        gap: 12px;
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: 520px;
+    }
+
+    .grid, .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="backdrop"></div>
+
+<!-- YOUTUBE MUSIC PLAYER -->
+<iframe
+    id="music"
+    title="Background music"
+    allow="autoplay; encrypted-media">
+</iframe>
+
+<!-- NAVIGATION -->
+<header>
+<nav>
+    <a class="brand" href="#home">Lim Jun Xi Ted</a>
+
+    <div class="links">
+        <a href="#work">Interests</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/limjunxi" target="_blank">GitHub ↗</a>
+    </div>
+</nav>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <div>
+        <div class="eyebrow">
+            Developer · Programmer · Photographer
+        </div>
+
+        <h1>
+            Hi, I'm Lim Jun Xi Ted.<br>
+            Welcome to my portfolio.
+        </h1>
+
+        <p>
+            I'm interested in technology, programming and computers.
+            I enjoy exploring new technologies, building custom PCs
+            and developing my programming skills.
+        </p>
+
+        <div class="actions">
+            <a class="button primary" href="#work">
+                Explore my interests ↓
+            </a>
+
+            <a class="button" href="https://github.com/limjunxi" target="_blank">
+                My GitHub ↗
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- INTERESTS -->
+<section class="section" id="work">
+
+    <div class="head">
+        <div class="kicker">01 / Interests</div>
+        <h2>What I'm interested in</h2>
+
+        <p class="section-note">
+            A few of the areas I enjoy exploring and developing my skills in.
+        </p>
+    </div>
+
+    <div class="grid">
+
+        <article class="project glass">
+            <h3>Programming</h3>
+            <p>
+                I enjoy learning programming and exploring how software
+                works. I've been developing my skills in Python and
+                experimenting with different programming projects.
+            </p>
+            <div class="tags">Python · Programming · Software</div>
+        </article>
+
+        <article class="project glass">
+            <h3>Custom PC Building</h3>
+            <p>
+                I have an interest in computer hardware and enjoy
+                exploring PC components, hardware compatibility and
+                different computer configurations.
+            </p>
+            <div class="tags">Hardware · PC Building · Technology</div>
+        </article>
+
+        <article class="project glass">
+            <h3>Photography</h3>
+            <p>
+                Photography is another interest of mine. I enjoy
+                capturing different moments and experimenting with
+                composition and perspectives.
+            </p>
+            <div class="tags">Photography · Composition · Editing</div>
+        </article>
+
+        <article class="project glass">
+            <h3>Web Development</h3>
+            <p>
+                I'm exploring web development through HTML and CSS,
+                learning how to structure websites and create
+                interactive user experiences.
+            </p>
+            <div class="tags">HTML · CSS · Web Development</div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+    <div class="head">
+        <div class="kicker">02 / About Me</div>
+        <h2>A little about myself.</h2>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="about glass">
+            <p>
+                I'm Lim Jun Xi Ted, a student at Anglo-Chinese School
+                (Barker Road) with an interest in Information Technology
+                and Computer Science.
+            </p>
+
+            <p>
+                My interest in technology started at a young age.
+                Since then, I've explored different areas of computing,
+                from programming and web development to building
+                custom computers.
+            </p>
+
+            <p>
+                Through my interests and experiences, I hope to
+                continue expanding my knowledge and developing
+                practical skills in technology.
+            </p>
+        </div>
+
+        <div class="skills glass">
+            <h3>Skills & Technologies</h3>
+
+            <span>Python</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>GitHub</span>
+            <span>PC Building</span>
+            <span>Photography</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+
+    <div class="contact glass">
+        <div class="kicker">03 / Contact</div>
+
+        <h2>Get in touch.</h2>
+
+        <p>
+            Feel free to explore my GitHub to see my programming
+            projects and experiments.
+        </p>
+
+        <div class="actions">
+            <a class="button primary"
+               href="https://github.com/limjunxi"
+               target="_blank">
+                Visit my GitHub ↗
+            </a>
+        </div>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    © 2026 Lim Jun Xi Ted
+</footer>
+
+<!-- MUSIC CONTROL -->
+<button class="sound" id="mute" aria-label="Unmute" title="Unmute">
+    <img
+        id="soundIcon"
+        src="https://img.icons8.com/ios-glyphs/60/ffffff/no-audio--v1.png"
+        alt="Sound off">
+</button>
+
 <script>
-const MUSIC_YOUTUBE_URL = "https://www.youtube.com/watch?v=YOUR_VIDEO_ID";
+
+/* =================================
+   YOUTUBE BACKGROUND MUSIC SETTINGS
+   ================================= */
+
+/* Replace this with your YouTube URL */
+const MUSIC_YOUTUBE_URL = "https://www.youtube.com/watch?v=o4qjk8_5gmU";
 
 function youtubeId(link) {
     try {
@@ -7,32 +549,45 @@ function youtubeId(link) {
 
         const id = url.hostname === "youtu.be"
             ? url.pathname.slice(1)
-            : url.searchParams.get("v");
+            : url.searchParams.get("v") ||
+              url.pathname.split("/").filter(Boolean).pop();
 
         return /^[A-Za-z0-9_-]{11}$/.test(id || "") ? id : "";
+
     } catch {
         return "";
     }
 }
 
-const musicId = youtubeId(o4qjk8_5gmU);
+const musicId = youtubeId(MUSIC_YOUTUBE_URL);
+
 const music = document.getElementById("music");
 const muteButton = document.getElementById("mute");
 const soundIcon = document.getElementById("soundIcon");
 
 let muted = true;
 
+/* Initialise YouTube player */
 if (musicId) {
+
     music.src =
         "https://www.youtube-nocookie.com/embed/" +
         musicId +
-        "?autoplay=1&mute=1&loop=1&playlist=" +
-        musicId +
-        "&controls=0&enablejsapi=1";
+        "?autoplay=1" +
+        "&mute=1" +
+        "&loop=1" +
+        "&playlist=" + musicId +
+        "&controls=0" +
+        "&enablejsapi=1";
+
 }
 
+/* Mute / Unmute */
 muteButton.addEventListener("click", () => {
-    if (!musicId) return;
+
+    if (!musicId) {
+        return;
+    }
 
     music.contentWindow.postMessage(
         JSON.stringify({
@@ -50,6 +605,15 @@ muteButton.addEventListener("click", () => {
         : "https://img.icons8.com/ios-glyphs/60/ffffff/high-volume--v1.png";
 
     muteButton.title = muted ? "Unmute" : "Mute";
-    muteButton.setAttribute("aria-label", muteButton.title);
+
+    muteButton.setAttribute(
+        "aria-label",
+        muteButton.title
+    );
+
 });
+
 </script>
+
+</body>
+</html>
